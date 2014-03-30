@@ -1,0 +1,18 @@
+Discussion :
+
+* Un personnage sans nom est difficile à cibler. Je pense donc qu’il faudrait obliger un personnage a possèder un nom et un prénom. Ces données sont uniquement connues du narrateur. La manière dont les personnages s’appellent se trouve dans une autre table.
+
+* Date serait un type et non une entité
+
+* Attention date range
+
+* Actuellement :
+ (1) Char - Char - Rel  /  (2) Char - Char - Rel - Date 
+Ne faut il pas en plus la relation
+ (3) Char - Char - Rel - Date - Date (Soit un date range)
+
+Raison -> Certaines relations sont intemporelles (1) (avoir un papa/…), d’autres commencent à une certaine date mais le sont jusqu’à la fin (2) Choisir un parrain/avoir un fils/… et d’autres sont sur une période de temps (3) Aimer/haïr quelqu’un
+/…
+
+* remplacer l’entité Relation par le type « Type », et remonter le type Pseudo à une nouvelle relation sur les char -> Raison pour la multiplicité.
+
