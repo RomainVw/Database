@@ -20,9 +20,7 @@ Raison -> Certaines relations sont intemporelles (1) (avoir un papa/…), d’au
 * remplacer l’entité Relation par le type « Type », et remonter le type Pseudo à une nouvelle relation sur les char -> Raison pour la multiplicité.
 
 
-* Date de Naissance obligatoire ?
 
-* Lieu de naissance obligatoire -> Quelqu’un qui écrit une histoire doit absolument connaître tout les éléments de tout ses personnages.
 
 
 Non modifié sur v2 :
@@ -34,6 +32,20 @@ Non modifié sur v2 :
 
 
 * Add Event ID  et rend desc obligatoire
+-> Non rajouter dans nom
+
+
+Rajouter description dans association
+
+NEW:
+****
+
+* Changer prénom nom en juste un champ NOM
+
+* Date de Naissance obligatoire a remettre optionnel
+
+* Lieu de naissance obligatoire -> Quelqu’un qui écrit une histoire doit absolument connaître tout les éléments de tout ses personnages. -> a remettre en optionnel
 
 
 
+* Subplace -> Obligatoire la map pour parent
