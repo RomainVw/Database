@@ -1,10 +1,11 @@
 Discussion :
 
+
+
+
+Déjà modifié sur v2 :
+**********************
 * Un personnage sans nom est difficile à cibler. Je pense donc qu’il faudrait obliger un personnage a possèder un nom et un prénom. Ces données sont uniquement connues du narrateur. La manière dont les personnages s’appellent se trouve dans une autre table.
-
-* Date serait un type et non une entité
-
-* Attention date range
 
 * Actuellement :
  (1) Char - Char - Rel  /  (2) Char - Char - Rel - Date 
@@ -14,5 +15,25 @@ Ne faut il pas en plus la relation
 Raison -> Certaines relations sont intemporelles (1) (avoir un papa/…), d’autres commencent à une certaine date mais le sont jusqu’à la fin (2) Choisir un parrain/avoir un fils/… et d’autres sont sur une période de temps (3) Aimer/haïr quelqu’un
 /…
 
+
+
 * remplacer l’entité Relation par le type « Type », et remonter le type Pseudo à une nouvelle relation sur les char -> Raison pour la multiplicité.
+
+
+* Date de Naissance obligatoire ?
+
+* Lieu de naissance obligatoire -> Quelqu’un qui écrit une histoire doit absolument connaître tout les éléments de tout ses personnages.
+
+
+Non modifié sur v2 :
+**********************
+
+* Date serait un type et non une entité
+-> Peut être pas. Je pense que le type date n’existe pas en Tutorial D.
+
+
+
+* Add Event ID  et rend desc obligatoire
+
+
 
