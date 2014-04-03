@@ -1,7 +1,8 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{ORM schema}{}% 2
-\BOOKMARK [1][-]{section.3}{Relvar predicates}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{About characters}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Characters relations}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{About events}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.4}{About places}{section.3}% 7
+\BOOKMARK [1][-]{section.2}{Elementary Facts}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{About characters}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Characters relations}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{About events}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{About places}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{ORM schema}{}% 7
+\BOOKMARK [1][-]{section.4}{Relvar predicates}{}% 8
