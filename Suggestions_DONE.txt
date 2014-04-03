@@ -21,10 +21,13 @@ Raison -> Certaines relations sont intemporelles (1) (avoir un papa/…), d’au
 
 
 
+* Changer prénom nom en juste un champ NOM
+
+* Date de Naissance obligatoire a remettre optionnel
+
+* Lieu de naissance obligatoire -> Quelqu’un qui écrit une histoire doit absolument connaître tout les éléments de tout ses personnages. -> a remettre en optionnel
 
 
-Non modifié sur v2 :
-**********************
 
 * Date serait un type et non une entité
 -> Peut être pas. Je pense que le type date n’existe pas en Tutorial D.
@@ -37,15 +40,9 @@ Non modifié sur v2 :
 
 Rajouter description dans association
 
-NEW:
-****
-
-* Changer prénom nom en juste un champ NOM
-
-* Date de Naissance obligatoire a remettre optionnel
-
-* Lieu de naissance obligatoire -> Quelqu’un qui écrit une histoire doit absolument connaître tout les éléments de tout ses personnages. -> a remettre en optionnel
 
 
 
+RAPPORT:
+********
 * Subplace -> Obligatoire la map pour parent

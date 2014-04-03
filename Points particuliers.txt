@@ -1,0 +1,13 @@
+Points particuliers :
+
+
+Name 	   -> Obligatoire
+DescEvent  -> facultatif
+Behavior   -> Multiple authorized
+Originates -> Facultatif
+Subplace   -> parent a obligatoirement une MAP
+Assoc 	   -> Entity
+
+RELATION   -> Un table contient tout les type qui sont disponibles pour les différents tel ac temps
+
+/!\ Rajouter description
