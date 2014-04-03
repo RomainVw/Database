@@ -271,7 +271,52 @@ We can see that a place's map is optional. However, since a place's sub-places a
 This relation has two constraints that are not expressed in the database and will have to be verified in the software implementation. Firstly, the map square on which the sub-place is located must belong to the map's domain of possible squares (between 1 and (\# square width)*(\# square length)). Secondly, it is required that two places of the same level do not overlap.
 
 \section{Relvar predicates}
+In this section, we will give the relvar predicates that our database represents. The attributes of a relation are in bold, and the attributes that form the key are underlined.
 
+\subsection*{About characters:}
+\begin{itemize}
+\item The character \underline{\textbf{CHARACTERID}} is named \textbf{NAME}. \underline{\textbf{ASSOCIATIONID}}.
+\item The character \underline{\textbf{CHARACTERID}} has a behavior that is \underline{\textbf{BEHAVIOR}}.
+\item The character \underline{\textbf{CALLERID}} knows the charactert \underline{\textbf{CALLEID}} by the pseudonym \underline{\textbf{PSEUDONYME}}.
+\end{itemize}
 
+\subsection*{About time:}
+\begin{itemize}
+\item The date \underline{\textbf{DATEID}} is on the day \textbf{DAY} of month \textbf{MONTH} in the year \textbf{YEAR}.
+\item The character \underline{\textbf{CHARACTERID}} was born on \textbf{BIRTH}.
+\item The character \underline{\textbf{CHARACTERID}} died on \textbf{DEATH}.
+\end{itemize}
+
+\subsection*{About Associations:}
+\begin{itemize}
+\item The association \underline{\textbf{ASSOCIATIONID}} is named \textbf{NAME}.
+\item The association \underline{\textbf{ASSOCIATIONID}} is described as \textbf{DESCRIPTION}.
+\item The character \underline{\textbf{CHARACTERID}} is a member of the association.
+\end{itemize}
+
+\subsection*{About character relations:}
+\begin{itemize}
+\item The relation \underline{\textbf{RELATIONID}} is of the type \textbf{RELATIONSHIP}.
+\item The character \underline{\textbf{SOURCE}} has a timeless relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}}.
+\item The character \underline{\textbf{SOURCE}} started a permanent relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} at the time \underline{\textbf{DATEID}}.
+\item The character \underline{\textbf{SOURCE}} had a relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} that started on \underline{\textbf{START}} and ended on \underline{\textbf{ENDDATE}}.
+\end{itemize}
+
+\subsection*{About places:}
+\begin{itemize}
+\item The place \underline{\textbf{PLACEID}} is called \textbf{PLACENAME}.
+\item The map \underline{\textbf{MAPID}} has a width of \textbf{WIDTH} split into \textbf{NUMWIDTH} sections, and a length \textbf{LENGHT} split into \textbf{NUMLENGTH} sections.
+\item The place \textbf{PLACEID} is represented by the map \underline{\textbf{MAPID}}.
+\item The place \underline{\textbf{PLACEID}} is locate on the square \underline{\textbf{SQUAREID}} of the \underline{\textbf{MAPID}} map.
+\item The character \underline{\textbf{CHARACTERID}} originates from \textbf{PLACEID}.
+\end{itemize}
+
+\subsection*{About events:}
+\begin{itemize}
+\item The event \underline{\textbf{EVENTID}} is named \textbf{NAME}.
+\item The event \underline{\textbf{EVENTID}} is described as \textbf{DESCRIPTION}.
+\item The character \underline{\textbf{CHARACTERID}} attended \underline{\textbf{EVENTID}}.
+\item The event \underline{\textbf{EVENTID}} happened at \underline{\textbf{PLACEID}}, started on \underline{\textbf{BEGINNING}}, and ended on \underline{\textbf{ENDDATE}}.
+\end{itemize}
 
 \end{document}
