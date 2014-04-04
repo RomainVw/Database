@@ -1,0 +1,16 @@
+Map et place precise raport
+
+Artifacts in Report
+1. ER Diagram
+2. Annotation or user-stories (at least 5)
+3. Tutorial-D script (types, relvar, constraints (at least 2))
+4. Relvar Predicates
+5. SQL script
+
+
+
+Key constraints
+- Consistency between models
+- Normalisation is understood (and discussed if necessary)
+- Design decisions explained
+- SQL limitations understood and explained if necessary
