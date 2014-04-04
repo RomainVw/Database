@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  4 APR 2014 12:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  4 APR 2014 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1596,10 +1596,15 @@ Overfull \hbox (22.1728pt too wide) in paragraph at lines 309--310
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+
+ []
+
+
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 333.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1614,17 +1619,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5 <./ORM.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 333.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
  (./Rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 333.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 333.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
 (rerunfilecheck)             Checksum: 0E356403FC51D2F0FDD6A10876F0AE76;549.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
  ) 
 Here is how much of TeX's memory you used:
  18017 strings out of 493315
@@ -1640,7 +1645,7 @@ texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/
 type1/public/lm/lmri12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
 ic/lm/lmtt12.pfb>
-Output written on Rapport.pdf (6 pages, 573760 bytes).
+Output written on Rapport.pdf (6 pages, 573959 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  86 compressed objects within 1 object stream

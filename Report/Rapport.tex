@@ -328,6 +328,9 @@ In this section, we will give the relvar predicates that our database represents
 
 \section{SQL script}
 
-In the zip file, you can find files \texttt{structure.sql} which builds the entire structure of the database in SQL. This script is idempotent, and is build with the same structure as the tutorial-D script. Indeed, we first create all the tables with the primary keys/unique keys, then we alter them to add the foreign key constraints.
+In the zip file, you can find files \texttt{structure.sql} which builds the entire structure of the database in SQL. This script is idempotent, and is build with the same structure as the tutorial-D script. Indeed, we first create all the tables with the primary keys/unique keys, then we alter them to add the foreign key constraints.\\
+
+
+The file \texttt{data.sql} is also available in the zip file. This one is also idempotent. It builds the structure of the database as the previous file, then it fills the database with all the elementary facts presented above in the report.
 
 \end{document}
