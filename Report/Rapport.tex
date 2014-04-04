@@ -269,6 +269,14 @@ This is a rather complex relation that we introduced to keep track of a story's 
 We can see that a place's map is optional. However, since a place's sub-places are linked to its map, it implicitly  becomes required when we want to add levels. This structure allows us to chain an arbitrary number of levels with a "place - map - place - map - \dots" hierarchy.
 This relation has two constraints that are not expressed in the database and will have to be verified in the software implementation. Firstly, the map square on which the sub-place is located must belong to the map's domain of possible squares (between 1 and (\# square width)*(\# square length)). Secondly, it is required that two places of the same level do not overlap.
 
+\section{Tutorial-D script}
+
+In the zip file, you can find files \texttt{structure\_rel.d} and \texttt{data\_rel.d}.\\
+
+\textbf{structure\_rel.d} has three differents parts. The \textbf{first} one is the definition of special types (All the entities ID, and one for some names too). Then, the \textbf{second} part is all the relvars, with all primary keys, and also unique keys (e.g. \texttt{MAPPEDPLACE} which has one key on the PLACEID and another on the MAPID). The third part is all the constraints which are foreign keys. We express first all the constraints implying CHARID, then implying ASSOCIATIONID, and so on.\\
+
+\textbf{data\_rel.d} fills the database with all elementary facts expressed before in the report.
+
 \section{Relvar predicates}
 In this section, we will give the relvar predicates that our database represents. The attributes of a relation are in bold, and the attributes that form the key are underlined.
 
@@ -317,5 +325,9 @@ In this section, we will give the relvar predicates that our database represents
 \item The character \underline{\textbf{CHARACTERID}} attended \underline{\textbf{EVENTID}}.
 \item The event \underline{\textbf{EVENTID}} happened at \underline{\textbf{PLACEID}}, started on \underline{\textbf{BEGINNING}}, and ended on \underline{\textbf{ENDDATE}}.
 \end{itemize}
+
+\section{SQL script}
+
+In the zip file, you can find files \texttt{structure.sql} which builds the entire structure of the database in SQL. This script is idempotent, and is build with the same structure as the tutorial-D script. Indeed, we first create all the tables with the primary keys/unique keys, then we alter them to add the foreign key constraints.
 
 \end{document}

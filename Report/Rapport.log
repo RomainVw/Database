@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  4 APR 2014 12:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  4 APR 2014 12:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1464,13 +1464,13 @@ LaTeX Font Info:    Try loading font information for U+wasy on input line 129.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-<./logoingisbleu.jpg, id=36, 682.55pt x 903.375pt>
+<./logoingisbleu.jpg, id=44, 682.55pt x 903.375pt>
 File: ./logoingisbleu.jpg Graphic file (type jpg)
  <use ./logoingisbleu.jpg>
 Package pdftex.def Info: ./logoingisbleu.jpg used on input line 132.
 (pdftex.def)             Requested size: 68.25899pt x 90.34279pt.
 
-<./epl.jpg, id=37, 205.76875pt x 126.4725pt>
+<./epl.jpg, id=45, 205.76875pt x 126.4725pt>
 File: ./epl.jpg Graphic file (type jpg)
  <use ./epl.jpg>
 Package pdftex.def Info: ./epl.jpg used on input line 138.
@@ -1522,7 +1522,7 @@ been already used, duplicate ignored
                    \relax 
 l.228 \subsection{About events}
                                 [1]
-<ORM.png, id=51, 1098.9858pt x 1568.7408pt>
+<ORM.png, id=59, 1098.9858pt x 1568.7408pt>
 File: ORM.png Graphic file (type png)
  <use ORM.png>
 Package pdftex.def Info: ORM.png used on input line 249.
@@ -1574,9 +1574,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (22.1728pt too wide) in paragraph at lines 301--302
-[]\T1/lmr/m/n/12 The cha-rac-ter $[]$ had a re-la-tion with $[]$ of the type $[
-]$
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
+
  []
 
 
@@ -1586,11 +1590,16 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3]
+Overfull \hbox (22.1728pt too wide) in paragraph at lines 309--310
+[]\T1/lmr/m/n/12 The cha-rac-ter $[]$ had a re-la-tion with $[]$ of the type $[
+]$
+ []
+
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 321.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 333.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1605,23 +1614,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5 <./ORM.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 321.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 333.
  (./Rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 321.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 321.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 333.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 333.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 93FBB7ED35E6BBBC84B0207ACBAA7B22;451.
+(rerunfilecheck)             Checksum: 0E356403FC51D2F0FDD6A10876F0AE76;549.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 321.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
  ) 
 Here is how much of TeX's memory you used:
- 18013 strings out of 493315
- 261564 string characters out of 6137905
+ 18017 strings out of 493315
+ 261604 string characters out of 6137905
  437004 words of memory out of 5000000
- 21029 multiletter control sequences out of 15000+600000
+ 21031 multiletter control sequences out of 15000+600000
  59699 words of font info for 52 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  46i,14n,75p,1457b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1631,10 +1640,10 @@ texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/
 type1/public/lm/lmri12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
 ic/lm/lmtt12.pfb>
-Output written on Rapport.pdf (6 pages, 570301 bytes).
+Output written on Rapport.pdf (6 pages, 573760 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 80 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
+ 17 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
