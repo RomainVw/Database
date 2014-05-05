@@ -11,8 +11,13 @@ public class Controller
     new MainMenu(this);
   }
   
-  public createCharacter()
+  public void createCharacter()
   {
     	  
+  }
+  
+  public void editCharacter()
+  {
+    //Select character and edit it
   }
 }
