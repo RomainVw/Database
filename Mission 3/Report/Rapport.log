@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  4 APR 2014 17:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  6 MAY 2014 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1464,13 +1464,13 @@ LaTeX Font Info:    Try loading font information for U+wasy on input line 129.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-<./logoingisbleu.jpg, id=44, 682.55pt x 903.375pt>
+<./logoingisbleu.jpg, id=52, 682.55pt x 903.375pt>
 File: ./logoingisbleu.jpg Graphic file (type jpg)
  <use ./logoingisbleu.jpg>
 Package pdftex.def Info: ./logoingisbleu.jpg used on input line 132.
 (pdftex.def)             Requested size: 68.25899pt x 90.34279pt.
 
-<./epl.jpg, id=45, 205.76875pt x 126.4725pt>
+<./epl.jpg, id=53, 205.76875pt x 126.4725pt>
 File: ./epl.jpg Graphic file (type jpg)
  <use ./epl.jpg>
 Package pdftex.def Info: ./epl.jpg used on input line 138.
@@ -1522,22 +1522,19 @@ been already used, duplicate ignored
                    \relax 
 l.228 \subsection{About events}
                                 [1]
-<ORM.png, id=59, 1098.9858pt x 1568.7408pt>
+<ORM.png, id=67, 1242.5622pt x 1098.9858pt>
 File: ORM.png Graphic file (type png)
  <use ORM.png>
 Package pdftex.def Info: ORM.png used on input line 249.
-(pdftex.def)             Requested size: 472.55469pt x 674.54541pt.
+(pdftex.def)             Requested size: 534.29134pt x 472.55469pt.
 
-Overfull \hbox (17.31058pt too wide) in paragraph at lines 249--250
+Overfull \hbox (79.04723pt too wide) in paragraph at lines 249--250
 [][] 
  []
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
 (Font)              using `T1/lmr/bx/n' instead on input line 250.
-
-
-LaTeX Warning: Float too large for page by 24.71506pt on input line 252.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1579,32 +1576,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 274--275
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
-
- []
-
-
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3]
-Overfull \hbox (22.1728pt too wide) in paragraph at lines 309--310
+[3 <./ORM.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
+
+ []
+
+
+Overfull \hbox (22.1728pt too wide) in paragraph at lines 308--309
 []\T1/lmr/m/n/12 The cha-rac-ter $[]$ had a re-la-tion with $[]$ of the type $[
 ]$
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 331--332
-
- []
-
-
-Package glossaries Warning: No \printglossary or \printglossaries found.
-This document will not have a glossary.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1612,43 +1599,115 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5 <./ORM.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
+[5] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(./structure_rel.d
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(./structure.sql
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12])
+
+Package glossaries Warning: No \printglossary or \printglossaries found.
+This document will not have a glossary.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 346.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 346.
  (./Rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 346.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 346.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 0E356403FC51D2F0FDD6A10876F0AE76;549.
+(rerunfilecheck)             Checksum: EB615D8EB9A474DC518C18918C0012FE;639.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 346.
  ) 
 Here is how much of TeX's memory you used:
- 18017 strings out of 493315
- 261604 string characters out of 6137905
- 437004 words of memory out of 5000000
- 21031 multiletter control sequences out of 15000+600000
- 59699 words of font info for 52 fonts, out of 8000000 for 9000
+ 19131 strings out of 493315
+ 274783 string characters out of 6137905
+ 626638 words of memory out of 5000000
+ 21782 multiletter control sequences out of 15000+600000
+ 65677 words of font info for 54 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 46i,14n,75p,1457b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,14n,78p,1457b,2205s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/
 texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 13/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/
-type1/public/lm/lmri12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
-ic/lm/lmtt12.pfb>
-Output written on Rapport.pdf (6 pages, 574141 bytes).
+dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/
+type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
+c/lm/lmr6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri12.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Rapport.pdf (14 pages, 607879 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 570 PDF objects out of 1000 (max. 8388607)
+ 537 compressed objects within 6 object streams
+ 366 named destinations out of 1000 (max. 500000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

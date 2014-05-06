@@ -251,7 +251,7 @@ The ORM schema is shown on the Figure \ref{orm}. If some relations are too diffi
 \label{orm}
 \end{figure}
 
-As we can see on the schema, there are 5 main entities which are \texttt{"Characters''}, \texttt{"Date''}, \texttt{"Events''}, \texttt{"Place''}, and \texttt{"Map''}.
+As we can see on the schema, there are 4 main entities which are \texttt{"Characters''}, \texttt{"Events''}, \texttt{"Place''}, and \texttt{"Map''}.
 
 
 We will explain here above three specific case of the diagram :\\
@@ -289,7 +289,6 @@ In this section, we will give the relvar predicates that our database represents
 
 \subsection*{About time:}
 \begin{itemize}
-\item The date \underline{\textbf{DATEID}} is on the day \textbf{DAY} of month \textbf{MONTH} in the year \textbf{YEAR}.
 \item The character \underline{\textbf{CHARACTERID}} was born on \textbf{BIRTH}.
 \item The character \underline{\textbf{CHARACTERID}} died on \textbf{DEATH}.
 \end{itemize}
@@ -305,7 +304,7 @@ In this section, we will give the relvar predicates that our database represents
 \begin{itemize}
 \item The relation \underline{\textbf{RELATIONID}} is of the type \textbf{RELATIONSHIP}.
 \item The character \underline{\textbf{SOURCE}} has a timeless relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}}.
-\item The character \underline{\textbf{SOURCE}} started a permanent relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} at the time \underline{\textbf{DATEID}}.
+\item The character \underline{\textbf{SOURCE}} started a permanent relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} at the time \underline{\textbf{DATE}}.
 \item The character \underline{\textbf{SOURCE}} had a relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} that started on \underline{\textbf{START}} and ended on \underline{\textbf{ENDDATE}}.
 \end{itemize}
 
@@ -332,5 +331,16 @@ In the zip file, you can find files \texttt{structure.sql} which builds the enti
 
 
 The file \texttt{data.sql} is also available in the zip file. This one is also idempotent. It builds the structure of the database as the previous file, then it fills the database with all the elementary facts presented above in the report.
+\newpage
+\section*{Annexes}
+\appendix
+
+\section{Code Rel}
+\lstinputlisting[language=java]{structure_rel.d}
+\newpage
+\section{Code SQL}
+\lstinputlisting[language=sql]{structure.sql}
+
+
 
 \end{document}
