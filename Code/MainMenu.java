@@ -20,7 +20,7 @@ public class MainMenu extends JFrame
 	
   public MainMenu(Controller controller)
   {
-    super("Narrationn manager");
+    super("Narration manager");
     
     this.controller=controller;
     

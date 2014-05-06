@@ -6,20 +6,22 @@ import narrationManager.controller.Controller;
 
 import narrationManager.model.CharacterModel;
 
+import java.awt.Dialog;
+
 public class ViewCharacterWindow extends JDialog
 {
   private Controller controller;
 	
   //Menu principal, qui s'ouvre avec le programme
-  public ViewCharaterWindow(Controller controller)
+  public ViewCharacterWindow(Controller controller)
   {
-    super(null,"Character editor",true);
-  
+    super((Dialog) null,"Character editor",true);
+    
     //TODO: create UI
     
     this.controller=controller;	  
     
-    setVissible(true);
+    setVisible(true);
   }
   
   public ViewCharacterWindow(Controller controller,Character toEdit)
@@ -30,11 +32,13 @@ public class ViewCharacterWindow extends JDialog
   
   public CharacterModel getResult()
   {
-    //TODO
+      return null;
+      //TODO
   }
   
   public boolean hasResult() //Retourne true si on a validé le résultat
   {
+      return true;
     //TODO	  
   }
 }

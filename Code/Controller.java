@@ -2,6 +2,9 @@ package narrationManager.controller;
 
 import narrationManager.gui.MainMenu;
 
+import narrationManager.gui.ViewCharacterWindow;
+
+
 public class Controller
 {
   //TODO: coordination modèle-interface
@@ -13,7 +16,7 @@ public class Controller
   
   public void createCharacter()
   {
-    	  
+      new ViewCharacterWindow(this);
   }
   
   public void editCharacter()
