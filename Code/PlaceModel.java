@@ -56,6 +56,4 @@ public class PlaceModel
   {
     this.characters = characters;
   }
-
-  
 }
