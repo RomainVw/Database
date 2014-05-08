@@ -5,8 +5,9 @@ import java.util.TreeSet;
 import narrationManager.gui.MainMenu;
 
 import narrationManager.gui.ViewCharacterWindow;
+import narrationManager.gui.ViewEventWindow;
 
-import narrationManaer.model.PlaceModel;
+import narrationManager.model.PlaceModel;
 
 public class Controller
 {
@@ -15,6 +16,11 @@ public class Controller
   public void start()
   {
     new MainMenu(this);
+  }
+  
+  public void createEvent()
+  {
+    new ViewEventWindow(this);	  
   }
   
   public void createCharacter()

@@ -14,12 +14,12 @@ import narrationManager.model.CharacterModel;
 
 public class DatabaseCoordinator
 {    
-  /*public static void main(String[] args)
+  public static void main(String[] args)//TODO retirer quand on en aura plus besoin
   {
     DatabaseCoordinator c = new DatabaseCoordinator();
     CharacterModel c1 = c.getCharacter("Pierre");
     System.out.println(c1.getName());
-  }*/
+  }
   private Connection con = null;
   
   public DatabaseCoordinator()

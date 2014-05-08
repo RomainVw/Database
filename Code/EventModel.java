@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 import java.time.LocalDate;
 
+import narrationManager.model.CharacterModel;
+
 public class EventModel
 {
   //Mandatory fields
@@ -33,7 +35,7 @@ public class EventModel
     this.linkedCharacters=linkedCharacters;
   }
   
-  public LinkedList<CharactersModel> getLinkedCharacters()
+  public LinkedList<CharacterModel> getLinkedCharacters()
   {
     return linkedCharacters;	  
   }
@@ -50,7 +52,7 @@ public class EventModel
   
   public void setEventDescription(String eventDescription)
   {
-    this.eventDescription=evnetDescription;
+    this.eventDescription=eventDescription;
   }
   
   public String getEventDescription()
@@ -86,5 +88,11 @@ public class EventModel
   public LocalDate getEndDate()
   {
     return end;	  
+  }
+  
+  public static EventModel defaultInstance() //TODO: passer ça dans une interface dont tous les modèles héritent
+  {
+    //TODO: retourner une instance par défaut un peu plus correcte!!
+    return new EventModel("New event",null,LocalDate.parse("1992-12-22"),LocalDate.parse("1992-12-22"));
   }
 }

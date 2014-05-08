@@ -27,6 +27,7 @@ public class EventsTableModel extends AbstractTableModel
       case EventsTable.START_DATE_COLUMN: return "Start date";
       case EventsTable.END_DATE_COLUMN: return "End date";
       case EventsTable.DESCRIPTION_COLUMN: return "Description";
+      default: System.err.println("wrong column index"); return null;
     }
   }
   
@@ -56,13 +57,15 @@ public class EventsTableModel extends AbstractTableModel
     }
   }
   
-  public void add(EventModel toAdd)
+  public void addEvent(EventModel toAdd)
   {
     dataModel.add(toAdd);	  
   }
   
   public void setValueAt(Object value,int row,int col)
   {
+    EventModel target=dataModel.elementAt(row);
+  	  
     switch(col)
     {
       case EventsTable.NAME_COLUMN: target.setEventName((String) value); break;

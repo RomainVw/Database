@@ -6,6 +6,10 @@ import java.time.LocalDate;
 
 import javax.swing.JTable;
 
+import narrationManager.model.EventModel;
+
+import narrationManager.gui.tables.models.EventsTableModel;
+
 public class EventsTable extends JTable
 {
   public static final int COLUMN_COUNT=4;
@@ -16,7 +20,7 @@ public class EventsTable extends JTable
   public static final int END_DATE_COLUMN=2;
   public static final int DESCRIPTION_COLUMN=3;
   
-  private EventsTableModel model=new EventsTableModel()
+  private EventsTableModel model=new EventsTableModel();
   private boolean editable;
   
   public EventsTable(boolean editable)
@@ -35,13 +39,13 @@ public class EventsTable extends JTable
   {
     for(EventModel event:toAdd)
     {
-      add(event);
+      addEvent(event);
     }
   }
   
-  public void add(EventModel toAdd)
+  public void addEvent(EventModel toAdd)
   {
-    model.add(toAdd);
+    model.addEvent(toAdd);
   }
   
   public Class<?> getColumnClass(int columnIndex)
@@ -52,6 +56,7 @@ public class EventsTable extends JTable
       case START_DATE_COLUMN: return LocalDate.class;
       case END_DATE_COLUMN: return LocalDate.class;
       case DESCRIPTION_COLUMN: return String.class;
+      default: System.err.println("Error: wrong column index"); return null;
     }
   }
   

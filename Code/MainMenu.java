@@ -37,8 +37,8 @@ public class MainMenu extends JFrame
     
     //Fignolage
     add(main);
-    setLocationRelativeTo(null);
     pack();
+    setLocationRelativeTo(null);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setVisible(true);
   }
@@ -50,7 +50,7 @@ public class MainMenu extends JFrame
   
   private void createEventClicked()
   {
-  	  
+    controller.createEvent();	  
   }
   
   private void createPlaceClicked()
