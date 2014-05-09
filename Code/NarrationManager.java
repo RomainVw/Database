@@ -1,9 +1,9 @@
-package narrationManager;
+package narrationmanager;
 
 import javax.swing.UIManager;
 import javax.swing.UIManager.*;
 
-import narrationManager.controller.Controller; 
+import narrationmanager.controller.Controller; 
 
 public class NarrationManager
 {

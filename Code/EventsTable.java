@@ -1,19 +1,19 @@
-package narrationManager.gui.tables;
+package narrationmanager.gui.tables;
 
 import java.util.Collection;
 
-import java.time.LocalDate;
-
 import javax.swing.JTable;
 
-import narrationManager.model.EventModel;
+import narrationmanager.model.NarrationDate;
+import narrationmanager.model.EventModel;
 
-import narrationManager.gui.tables.models.EventsTableModel;
+import narrationmanager.gui.tables.models.EventsTableModel;
 
 public class EventsTable extends JTable
 {
   public static final int COLUMN_COUNT=4;
-  public static final int ROW_HEIGHT=80;
+  public static final int ROW_HEIGHT=40;
+  public static final int DESCRIPTION_COLUMN_MIN_WIDTH=500;
   
   public static final int NAME_COLUMN=0;
   public static final int START_DATE_COLUMN=1;
@@ -30,6 +30,9 @@ public class EventsTable extends JTable
     this.editable=editable;
     
     setModel(model);
+    
+    getColumnModel().getColumn(DESCRIPTION_COLUMN).setPreferredWidth(DESCRIPTION_COLUMN_MIN_WIDTH);
+    
     createDefaultRenderers();
     createDefaultEditors();
     setRowHeight(ROW_HEIGHT);
@@ -53,8 +56,8 @@ public class EventsTable extends JTable
     switch(columnIndex)
     {
       case NAME_COLUMN: return String.class;
-      case START_DATE_COLUMN: return LocalDate.class;
-      case END_DATE_COLUMN: return LocalDate.class;
+      case START_DATE_COLUMN: return NarrationDate.class;
+      case END_DATE_COLUMN: return NarrationDate.class;
       case DESCRIPTION_COLUMN: return String.class;
       default: System.err.println("Error: wrong column index"); return null;
     }

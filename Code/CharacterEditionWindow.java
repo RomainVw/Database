@@ -1,10 +1,10 @@
-package narrationManager.gui;
+package narrationmanager.gui;
 
 import javax.swing.JDialog;
 
-import narrationManager.controller.Controller;
+import narrationmanager.controller.Controller;
 
-import narrationManager.model.CharacterModel;
+import narrationmanager.model.CharacterModel;
 
 import java.awt.Dialog;
 

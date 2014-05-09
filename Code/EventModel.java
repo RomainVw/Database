@@ -1,18 +1,18 @@
-package narrationManager.model;
+package narrationmanager.model;
 
 import java.util.LinkedList;
 
-import java.time.LocalDate;
+import narrationmanager.model.NarrationDate;
+import narrationmanager.model.CharacterModel;
 
-import narrationManager.model.CharacterModel;
+import narrationmanager.model.util.DBModel;
 
-public class EventModel
+public class EventModel extends DBModel
 {
-  //Mandatory fields
-  private String eventName;
+  //Mandatory fields (+name, inherited from DBModel) 
   private PlaceModel eventPlace;
-  private LocalDate start;
-  private LocalDate end;
+  private NarrationDate start;
+  private NarrationDate end;
   
   //Optional fields
   private LinkedList<CharacterModel> linkedCharacters;
@@ -22,9 +22,9 @@ public class EventModel
   Returns a new EventModel. Only mandatory fields are specified into its parameters,
   setters should be used for the other ones.
   **/
-  public EventModel(String eventName,PlaceModel eventPlace,LocalDate start,LocalDate end)
+  public EventModel(String eventName,PlaceModel eventPlace,NarrationDate start,NarrationDate end,boolean alreadyInDB)
   {
-    setEventName(eventName);
+    super(eventName,alreadyInDB);
     setEventPlace(eventPlace);
     setStartDate(start);
     setEndDate(end);
@@ -38,16 +38,6 @@ public class EventModel
   public LinkedList<CharacterModel> getLinkedCharacters()
   {
     return linkedCharacters;	  
-  }
-  
-  public void setEventName(String eventName)
-  {
-    this.eventName=eventName;	  
-  }
-  
-  public String getEventName()
-  {
-    return eventName;	  
   }
   
   public void setEventDescription(String eventDescription)
@@ -70,29 +60,29 @@ public class EventModel
     return eventPlace;	  
   }
   
-  public void setStartDate(LocalDate start)
+  public void setStartDate(NarrationDate start)
   {
     this.start=start;
   }
   
-  public LocalDate getStartDate()
+  public NarrationDate getStartDate()
   {
     return start;
   }
   
-  public void setEndDate(LocalDate end)
+  public void setEndDate(NarrationDate end)
   {
     this.end=end;	  
   }
   
-  public LocalDate getEndDate()
+  public NarrationDate getEndDate()
   {
     return end;	  
   }
   
-  public static EventModel defaultInstance() //TODO: passer ça dans une interface dont tous les modèles héritent
+  public static EventModel defaultInstance()
   {
     //TODO: retourner une instance par défaut un peu plus correcte!!
-    return new EventModel("New event",null,LocalDate.parse("1992-12-22"),LocalDate.parse("1992-12-22"));
+    return new EventModel("New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"),false);
   }
 }

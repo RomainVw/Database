@@ -1,4 +1,4 @@
-package narrationManager.model;
+package narrationmanager.model;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
-package narrationManager.model;
+package narrationmanager.model;
 
-import narrationManager.model.MapModel;
+import narrationmanager.model.MapModel;
 
 import java.util.ArrayList;
 

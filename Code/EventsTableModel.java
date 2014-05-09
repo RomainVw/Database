@@ -1,14 +1,13 @@
-package narrationManager.gui.tables.models;
+package narrationmanager.gui.tables.models;
 
 import javax.swing.table.AbstractTableModel;
 
 import java.util.Vector;
 
-import java.time.LocalDate;
+import narrationmanager.model.NarrationDate;
+import narrationmanager.model.EventModel;
 
-import narrationManager.model.EventModel;
-
-import narrationManager.gui.tables.EventsTable;
+import narrationmanager.gui.tables.EventsTable;
 
 public class EventsTableModel extends AbstractTableModel
 {
@@ -47,7 +46,7 @@ public class EventsTableModel extends AbstractTableModel
     
     switch(column)
     {
-      case EventsTable.NAME_COLUMN: return target.getEventName();
+      case EventsTable.NAME_COLUMN: return target.getName();
       case EventsTable.START_DATE_COLUMN: return target.getStartDate();
       case EventsTable.END_DATE_COLUMN: return target.getEndDate();
       case EventsTable.DESCRIPTION_COLUMN: 
@@ -68,9 +67,9 @@ public class EventsTableModel extends AbstractTableModel
   	  
     switch(col)
     {
-      case EventsTable.NAME_COLUMN: target.setEventName((String) value); break;
-      case EventsTable.START_DATE_COLUMN: target.setStartDate((LocalDate) value); break;
-      case EventsTable.END_DATE_COLUMN: target.setEndDate((LocalDate) value); break;
+      case EventsTable.NAME_COLUMN: target.setName((String) value); break;
+      case EventsTable.START_DATE_COLUMN: target.setStartDate((NarrationDate) value); break;
+      case EventsTable.END_DATE_COLUMN: target.setEndDate((NarrationDate) value); break;
       case EventsTable.DESCRIPTION_COLUMN: target.setEventDescription((String) value); break;	    
     }
   }

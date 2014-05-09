@@ -1,4 +1,4 @@
-package narrationManager.db;
+package narrationmanager.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import narrationManager.model.CharacterModel;
+import narrationmanager.model.CharacterModel;
 
 
 public class DatabaseCoordinator
@@ -37,7 +37,7 @@ public class DatabaseCoordinator
   
   public CharacterModel getCharacter(String name)
   {
-    String b_place = null;
+    String birthPlace = null;
     PreparedStatement pst = null;
     
     // get birth place
@@ -46,13 +46,13 @@ public class DatabaseCoordinator
       pst.setString(1, name);
       ResultSet res = pst.executeQuery();
       res.next();
-      b_place = res.getString(1);
+      birthPlace = res.getString(1);
     } catch (SQLException e) {      
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }
     
-    return new CharacterModel(name, b_place);  
+    return new CharacterModel(name, birthPlace,true);  
   }
   
   public void setCharacter(CharacterModel c)
@@ -62,14 +62,14 @@ public class DatabaseCoordinator
     // update birthplace
     try {
       pst = con.prepareStatement("update originates set placeid = (select placeid from place where placename = ?) from character where character.characterid=originates.characterid and character.name=?");
-      pst.setString(1, c.getB_place());
+      pst.setString(1, c.getBirthPlace());
       pst.setString(2, c.getName());
       pst.executeUpdate();
       
       // update name
       pst = con.prepareStatement("update CHARACTER set NAME = ? where NAME = ?");
       pst.setString(1, c.getName());
-      pst.setString(2, c.update_db());
+      pst.setString(2, c.updateDB());
       pst.executeUpdate(); 
     } catch (SQLException e) {      
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());

@@ -1,4 +1,4 @@
-package narrationManager.gui;
+package narrationmanager.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -8,7 +8,7 @@ import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
 
-import narrationManager.controller.Controller;
+import narrationmanager.controller.Controller;
 
 public class MainMenu extends JFrame
 {

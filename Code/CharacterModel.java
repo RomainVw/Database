@@ -1,42 +1,24 @@
-package narrationManager.model;
+package narrationmanager.model;
 
-public class CharacterModel
-{
-  private String last_dbName = null;
-  private String name = null;
-  private String b_place = null;
+import narrationmanager.model.util.DBModel;
+
+public class CharacterModel extends DBModel
+{  
+  private String birthPlace = null;
   
-  public CharacterModel(String name, String b_place)
+  public CharacterModel(String name, String birthPlace,boolean alreadyInDB)
   {
-    last_dbName = name;
-    this.name = name;
-    this.b_place = b_place;
+    super(name,alreadyInDB);
+    this.birthPlace = birthPlace;
   }
   
-  public String getName()
+  public String getBirthPlace()
   {
-    return name;
+    return birthPlace;
   }
   
-  public String getB_place()
+  public void setBirthPlace(String birthPlace)
   {
-    return b_place;
-  }
-  
-  public void setName(String name)
-  {
-    this.name = name;
-  }
-  
-  public void setB_place(String b_place)
-  {
-    this.b_place = b_place;
-  }
-  
-  public String update_db()
-  {
-    String res = last_dbName;
-    last_dbName = name;
-    return res;
+    this.birthPlace = birthPlace;
   }
 }
