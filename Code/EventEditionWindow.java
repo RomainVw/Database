@@ -21,7 +21,7 @@ import narrationmanager.model.EventModel;
 
 import narrationmanager.controller.Controller;
 
-public class ViewEventWindow extends EditionWindow<EventModel>
+public class EventEditionWindow extends EditionWindow<EventModel>
 { 
   private JLabel placeLabel;
   
@@ -33,12 +33,12 @@ public class ViewEventWindow extends EditionWindow<EventModel>
   private EventsTable editorTable;
  
   
-  public ViewEventWindow(Controller controller)
+  public EventEditionWindow(Controller controller)
   {
     super(controller);
   }
   
-  public ViewEventWindow(Controller controller,EventModel toEdit)
+  public EventEditionWindow(Controller controller,EventModel toEdit)
   {
     super(controller,toEdit);
   }

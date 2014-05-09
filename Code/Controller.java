@@ -4,8 +4,8 @@ import java.util.TreeSet;
 
 import narrationmanager.gui.MainMenu;
 
-import narrationmanager.gui.ViewCharacterWindow;
-import narrationmanager.gui.ViewEventWindow;
+import narrationmanager.gui.CharacterEditionWindow;
+import narrationmanager.gui.EventEditionWindow;
 
 import narrationmanager.gui.util.EditionWindow;
 
@@ -23,7 +23,7 @@ public class Controller
   
   public void createEvent()
   {
-    ViewEventWindow eventEditor=new ViewEventWindow(this);
+    EventEditionWindow eventEditor=new EventEditionWindow(this);
     
     if(eventEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
       saveNewEvent(eventEditor.getTarget());	    
@@ -31,7 +31,7 @@ public class Controller
   
   public void createCharacter()
   {
-    new ViewCharacterWindow(this);
+    new CharacterEditionWindow(this);
   }
   
   public void editCharacter()
