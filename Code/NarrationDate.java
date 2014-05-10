@@ -4,7 +4,7 @@ package narrationmanager.model;
 /**
 A class representing a date without any limitation on the number of days or months.
 **/
-public class NarrationDate
+public class NarrationDate implements Comparable<NarrationDate>
 {
   private int day;
   private int month;
@@ -62,5 +62,15 @@ public class NarrationDate
   public String toString()
   {
     return year+"-"+month+"-"+day;	  
+  }
+  
+  public int compareTo(NarrationDate other)
+  {
+    int rslt=year-other.getYear();
+    
+    if(rslt==0) rslt=month-other.getMonth();
+    if(rslt==0) rslt=day-other.getDay();
+    
+    return rslt;
   }
 }
