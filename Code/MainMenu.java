@@ -14,6 +14,7 @@ public class MainMenu extends JFrame
 {
   private JButton createCharacter=new JButton("Create new character");
   private JButton createEvent=new JButton("Create new event");
+  private JButton editEvent=new JButton("Edit event");
   private JButton createPlace=new JButton("Create place");
   
   private Controller controller;
@@ -25,14 +26,16 @@ public class MainMenu extends JFrame
     this.controller=controller;
     
     //Traitement du panel main
-    JPanel main=new JPanel(new GridLayout(3,1));
+    JPanel main=new JPanel(new GridLayout(4,1));
     main.add(createCharacter);
     main.add(createEvent);
+    main.add(editEvent);
     main.add(createPlace);
     
     //Ajout des listeners
     createCharacter.addActionListener((ActionEvent e)->createCharacterClicked());
     createEvent.addActionListener((ActionEvent e)->createEventClicked());
+    editEvent.addActionListener((ActionEvent e)->editEventClicked());
     createPlace.addActionListener((ActionEvent e)->createPlaceClicked());
     
     //Fignolage
@@ -51,6 +54,11 @@ public class MainMenu extends JFrame
   private void createEventClicked()
   {
     controller.createEvent();	  
+  }
+  
+  private void editEventClicked()
+  {
+    controller.editEvent();	  
   }
   
   private void createPlaceClicked()

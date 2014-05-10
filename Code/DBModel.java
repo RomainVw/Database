@@ -41,4 +41,9 @@ public abstract class DBModel
   {//TODO: tester que ça marche bien
     return o instanceof DBModel && o.getClass().equals(getClass()) && ((DBModel)o).getName().equals(name);	  
   }
+  
+  public String toString()
+  {
+    return getName();
+  }
 }
