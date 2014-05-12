@@ -77,10 +77,18 @@ public class Controller
     /*
     Retourne un TreeSet trié contenant tous les EventModel connus par ordre alphabétique
     */
+    TreeSet<EventModel> rslt=new TreeSet<>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
     
+    ArrayList<EventModel> allEventsFromDB = dbCoordinator.getAllEvents();
+    for(EventModel singleEvent:allEventsFromDB)
+    {
+        rslt.add(singleEvent);
+    }
+      
+    return rslt;
     
     //TODO ATTENTION POUR TOUT CE QUI SUIT: Code de test, il n'y a rien de bon là-dedans! :p
-    TreeSet<EventModel> rslt=new TreeSet<>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
+    /*TreeSet<EventModel> rslt=new TreeSet<>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
     EventModel model1=EventModel.defaultInstance();
     EventModel model2=EventModel.defaultInstance();
     
@@ -93,7 +101,7 @@ public class Controller
     rslt.add(model1);
     rslt.add(model2);
     
-    return rslt;
+    return rslt;*/
   }
   
   private EventModel[] getAllEventsInArray()

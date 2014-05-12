@@ -13,6 +13,7 @@ public class EventModel extends DBModel
   private PlaceModel eventPlace;
   private NarrationDate start;
   private NarrationDate end;
+  private String eventName;
   
   //Optional fields
   private LinkedList<CharacterModel> linkedCharacters;
@@ -22,9 +23,10 @@ public class EventModel extends DBModel
   Returns a new EventModel. Only mandatory fields are specified into its parameters,
   setters should be used for the other ones.
   **/
-  public EventModel(String eventName,PlaceModel eventPlace,NarrationDate start,NarrationDate end,boolean alreadyInDB)
+  public EventModel(String eventId, String eventName,PlaceModel eventPlace,NarrationDate start,NarrationDate end,boolean alreadyInDB)
   {
-    super(eventName,alreadyInDB);
+    super(eventId,alreadyInDB);
+    this.eventName = eventName;
     setEventPlace(eventPlace);
     setStartDate(start);
     setEndDate(end);
@@ -83,6 +85,6 @@ public class EventModel extends DBModel
   public static EventModel defaultInstance()
   {
     //TODO: retourner une instance par défaut un peu plus correcte!!
-    return new EventModel("New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"),false);
+    return new EventModel(null,"New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"),false);
   }
 }
