@@ -62,7 +62,7 @@ public class Controller
   public TreeSet<PlaceModel> getAllPlaces()
   {
     TreeSet<PlaceModel> set = new TreeSet<PlaceModel>();
-    ArrayList<String> placenames = dbCoordinator.getPlaceNames();
+    ArrayList<String> placenames = dbCoordinator.getPlaceIDs();
     
     for (String place : placenames)
     {

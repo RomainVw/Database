@@ -3,20 +3,24 @@ package narrationmanager.model;
 import narrationmanager.model.MapModel;
 import narrationmanager.model.util.DBModel;
 
+import narrationmanager.model.util.ModelInfo;
+
 import java.util.ArrayList;
+
 
 public class PlaceModel extends DBModel implements Comparable<PlaceModel>
 {
   private String name = null;
   private MapModel map = null;
-  private ArrayList<String> events = null;
-  private ArrayList<String> characters = null;
+  private ArrayList<ModelInfo> events = null;
+  private ArrayList<ModelInfo> characters = null;
   
 
   
-  public PlaceModel(String name, boolean alreadyInDB)
+  public PlaceModel(String id, boolean alreadyInDB, String name)
   {
-    super(name, alreadyInDB);
+    super(id, alreadyInDB);
+    this.name = name;
   }
    
   public int compareTo(PlaceModel other)
@@ -34,12 +38,12 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
     return map;
   }
   
-  public ArrayList<String> getEvents()
+  public ArrayList<ModelInfo> getEvents()
   {
     return events;
   }
     
-  public ArrayList<String> getCharacters()
+  public ArrayList<ModelInfo> getCharacters()
   {
     return characters;
   }
@@ -54,12 +58,12 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
     this.map = map;
   }
   
-  public void setEvents(ArrayList<String> events)
+  public void setEvents(ArrayList<ModelInfo> events)
   {
     this.events = events;
   }
     
-  public void setCharacters(ArrayList<String> events)
+  public void setCharacters(ArrayList<ModelInfo> events)
   {
     this.characters = characters;
   }

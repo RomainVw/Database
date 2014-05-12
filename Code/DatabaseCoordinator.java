@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
+import narrationmanager.model.MapModel;
+import narrationmanager.model.util.ModelInfo;
 
 
 public class DatabaseCoordinator
@@ -79,14 +81,14 @@ public class DatabaseCoordinator
     }     
   }
   
-  public ArrayList<String> getPlaceNames()
+  public ArrayList<String> getPlaceIDs()
   {
     ArrayList<String> names = new ArrayList<String>();
     PreparedStatement pst = null;
     ResultSet res = null;
     
     try {
-      pst = con.prepareStatement("select PLACENAME from PLACE");
+      pst = con.prepareStatement("select PLACEID from PLACE");
       res = pst.executeQuery();
       while(res.next())
       {
@@ -99,8 +101,62 @@ public class DatabaseCoordinator
     return names;
   }
   
-  public PlaceModel makePlace(String name)
+  public PlaceModel makePlace(String id)
   { // TODO
-    return new PlaceModel(name, true);
+    PreparedStatement pst = null;
+    ResultSet res = null;
+    String name = null;
+    PlaceModel place = null;    
+    ArrayList<ModelInfo> list = new ArrayList<ModelInfo>();
+    
+    /*
+     * get the places name (only mandatory info)
+     */
+    try {
+      pst = con.prepareStatement("select PLACENAME from PLACE where PLACEID=?");
+      pst.setString(1, id);
+      res = pst.executeQuery();
+      res.next();
+      name = res.getString(1);
+    } catch (SQLException e) {      
+        Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+        lgr.log(Level.SEVERE, e.getMessage(), e);
+    }    
+    
+    place = new PlaceModel(id, true, name);
+    
+    /*
+     * get all optional info and add it to placemodel
+     */
+    try {
+      pst = con.prepareStatement("select MAP.MAPID, NUMWIDTH, NUMLENGTH, WIDTH, LENGTH from MAP, MAPPEDPLACE, PLACE where MAP.MAPID=MAPPEDPLACE.MAPID and PLACE.PLACEID=MAPPEDPLACE.PLACEID and PLACE.PLACEID=?");
+      pst.setString(1, id);
+      res = pst.executeQuery();
+      if (res.next()) place.setMap(new MapModel(res.getString(1), res.getInt(2), res.getInt(3), res.getFloat(4), res.getFloat(5)));
+      
+      pst = con.prepareStatement("select EVENTNAME.EVENTID, EVENTNAME.NAME from EVENTNAME, EVENT where PLACEID=? and EVENT.EVENTID=EVENTNAME.EVENTID");
+      pst.setString(1, id);
+      res = pst.executeQuery();
+      while (res.next())
+      {
+        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+      }
+      place.setEvents(list);
+      
+      list = new ArrayList<ModelInfo>();
+      pst = con.prepareStatement("with allCharLinks as (select * from originates union (select a.characterid, e.placeid from event e join attends a on e.eventid = a.eventid) ) select CH.characterid, CH.name from allCharLinks ACL join character CH on ACL.characterid = CH.characterid where ACL.placeid=?");
+      pst.setString(1, id);
+      res=pst.executeQuery();
+      {
+        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+      }
+      place.setCharacters(list);
+      
+    } catch (SQLException e) {      
+        Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+        lgr.log(Level.SEVERE, e.getMessage(), e);
+    }    
+      
+    return place;
   }
 }
