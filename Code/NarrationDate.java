@@ -10,7 +10,9 @@ public class NarrationDate implements Comparable<NarrationDate>
   private int month;
   private int year;
 	
-  public NarrationDate(int day,int month,int year)
+    
+    
+  public NarrationDate(int year, int month, int day)
   {
     this.day=day;
     this.month=month;

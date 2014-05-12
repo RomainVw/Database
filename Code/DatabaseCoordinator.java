@@ -12,8 +12,11 @@ import java.util.ArrayList;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
+
 import narrationmanager.model.MapModel;
 import narrationmanager.model.util.ModelInfo;
+import narrationmanager.model.EventModel;
+import narrationmanager.model.NarrationDate;
 
 
 public class DatabaseCoordinator
@@ -159,4 +162,27 @@ public class DatabaseCoordinator
       
     return place;
   }
+    
+  public ArrayList<EventModel> getAllEvents()
+  {
+    ArrayList<EventModel> events = new ArrayList<EventModel>();
+    PreparedStatement pst = null;
+    ResultSet res = null;
+    
+    try {
+      pst = con.prepareStatement("select EN.eventid, EN.name, E.placeid, (E.beginning).year, (E.beginning).month, (E.beginning).day, (E.enddate).year, (E.enddate).month, (E.enddate).day from EVENT E JOIN EVENTNAME EN on E.eventid = EN.eventid");
+      res = pst.executeQuery();
+      while(res.next())
+      {
+        EventModel event = new EventModel(res.getString(1),res.getString(2),null,new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)),new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)),true);
+        events.add(event);
+      }
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+    return events;
+  }
+    
+    
 }
