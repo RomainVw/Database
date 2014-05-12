@@ -1,6 +1,7 @@
 package narrationmanager.controller;
 
 import java.util.TreeSet;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,7 @@ import narrationmanager.db.DatabaseCoordinator;
 public class Controller
 {
   //TODO: coordination modèle-interface
-  private dbCoordinator = new DatabaseCoordinator();
+  private DatabaseCoordinator dbCoordinator = new DatabaseCoordinator();
   
   public void start()
   {
@@ -60,7 +61,7 @@ public class Controller
   
   public TreeSet<PlaceModel> getAllPlaces()
   {
-    Treeset<PlaceModel> set = new TreeSet<PlaceModel>;
+    TreeSet<PlaceModel> set = new TreeSet<PlaceModel>();
     ArrayList<String> placenames = dbCoordinator.getPlaceNames();
     
     for (String place : placenames)

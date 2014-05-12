@@ -8,8 +8,10 @@ import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 import narrationmanager.model.CharacterModel;
+import narrationmanager.model.PlaceModel;
 
 
 public class DatabaseCoordinator
@@ -75,8 +77,30 @@ public class DatabaseCoordinator
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }     
+  }
+  
+  public ArrayList<String> getPlaceNames()
+  {
+    ArrayList<String> names = new ArrayList<String>();
+    PreparedStatement pst = null;
+    ResultSet res = null;
     
-
-    
+    try {
+      pst = con.prepareStatement("select PLACENAME from PLACE");
+      res = pst.executeQuery();
+      while(res.next())
+      {
+        names.add(res.getString(1));
+      }
+    } catch (SQLException e) {      
+        Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+        lgr.log(Level.SEVERE, e.getMessage(), e);
+    }    
+    return names;
+  }
+  
+  public PlaceModel makePlace(String name)
+  { // TODO
+    return new PlaceModel(name, true);
   }
 }

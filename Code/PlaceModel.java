@@ -21,7 +21,7 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
    
   public int compareTo(PlaceModel other)
   {
-    return this.getName().compareTo(other.getName())
+    return this.getName().compareTo(other.getName());
   }
   
   public String getName()
