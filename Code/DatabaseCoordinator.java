@@ -150,6 +150,7 @@ public class DatabaseCoordinator
       pst = con.prepareStatement("with allCharLinks as (select * from originates union (select a.characterid, e.placeid from event e join attends a on e.eventid = a.eventid) ) select CH.characterid, CH.name from allCharLinks ACL join character CH on ACL.characterid = CH.characterid where ACL.placeid=?");
       pst.setString(1, id);
       res=pst.executeQuery();
+      while (res.next())
       {
         list.add(new ModelInfo(res.getString(1), res.getString(2)));
       }
