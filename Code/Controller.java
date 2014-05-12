@@ -14,9 +14,12 @@ import narrationmanager.gui.util.EditionWindow;
 import narrationmanager.model.PlaceModel;
 import narrationmanager.model.EventModel;
 
+import narrationmanager.db.DatabaseCoordinator;
+
 public class Controller
 {
   //TODO: coordination modèle-interface
+  private dbCoordinator = new DatabaseCoordinator();
   
   public void start()
   {
@@ -57,13 +60,15 @@ public class Controller
   
   public TreeSet<PlaceModel> getAllPlaces()
   {
-    /*TODO: 
-    retourne tous les PlaceModel existant, en appelant la DB
-    ==> ces éléments sont triés (par ordre alphabétique de nom?)!!! 
-    (avec un Comparator dans le constructeur du TreeSet et une Lambda 
-    pour le remplacer ça va tout seul)
-    */
-    return new TreeSet<PlaceModel>(); //TODO: pour éviter les bugs
+    Treeset<PlaceModel> set = new TreeSet<PlaceModel>;
+    ArrayList<String> placenames = dbCoordinator.getPlaceNames();
+    
+    for (String place : placenames)
+    {
+      set.add(dbCoordinator.makePlace(place));
+    }
+      
+    return set; 
   }
   
   public TreeSet<EventModel> getAllEvents()

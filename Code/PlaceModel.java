@@ -1,20 +1,27 @@
 package narrationmanager.model;
 
 import narrationmanager.model.MapModel;
+import narrationmanager.model.util.DBModel;
 
 import java.util.ArrayList;
 
-public class PlaceModel
+public class PlaceModel extends DBModel implements Comparable<PlaceModel>
 {
   private String name = null;
   private MapModel map = null;
   private ArrayList<String> events = null;
   private ArrayList<String> characters = null;
   
+
   
-  public PlaceModel(String name)
+  public PlaceModel(String name, boolean alreadyInDB)
   {
-    this.name = name;
+    super(name, alreadyInDB);
+  }
+   
+  public int compareTo(PlaceModel other)
+  {
+    return this.getName().compareTo(other.getName())
   }
   
   public String getName()
