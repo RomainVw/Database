@@ -208,9 +208,65 @@ public class DatabaseCoordinator
     return events;
   }
   
-  public void newEvent(EventModel event)
+  public String nextEventID()
   {
+    int count = 0;
+    int tempcount;
+    String ret = "EV";
+    try {
+      PreparedStatement pst = con.prepareStatement("select EVENTID from EVENTNAME");
+      ResultSet res  = pst.executeQuery();
+      while (res.next())
+      {
+        tempcount = Integer.parseInt(res.getString(1).substring(2));
+        if (tempcount > count)
+        {
+          count = tempcount;
+        }
+      }
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+    return (ret+Integer.toString(count+1));
+  }
+  
+  public void saveNewEvent(EventModel event)
+  {
+    PreparedStatement pst = null;
+    ResultSet res = null;
+    String newID = nextEventID();
     
+    try {
+      pst = con.prepareStatement("insert into EVENTNAME values(? , ? )");
+      pst.setString(1, newID);
+      pst.setString(2, event.getName());
+      pst.executeUpdate();
+      
+      if (event.getEventDescription() != null)
+      {
+        pst = con.prepareStatement("insert into EVENTDESCRIPTION values(?, ?)");
+        pst.setString(1, newID);
+        pst.setString(2, event.getEventDescription());
+        pst.executeUpdate();
+      }
+      else System.out.println("no description");
+      
+      pst = con.prepareStatement("insert into EVENT values(?, ?, (? ,? , ?), (? ,? ,?))");
+      pst.setString(1, newID);
+      pst.setString(2, event.getEventPlace().getID());
+      pst.setInt(3, event.getStartDate().getYear());
+      pst.setInt(4, event.getStartDate().getMonth());
+      pst.setInt(5, event.getStartDate().getDay());
+      pst.setInt(6, event.getEndDate().getYear());
+      pst.setInt(7, event.getEndDate().getMonth());
+      pst.setInt(8, event.getEndDate().getDay());
+      pst.executeUpdate();
+      
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
   }
     
     

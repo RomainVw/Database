@@ -114,7 +114,7 @@ public class Controller
   
   public void saveNewEvent(EventModel newEvent)
   {
-    dbCoordinator.newEvent(newEvent);
+    dbCoordinator.saveNewEvent(newEvent);
     System.out.println("Saving new event: "+newEvent.getName());
   }
   
