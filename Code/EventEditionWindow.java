@@ -56,7 +56,10 @@ public class EventEditionWindow extends EditionWindow<EventModel>
     //Gestion de placeChooser
     Vector<PlaceModel> places=new Vector<>(controller.getAllPlaces());
     placeChooser=new JComboBox<>(places);
-    placeChooser.setSelectedItem(editionTarget.getEventPlace());
+    
+    PlaceModel targetPlace=editionTarget.getEventPlace();
+    if(targetPlace!=null) placeChooser.setSelectedItem(targetPlace);
+    else placeChooser.setSelectedIndex(0);
     
     //Création des Panels
     JPanel tablePanel=new JPanel(new BorderLayout());
