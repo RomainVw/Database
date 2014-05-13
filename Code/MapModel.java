@@ -17,7 +17,7 @@ public class MapModel
     this.numWidth = numWidth;
     this.numLength = numLength;
     this.width = width;
-      this.length = length;
+    this.length = length;
   }
   
   public String getMapID()

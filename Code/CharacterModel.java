@@ -4,6 +4,8 @@ import java.util.TreeSet;
 import java.util.LinkedList;
 import java.util.Collection;
 
+import narrationmanager.model.AssociationModel;
+
 import narrationmanager.model.util.DBModel;
 
 public class CharacterModel extends DBModel
@@ -17,11 +19,15 @@ public class CharacterModel extends DBModel
   private Collection<RelationData> relations=new LinkedList<>();
   private TreeSet<String> relatedEventsNames=new TreeSet<>();
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
+  private TreeSet<AssociationModel> associations=new TreeSet<>();
   
   public CharacterModel(String id, String name)
   {
     super(id);
     this.name = name;
+    
+    //TODO TEST:
+    relations.add(new RelationData("ceci est un test, ligne 25 de CharacterModel","toto"));
   }
   
   public String getName()
@@ -57,6 +63,16 @@ public class CharacterModel extends DBModel
   public void setRelatedEventsNames(TreeSet<String> relatedEventsNames)
   {
     this.relatedEventsNames=relatedEventsNames;	  
+  }
+  
+  public TreeSet<AssociationModel> getAssociations()
+  {
+    return associations;	  
+  }
+  
+  public void setAssociations(TreeSet<AssociationModel> associations)
+  {
+    this.associations=associations;	  
   }
   
   public TreeSet<CharacterPseudoData> getCharactersPseudo()
@@ -101,5 +117,10 @@ public class CharacterModel extends DBModel
       rslt=a.getTargetCharacterName().compareTo(b.getTargetCharacterName());
     
     return rslt;
+  }
+  
+  public static CharacterModel getDefaultInstance()
+  {
+    return new CharacterModel("New character","test",false);//TODO: "test"??  
   }
 }
