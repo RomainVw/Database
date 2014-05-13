@@ -43,7 +43,7 @@ public class DatabaseCoordinator
   }
   
   public CharacterModel getCharacter(String name)
-  {
+  { // TO REDO
     String birthPlace = null;
     PreparedStatement pst = null;
     
@@ -59,7 +59,7 @@ public class DatabaseCoordinator
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }
     
-    return new CharacterModel(name, birthPlace,true);  
+    return new CharacterModel(name, name);  
   }
   
   public void setCharacter(CharacterModel c)
@@ -76,7 +76,7 @@ public class DatabaseCoordinator
       // update name
       pst = con.prepareStatement("update CHARACTER set NAME = ? where NAME = ?");
       pst.setString(1, c.getName());
-      pst.setString(2, c.updateDB());
+      pst.setString(2, c.getID());
       pst.executeUpdate(); 
     } catch (SQLException e) {      
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
@@ -126,7 +126,7 @@ public class DatabaseCoordinator
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }    
     
-    place = new PlaceModel(id, true, name);
+    place = new PlaceModel(id, name);
     
     /*
      * get all optional info and add it to placemodel
@@ -175,7 +175,7 @@ public class DatabaseCoordinator
       res = pst.executeQuery();
       while(res.next())
       {
-        EventModel event = new EventModel(res.getString(1),res.getString(2),null,new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)),new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)),true);
+        EventModel event = new EventModel(res.getString(1),res.getString(2),null,new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)),new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
         events.add(event);
       }
     } catch (SQLException e) {
@@ -183,6 +183,11 @@ public class DatabaseCoordinator
       lgr.log(Level.SEVERE, e.getMessage(), e);
     }
     return events;
+  }
+  
+  public void newEvent(EventModel event)
+  {
+    
   }
     
     

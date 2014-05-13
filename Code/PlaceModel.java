@@ -10,16 +10,20 @@ import java.util.ArrayList;
 
 public class PlaceModel extends DBModel implements Comparable<PlaceModel>
 {
+  // mandatory fields:
+  // id inherited from DBModel
   private String name = null;
+  
+  // optional fields:
   private MapModel map = null;
   private ArrayList<ModelInfo> events = null;
   private ArrayList<ModelInfo> characters = null;
   
 
   
-  public PlaceModel(String id, boolean alreadyInDB, String name)
+  public PlaceModel(String id, String name)
   {
-    super(id, alreadyInDB);
+    super(id);
     this.name = name;
   }
    
@@ -66,5 +70,10 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
   public void setCharacters(ArrayList<ModelInfo> events)
   {
     this.characters = characters;
+  }
+  
+  public String toString()
+  {
+    return this.getName();
   }
 }

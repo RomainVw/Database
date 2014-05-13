@@ -9,7 +9,7 @@ import narrationmanager.model.util.DBModel;
 
 public class EventModel extends DBModel
 {
-  //Mandatory fields (+name, inherited from DBModel) 
+  //Mandatory fields (+id, inherited from DBModel) 
   private PlaceModel eventPlace;
   private NarrationDate start;
   private NarrationDate end;
@@ -23,13 +23,23 @@ public class EventModel extends DBModel
   Returns a new EventModel. Only mandatory fields are specified into its parameters,
   setters should be used for the other ones.
   **/
-  public EventModel(String eventId, String eventName,PlaceModel eventPlace,NarrationDate start,NarrationDate end,boolean alreadyInDB)
+  public EventModel(String eventId, String eventName,PlaceModel eventPlace,NarrationDate start,NarrationDate end)
   {
-    super(eventId,alreadyInDB);
+    super(eventId);
     this.eventName = eventName;
     setEventPlace(eventPlace);
     setStartDate(start);
     setEndDate(end);
+  }
+  
+  public void setName(String name)
+  {
+    eventName=name;
+  }
+  
+  public String getName()
+  {
+    return eventName;
   }
   
   public void setLinkedCharacters(LinkedList<CharacterModel> linkedCharacters)
@@ -85,6 +95,11 @@ public class EventModel extends DBModel
   public static EventModel defaultInstance()
   {
     //TODO: retourner une instance par défaut un peu plus correcte!!
-    return new EventModel(null,"New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"),false);
+    return new EventModel(null,"New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"));
+  }
+  
+  public String toString()
+  {
+    return this.getName();
   }
 }
