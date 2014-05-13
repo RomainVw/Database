@@ -18,7 +18,6 @@ import narrationmanager.model.util.ModelInfo;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.NarrationDate;
 
-
 public class DatabaseCoordinator
 {    
   public static void main(String[] args)//TODO retirer quand on en aura plus besoin
@@ -164,6 +163,28 @@ public class DatabaseCoordinator
     return place;
   }
     
+    public String getEventDescription(String eventId)
+    {
+        String result = null;
+        PreparedStatement pst = null;
+        ResultSet res = null;
+        
+        try {
+            pst = con.prepareStatement("select description from eventdescription where eventid = ?");
+            pst.setString(1, eventId);
+            res = pst.executeQuery();
+            if(res.next()){
+              result = res.getString(1);
+            }
+            
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return result;
+    }
+
+
   public ArrayList<EventModel> getAllEvents()
   {
     ArrayList<EventModel> events = new ArrayList<EventModel>();
@@ -175,7 +196,9 @@ public class DatabaseCoordinator
       res = pst.executeQuery();
       while(res.next())
       {
-        EventModel event = new EventModel(res.getString(1),res.getString(2),null,new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)),new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)),true);
+        String eventId =res.getString(1);
+        EventModel event = new EventModel(eventId,res.getString(2),this.makePlace(res.getString(3)),new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)),new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)),true);
+        event.setEventDescription(getEventDescription(eventId));
         events.add(event);
       }
     } catch (SQLException e) {
