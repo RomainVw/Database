@@ -8,15 +8,30 @@ import narrationmanager.model.util.DBModel;
 
 public class CharacterModel extends DBModel
 {  
+  // mandatory fields:
+  // id inherited from DBModel
+  private String name;
   private String birthPlace;
+  
+  // optional fields:
   private Collection<RelationData> relations=new LinkedList<>();
   private TreeSet<String> relatedEventsNames=new TreeSet<>();
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
   
-  public CharacterModel(String name, String birthPlace,boolean alreadyInDB)
+  public CharacterModel(String id, String name)
   {
-    super(name,alreadyInDB);
-    this.birthPlace = birthPlace;
+    super(id);
+    this.name = name;
+  }
+  
+  public String getName()
+  {
+    return name;
+  }
+  
+  public void setName(String name)
+  {
+    this.name=name;
   }
   
   public String getBirthPlace()

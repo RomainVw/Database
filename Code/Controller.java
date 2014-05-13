@@ -114,13 +114,13 @@ public class Controller
   
   public void saveNewEvent(EventModel newEvent)
   {
-    //TODO: méthode appelée à la création d'un nouvel Event pour le sauvegarder
+    dbCoordinator.newEvent(newEvent);
     System.out.println("Saving new event: "+newEvent.getName());
   }
   
   public void saveEventModifications(EventModel modifiedEvent)
   {
     //TODO: méthode appelée après modification d'un event pour le sauvegarder en BDD
-    System.out.println("Saving modified event: "+modifiedEvent.getName()+"  "+modifiedEvent.updateDB());
+    System.out.println("Saving modified event: "+modifiedEvent.getName());
   }
 }
