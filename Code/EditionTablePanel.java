@@ -3,6 +3,7 @@ package narrationmanager.gui.util;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -10,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import java.util.function.Supplier;
 import java.util.function.Consumer;
@@ -18,15 +20,15 @@ import narrationmanager.gui.tables.EditionTable;
 
 public class EditionTablePanel<T> extends JPanel
 {
-  private Collection<T> content;
-  
+  private EditionTable<T> editionTable;
+	
   private JButton insertButton=new JButton("Insert...");
   private JButton removeButton=new JButton("Remove selected lines");
   private JButton editButton=new JButton("Edit line");
 	
   public EditionTablePanel(Collection<T> content,Supplier<T> insertFunction,EditionTable<T> editionTable,Consumer<T> editFunction)
   {
-    this.content=content;
+    this.editionTable=editionTable;
     
     editionTable.fillWith(content);
     
@@ -47,7 +49,7 @@ public class EditionTablePanel<T> extends JPanel
     //Treatment of action listeners:
     insertButton.addActionListener((ActionEvent e)-> insertElement(insertFunction));
     removeButton.addActionListener((ActionEvent e)-> removeSelectedElements());
-    removeButton.addActionListener((ActionEvent e)-> editElement(editFunction));
+    editButton.addActionListener((ActionEvent e)-> editElement(editFunction));
     
     //Treatment of mainPanel
     mainPanel.add("Center",tablePanel);
@@ -58,18 +60,35 @@ public class EditionTablePanel<T> extends JPanel
   
   private void insertElement(Supplier<T> insertFunction)
   {
-    T toInsert=insertFunction.get(); //TODO il comprend apply()?
-    //content.add(toInsert);
-    //TODO ajouter à la table
+    T toAdd=insertFunction.get();
+    if(toAdd!=null) editionTable.addElement(toAdd);
   }
   
   private void removeSelectedElements()
   {
-    //TODO: retirer de content ce qui est sélectionné dans la table	  
+    for(T element:editionTable.getSelectedElements())
+    {
+      editionTable.removeElement(element);	    
+    }
   }
   
   private void editElement(Consumer<T> editFunction)
   {
-    //TODO	  
+    LinkedList<T>  selected=editionTable.getSelectedElements();
+    
+    if(selected.size()>1)
+    {
+      JOptionPane.showMessageDialog(this,"Please select only one line to edit it","Error",JOptionPane.ERROR_MESSAGE);	    
+    }
+    else if(selected.size()==1)
+    {
+      editFunction.accept(selected.get(0));	    
+      editionTable.refresh();
+    }
+  }
+  
+  public Collection<T> getTableContent()
+  {
+    return editionTable.getContent();	  
   }
 }

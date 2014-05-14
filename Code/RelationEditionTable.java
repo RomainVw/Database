@@ -44,7 +44,7 @@ public class RelationEditionTable extends EditionTable<RelationData>
     
     switch(column)
     {
-      case TYPE_COLUMN: return target.getRelationName();
+      case TYPE_COLUMN: return target.toString();
       case TARGET_NAME_COLUMN: return target.getTargetCharacterName();
       default: return null;
     }  

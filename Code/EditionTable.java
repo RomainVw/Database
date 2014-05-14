@@ -3,6 +3,7 @@ package narrationmanager.gui.tables;
 import javax.swing.JTable;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 public abstract class EditionTable<T> extends JTable
 {
@@ -36,5 +37,22 @@ public abstract class EditionTable<T> extends JTable
   public Collection<T> getContent()
   {
     return editionModel.cloneContent();	  
+  }
+  
+  public LinkedList<T> getSelectedElements()
+  {
+    LinkedList<T> rslt=new LinkedList<>();
+    
+    for(int row:getSelectedRows())
+    {
+      rslt.add(editionModel.getRowElement(row));	    
+    }
+    
+    return rslt;
+  }
+  
+  public void refresh()
+  {
+    editionModel.fireTableDataChanged();	  
   }
 }

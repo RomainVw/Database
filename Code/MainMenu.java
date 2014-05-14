@@ -13,6 +13,7 @@ import narrationmanager.controller.Controller;
 public class MainMenu extends JFrame
 {
   private JButton createCharacter=new JButton("Create new character");
+  private JButton editCharacter=new JButton("Edit character");
   private JButton createEvent=new JButton("Create new event");
   private JButton editEvent=new JButton("Edit event");
   private JButton createPlace=new JButton("Create place");
@@ -26,17 +27,19 @@ public class MainMenu extends JFrame
     this.controller=controller;
     
     //Traitement du panel main
-    JPanel main=new JPanel(new GridLayout(4,1));
+    JPanel main=new JPanel(new GridLayout(5,1));
     main.add(createCharacter);
+    main.add(editCharacter);
     main.add(createEvent);
     main.add(editEvent);
     main.add(createPlace);
     
     //Ajout des listeners
-    createCharacter.addActionListener((ActionEvent e)->createCharacterClicked());
-    createEvent.addActionListener((ActionEvent e)->createEventClicked());
-    editEvent.addActionListener((ActionEvent e)->editEventClicked());
-    createPlace.addActionListener((ActionEvent e)->createPlaceClicked());
+    createCharacter.addActionListener((ActionEvent e)->controller.createCharacter());
+    editCharacter.addActionListener((ActionEvent e)->controller.editCharacter());
+    createEvent.addActionListener((ActionEvent e)->controller.createEvent());
+    editEvent.addActionListener((ActionEvent e)->controller.editEvent());
+    createPlace.addActionListener((ActionEvent e)->controller.createPlace());
     
     //Fignolage
     add(main);
@@ -45,25 +48,4 @@ public class MainMenu extends JFrame
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setVisible(true);
   }
-  
-  private void createCharacterClicked()
-  {
-    controller.createCharacter();
-  }
-  
-  private void createEventClicked()
-  {
-    controller.createEvent();	  
-  }
-  
-  private void editEventClicked()
-  {
-    controller.editEvent();	  
-  }
-  
-  private void createPlaceClicked()
-  {
-  	controller.createPlace();  
-  }
-  
 }

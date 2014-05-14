@@ -15,12 +15,12 @@ import narrationmanager.gui.util.EditionWindow;
 
 import narrationmanager.model.PlaceModel;
 import narrationmanager.model.EventModel;
+import narrationmanager.model.CharacterModel;
 
 import narrationmanager.db.DatabaseCoordinator;
 
 public class Controller
 {
-  //TODO: coordination modèle-interface
   private DatabaseCoordinator dbCoordinator = new DatabaseCoordinator();
   
   public void start()
@@ -38,7 +38,10 @@ public class Controller
   
   public void createCharacter()
   {
-    new CharacterEditionWindow(this);
+    CharacterEditionWindow characterEditor=new CharacterEditionWindow(this);
+    
+    if(characterEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
+      saveNewCharacter(characterEditor.getTarget());
   }
   
   public void createPlace()
@@ -51,22 +54,38 @@ public class Controller
   }
   
   public void editCharacter()
-  {//TODO: Select character and edit it
+  {
+    CharacterModel[] choices=getAllCharactersInArray();
+    
+    if(choices.length>0)
+    {
+      CharacterModel toEdit=(CharacterModel) JOptionPane.showInputDialog(null,"Please select which character to edit.","Edit character...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
+      
+      CharacterEditionWindow characterEditor=new CharacterEditionWindow(this,toEdit);
+    
+      if(characterEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
+        saveCharacterModifications(characterEditor.getTarget());
+    }
+    else 
+      JOptionPane.showMessageDialog(null,"Error: no character can be edited, as there is currently no character available in database","Error",JOptionPane.ERROR_MESSAGE);
   }
   
   public void editEvent()
   {
     
     EventModel[] choices=getAllEventsInArray();
-    EventModel toEdit=(EventModel) JOptionPane.showInputDialog(null,"Please select which event to edit.","Edit event...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
     
-    if(toEdit!=null)
+    if(choices.length>0)
     {
+      EventModel toEdit=(EventModel) JOptionPane.showInputDialog(null,"Please select which event to edit.","Edit event...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
+      
       EventEditionWindow eventEditor=new EventEditionWindow(this,toEdit);
     
       if(eventEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
         saveEventModifications(eventEditor.getTarget());
     }
+    else 
+      JOptionPane.showMessageDialog(null,"Error: no event can be edited, as there is currently no event available in database","Error",JOptionPane.ERROR_MESSAGE);
   }
   
   public TreeSet<PlaceModel> getAllPlaces()
@@ -120,6 +139,31 @@ public class Controller
     EventModel[] rslt=new EventModel[allEvents.size()];
     allEvents.toArray(rslt);
     return rslt;
+  }
+  
+  public TreeSet<CharacterModel> getAllCharacters()
+  {
+    //TODO
+    return new TreeSet<CharacterModel>();
+  }
+  
+  public CharacterModel[] getAllCharactersInArray()
+  {
+    TreeSet<CharacterModel> allCharacters=getAllCharacters();
+    CharacterModel[] rslt=new CharacterModel[allCharacters.size()];
+    allCharacters.toArray(rslt);
+    
+    return rslt;
+  }
+  
+  public void saveNewCharacter(CharacterModel newCharacter)
+  {
+    //TODO
+  }
+  
+  public void saveCharacterModifications(CharacterModel toSave)
+  {
+    //TODO
   }
   
   public void saveNewEvent(EventModel newEvent)

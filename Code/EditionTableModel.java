@@ -16,24 +16,24 @@ public class EditionTableModel<T> extends AbstractTableModel
     super();	  
   }
   
-  public void fillWith(Collection<T> collection)
+  public synchronized void fillWith(Collection<T> collection)
   {
     content=new Vector<>(collection);
     fireTableDataChanged();
   }
   
-  public void addElement(T toAdd)
+  public synchronized void addElement(T toAdd)
   {
     content.add(toAdd);
   }
   
-  public void removeElement(T toRemove)
+  public synchronized void removeElement(T toRemove)
   {
     content.remove(toRemove);	 
-    //fireTableDataChanged(); //TODO??
+    fireTableDataChanged();
   }
   
-  public Vector<T> cloneContent()
+  public synchronized Vector<T> cloneContent()
   {
     return (Vector<T>)content.clone();	  
   }
@@ -43,12 +43,12 @@ public class EditionTableModel<T> extends AbstractTableModel
     return content.size();	  
   }
   
-  public T getRowElement(int row)
+  public synchronized T getRowElement(int row)
   {
     return content.get(row);	  
   }
   
-  public Object getValueAt(int row, int col)
+  public synchronized Object getValueAt(int row, int col)
   {
     //return "titi"; //TODO: OK, appelle celui de la table?
     return ownerTable.getValueAt(row,col);
@@ -65,7 +65,7 @@ public class EditionTableModel<T> extends AbstractTableModel
     ownerTable=table;	  
   }
   
-  public String getColumnName(int column)
+  public synchronized String getColumnName(int column)
   {
     return ownerTable.getColumnName(column);	  
   }

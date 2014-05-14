@@ -27,7 +27,7 @@ public class CharacterModel extends DBModel
     this.name = name;
     
     //TODO TEST:
-    relations.add(new RelationData("ceci est un test, ligne 25 de CharacterModel","toto"));
+    relations.add(new RelationData("ceci est un test, ligne 25 de CharacterModel","toto",true));
   }
   
   public String getName()
