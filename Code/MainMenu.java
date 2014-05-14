@@ -63,7 +63,7 @@ public class MainMenu extends JFrame
   
   private void createPlaceClicked()
   {
-  	  
+  	controller.createPlace();  
   }
   
 }

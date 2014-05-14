@@ -273,6 +273,29 @@ public class DatabaseCoordinator
     return (ret+Integer.toString(count+1));
   }
   
+  public String nextPlaceID()
+  {
+    int count = 0;
+    int tempcount;
+    String ret = "PL";
+    try {
+      PreparedStatement pst = con.prepareStatement("select PLACEID from PLACE");
+      ResultSet res  = pst.executeQuery();
+      while (res.next())
+      {
+        tempcount = Integer.parseInt(res.getString(1).substring(2));
+        if (tempcount > count)
+        {
+          count = tempcount;
+        }
+      }
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+    return (ret+Integer.toString(count+1));
+  }
+  
   public void saveNewEvent(EventModel event)
   {
     PreparedStatement pst = null;
@@ -362,6 +385,35 @@ public class DatabaseCoordinator
       pst.setString(8, event.getID());
       pst.executeUpdate();
       
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+  }
+  
+  public void savePlace(PlaceModel place, boolean isNew)
+  {
+    PreparedStatement pst = null;
+    String id;
+    if (isNew) id = nextPlaceID();
+    else id = place.getName();
+    
+    try {
+      if (isNew)
+      {
+        pst = con.prepareStatement("insert into PLACE values(? , ? )");
+        pst.setString(1, id);
+        pst.setString(2, place.getName());
+      }
+      else
+      {
+        pst = con.prepareStatement("update PLACE set PLACENAME=? where PLACEID=?");
+        pst.setString(2, id);
+        pst.setString(1, place.getName());
+      }
+      
+      pst.executeUpdate();
+
     } catch (SQLException e) {
       Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
       lgr.log(Level.SEVERE, e.getMessage(), e);

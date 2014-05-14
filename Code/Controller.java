@@ -9,6 +9,7 @@ import narrationmanager.gui.MainMenu;
 
 import narrationmanager.gui.CharacterEditionWindow;
 import narrationmanager.gui.EventEditionWindow;
+import narrationmanager.gui.PlaceEditionWindow;
 
 import narrationmanager.gui.util.EditionWindow;
 
@@ -38,6 +39,15 @@ public class Controller
   public void createCharacter()
   {
     new CharacterEditionWindow(this);
+  }
+  
+  public void createPlace()
+  {
+    PlaceEditionWindow placeEditor = new PlaceEditionWindow(this);
+    
+    if (placeEditor.getExitOption() == EditionWindow.OK_EXIT_OPTION)
+      saveNewPlace(placeEditor.getTarget());
+    
   }
   
   public void editCharacter()
@@ -122,5 +132,10 @@ public class Controller
   {
     dbCoordinator.saveEvent(modifiedEvent);
     System.out.println("Saving modified event: "+modifiedEvent.getName());
+  }
+  
+  public void saveNewPlace(PlaceModel newPlace)
+  {
+    dbCoordinator.savePlace(newPlace, true);
   }
 }

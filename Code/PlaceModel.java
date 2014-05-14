@@ -19,6 +19,9 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
   private ArrayList<ModelInfo> events = null;
   private ArrayList<ModelInfo> characters = null;
   
+  private String parentID = null;
+  private int location;
+  
 
   
   public PlaceModel(String id, String name)
@@ -75,5 +78,10 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
   public String toString()
   {
     return this.getName();
+  }
+  
+  public static PlaceModel defaultInstance()
+  {
+    return new PlaceModel(null, "Place Name");
   }
 }
