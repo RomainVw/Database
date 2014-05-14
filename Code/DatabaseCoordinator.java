@@ -250,9 +250,121 @@ public class DatabaseCoordinator
     return events;
   }
   
-  public void newEvent(EventModel event)
+  public String nextEventID()
   {
+    int count = 0;
+    int tempcount;
+    String ret = "EV";
+    try {
+      PreparedStatement pst = con.prepareStatement("select EVENTID from EVENTNAME");
+      ResultSet res  = pst.executeQuery();
+      while (res.next())
+      {
+        tempcount = Integer.parseInt(res.getString(1).substring(2));
+        if (tempcount > count)
+        {
+          count = tempcount;
+        }
+      }
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+    return (ret+Integer.toString(count+1));
+  }
+  
+  public void saveNewEvent(EventModel event)
+  {
+    PreparedStatement pst = null;
+    String newID = nextEventID();
     
+    try {
+      pst = con.prepareStatement("insert into EVENTNAME values(? , ? )");
+      pst.setString(1, newID);
+      pst.setString(2, event.getName());
+      pst.executeUpdate();
+      
+      if (event.getEventDescription() != null)
+      {
+        pst = con.prepareStatement("insert into EVENTDESCRIPTION values(?, ?)");
+        pst.setString(1, newID);
+        pst.setString(2, event.getEventDescription());
+        pst.executeUpdate();
+      }
+      else System.out.println("no description");
+      
+      pst = con.prepareStatement("insert into EVENT values(?, ?, (? ,? , ?), (? ,? ,?))");
+      pst.setString(1, newID);
+      pst.setString(2, event.getEventPlace().getID());
+      pst.setInt(3, event.getStartDate().getYear());
+      pst.setInt(4, event.getStartDate().getMonth());
+      pst.setInt(5, event.getStartDate().getDay());
+      pst.setInt(6, event.getEndDate().getYear());
+      pst.setInt(7, event.getEndDate().getMonth());
+      pst.setInt(8, event.getEndDate().getDay());
+      pst.executeUpdate();
+      
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+  }
+  
+  public void saveEvent(EventModel event)
+  {
+    PreparedStatement pst = null;
+    ResultSet res = null;
+    
+    try {
+      pst = con.prepareStatement("update EVENTNAME set NAME=? where EVENTID=?");
+      pst.setString(1, event.getName());
+      pst.setString(2, event.getID());
+      pst.executeUpdate();
+      
+      pst = con.prepareStatement("select DESCRIPTION from EVENTDESCRIPTION where EVENTID=?");
+      pst.setString(1, event.getID());
+      res = pst.executeQuery();
+      if (res.next())
+      {
+        if (event.getEventDescription() == null)
+        {
+          pst = con.prepareStatement("delete from EVENTDESCRIPTION where EVENTID=?");
+          pst.setString(1, event.getID());
+          pst.executeUpdate();
+        }
+        else
+        {
+          pst = con.prepareStatement("update EVENTDESCRIPTION set DESCRIPTION=? where EVENTID=?");
+          pst.setString(1, event.getEventDescription());
+          pst.setString(2, event.getID());
+          pst.executeUpdate();
+        }
+      }
+      else
+      {
+        if (event.getEventDescription() != null)
+        {
+          pst = con.prepareStatement("insert into EVENTDESCRIPTION values(? , ?)");
+          pst.setString(1, event.getID());
+          pst.setString(2, event.getEventDescription());
+          pst.executeQuery();
+        }
+      }
+      
+      pst = con.prepareStatement("update EVENT set PLACEID=?, BEGINNING.YEAR=?, BEGINNING.MONTH=?, BEGINNING.DAY=?, ENDDATE.YEAR=?, ENDDATE.MONTH=?, ENDDATE.DAY=?");
+      pst.setString(1, event.getEventPlace().getID());
+      pst.setInt(2, event.getStartDate().getYear());
+      pst.setInt(3, event.getStartDate().getMonth());
+      pst.setInt(4, event.getStartDate().getDay());
+      pst.setInt(5, event.getEndDate().getYear());
+      pst.setInt(6, event.getEndDate().getMonth());
+      pst.setInt(7, event.getEndDate().getDay());
+      pst.executeUpdate();
+      
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
   }
     
     
