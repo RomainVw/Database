@@ -59,7 +59,11 @@ public class EventEditionWindow extends EditionWindow<EventModel>
     
     PlaceModel targetPlace=editionTarget.getEventPlace();
     if(targetPlace!=null) placeChooser.setSelectedItem(targetPlace);
-    else placeChooser.setSelectedIndex(0);
+    else 
+    {
+      placeChooser.setSelectedIndex(0);
+      placeChooserActionPerformed();
+    }
     
     //Création des Panels
     JPanel tablePanel=new JPanel(new BorderLayout());
