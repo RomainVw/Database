@@ -121,6 +121,6 @@ public class CharacterModel extends DBModel
   
   public static CharacterModel getDefaultInstance()
   {
-    return new CharacterModel("New character","test",false);//TODO: "test"??  
+    return new CharacterModel(null,"New Character");//TODO: "test"??  
   }
 }

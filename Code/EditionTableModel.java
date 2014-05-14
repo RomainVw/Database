@@ -7,7 +7,9 @@ import java.util.Collection;
 
 public class EditionTableModel<T> extends AbstractTableModel
 {
-  protected Vector<T> content=new Vector<>();	
+  protected Vector<T> content=new Vector<>();
+  
+  private EditionTable ownerTable;
 
   public EditionTableModel()
   {
@@ -48,11 +50,23 @@ public class EditionTableModel<T> extends AbstractTableModel
   
   public Object getValueAt(int row, int col)
   {
-    return "titi"; //TODO: OK, appelle celui de la table?
+    //return "titi"; //TODO: OK, appelle celui de la table?
+    return ownerTable.getValueAt(row,col);
   }
   
   public int getColumnCount()
   {
-    return 23; //TODO	  
+    //return 23; //TODO
+    return ownerTable.getColumnCount();
+  }
+  
+  public void setEditionTable(EditionTable table)
+  {
+    ownerTable=table;	  
+  }
+  
+  public String getColumnName(int column)
+  {
+    return ownerTable.getColumnName(column);	  
   }
 }

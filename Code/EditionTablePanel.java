@@ -11,7 +11,8 @@ import java.awt.event.ActionEvent;
 
 import java.util.Collection;
 
-import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.function.Consumer;
 
 import narrationmanager.gui.tables.EditionTable;
 
@@ -21,8 +22,9 @@ public class EditionTablePanel<T> extends JPanel
   
   private JButton insertButton=new JButton("Insert...");
   private JButton removeButton=new JButton("Remove selected lines");
+  private JButton editButton=new JButton("Edit line");
 	
-  public EditionTablePanel(Collection<T> content,Function<Void,T> insertFunction,EditionTable<T> editionTable)
+  public EditionTablePanel(Collection<T> content,Supplier<T> insertFunction,EditionTable<T> editionTable,Consumer<T> editFunction)
   {
     this.content=content;
     
@@ -30,12 +32,13 @@ public class EditionTablePanel<T> extends JPanel
     
     //Panels creation
     JPanel mainPanel=new JPanel(new BorderLayout());
-    JPanel buttonsPanel=new JPanel(new GridLayout(1,2));
+    JPanel buttonsPanel=new JPanel(new GridLayout(1,3));
     JPanel tablePanel=new JPanel(new BorderLayout());
     
     //Treatment of buttonsPanel
     buttonsPanel.add(insertButton);
     buttonsPanel.add(removeButton);
+    buttonsPanel.add(editButton);
     
     //Treatment of tablePanel
     tablePanel.add("North",editionTable.getTableHeader());
@@ -44,6 +47,7 @@ public class EditionTablePanel<T> extends JPanel
     //Treatment of action listeners:
     insertButton.addActionListener((ActionEvent e)-> insertElement(insertFunction));
     removeButton.addActionListener((ActionEvent e)-> removeSelectedElements());
+    removeButton.addActionListener((ActionEvent e)-> editElement(editFunction));
     
     //Treatment of mainPanel
     mainPanel.add("Center",tablePanel);
@@ -52,9 +56,9 @@ public class EditionTablePanel<T> extends JPanel
     add(mainPanel);
   }
   
-  private void insertElement(Function<Void,T> insertFunction)
+  private void insertElement(Supplier<T> insertFunction)
   {
-    T toInsert=insertFunction.apply(null); //TODO il comprend apply()?
+    T toInsert=insertFunction.get(); //TODO il comprend apply()?
     //content.add(toInsert);
     //TODO ajouter à la table
   }
@@ -62,5 +66,10 @@ public class EditionTablePanel<T> extends JPanel
   private void removeSelectedElements()
   {
     //TODO: retirer de content ce qui est sélectionné dans la table	  
+  }
+  
+  private void editElement(Consumer<T> editFunction)
+  {
+    //TODO	  
   }
 }

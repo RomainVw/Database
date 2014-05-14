@@ -54,8 +54,7 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     
     //Treatment of edition target
     RelationEditionTable tab1Table=new RelationEditionTable(true);
-    Function<Void,RelationData> insertFun=this::getRelationToInsert;
-    tab1TablePanel=new EditionTablePanel(editionTarget.getRelationsByCharacter(),insertFun,tab1Table);
+    tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByCharacter(),this::getRelationToInsert,tab1Table,this::editRelation);
     
     //Panels
     JPanel tab1=new JPanel(new BorderLayout());
@@ -95,9 +94,13 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     return "Character editor";	  
   }
   
-  private RelationData getRelationToInsert(Void v)
+  private RelationData getRelationToInsert()
   { //TODO
     System.out.println("lulu");
     return null;
+  }
+  
+  private void editRelation(RelationData toEdit)
+  {
   }
 }

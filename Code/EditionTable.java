@@ -11,8 +11,10 @@ public abstract class EditionTable<T> extends JTable
 	
   public EditionTable(EditionTableModel<T> editionModel, boolean editable)
   {
-    super(editionModel);
+    super();
     this.editionModel=editionModel;
+    editionModel.setEditionTable(this);
+    setModel(editionModel);
     this.editable=editable;
   }
   
