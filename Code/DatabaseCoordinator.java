@@ -41,24 +41,43 @@ public class DatabaseCoordinator
     }
   }
   
-  public CharacterModel getCharacter(String name)
+  public CharacterModel getCharacter(String characterid)
   { // TO REDO
+    String name = null;
     String birthPlace = null;
     PreparedStatement pst = null;
     
-    // get birth place
+    // get name
     try {
-      pst = con.prepareStatement("select PLACENAME from   ORIGINATES, CHARACTER, PLACE where NAME = ? and CHARACTER.CHARACTERID = ORIGINATES.CHARACTERID and ORIGINATES.PLACEID = PLACE.PLACEID");
-      pst.setString(1, name);
+      pst = con.prepareStatement("select NAME from  CHARACTER where CHARACTERID = ?");
+      pst.setString(1, characterid);
       ResultSet res = pst.executeQuery();
-      res.next();
-      birthPlace = res.getString(1);
+      if(res.next()){
+          name = res.getString(1);
+      }
+        
+      
     } catch (SQLException e) {      
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }
+      
+      
+      // get birth place
+    try {
+        pst = con.prepareStatement("select PLACENAME from  ORIGINATES, CHARACTER, PLACE where CHARACTERID = ? and CHARACTER.CHARACTERID = ORIGINATES.CHARACTERID and ORIGINATES.PLACEID = PLACE.PLACEID");
+        pst.setString(1, characterid);
+        ResultSet res = pst.executeQuery();
+        if(res.next()){
+            birthPlace = res.getString(1);
+        }
+        
+    } catch (SQLException e) {
+        Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+        lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
     
-    return new CharacterModel(name, name);  
+    return new CharacterModel(characterid, name);
   }
   
   public void setCharacter(CharacterModel c)
@@ -182,6 +201,29 @@ public class DatabaseCoordinator
             lgr.log(Level.SEVERE, e.getMessage(), e);
         }
         return result;
+    }
+    
+    
+    
+    public ArrayList<CharacterModel> getCharactersDescription(String eventId)
+    {
+        ArrayList<CharacterModel> characters = new ArrayList<CharacterModel>();
+        PreparedStatement pst = null;
+        ResultSet res = null;
+        
+        try {
+            pst = con.prepareStatement("select characterid from attends where eventid = ?");
+            pst.setString(1, eventId);
+            res = pst.executeQuery();
+            while(res.next()){
+                characters.add(getCharacter(res.getString(1)));
+            }
+            
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return characters;
     }
 
 
