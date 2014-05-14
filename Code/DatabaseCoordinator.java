@@ -468,11 +468,11 @@ public class DatabaseCoordinator
           pst = con.prepareStatement("insert into EVENTDESCRIPTION values(? , ?)");
           pst.setString(1, event.getID());
           pst.setString(2, event.getEventDescription());
-          pst.executeQuery();
+          pst.executeUpdate();
         }
       }
       
-      pst = con.prepareStatement("update EVENT set PLACEID=?, BEGINNING.YEAR=?, BEGINNING.MONTH=?, BEGINNING.DAY=?, ENDDATE.YEAR=?, ENDDATE.MONTH=?, ENDDATE.DAY=?");
+      pst = con.prepareStatement("update EVENT set PLACEID=?, BEGINNING.YEAR=?, BEGINNING.MONTH=?, BEGINNING.DAY=?, ENDDATE.YEAR=?, ENDDATE.MONTH=?, ENDDATE.DAY=? where EVENTID=?");
       pst.setString(1, event.getEventPlace().getID());
       pst.setInt(2, event.getStartDate().getYear());
       pst.setInt(3, event.getStartDate().getMonth());
@@ -480,6 +480,7 @@ public class DatabaseCoordinator
       pst.setInt(5, event.getEndDate().getYear());
       pst.setInt(6, event.getEndDate().getMonth());
       pst.setInt(7, event.getEndDate().getDay());
+      pst.setString(8, event.getID());
       pst.executeUpdate();
       
     } catch (SQLException e) {
