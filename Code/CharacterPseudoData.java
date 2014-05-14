@@ -3,13 +3,16 @@ package narrationmanager.model;
 
 public class CharacterPseudoData implements Comparable<CharacterPseudoData>
 {
+  private String sourceCharacterName;
   private String targetCharacterName;
   private String pseudo;
-  private NarrationDate start; //not mandatory, null if not defined
-  private NarrationDate end; //not mandatory, null if not defined
+  /*private NarrationDate start; //not mandatory, null if not defined
+  private NarrationDate end; //not mandatory, null if not defined*/
+    
   
-  public CharacterPseudoData(String targetCharacterName,String pseudo)
+  public CharacterPseudoData(String sourceCharacterName, String targetCharacterName,String pseudo)
   {
+    this.sourceCharacterName = sourceCharacterName;
     this.targetCharacterName=targetCharacterName;
     this.pseudo=pseudo;
   }
@@ -33,8 +36,18 @@ public class CharacterPseudoData implements Comparable<CharacterPseudoData>
   {
     this.targetCharacterName=targetCharacterName;	  
   }
+    
+  public String getSourceCharacterName()
+  {
+    return sourceCharacterName;
+  }
+    
+  public void setSourceCharacterName(String targetCharacterName)
+  {
+    this.sourceCharacterName=sourceCharacterName;
+  }
   
-  public NarrationDate getStart()
+ /* public NarrationDate getStart()
   {
     return start;
   }
@@ -52,14 +65,14 @@ public class CharacterPseudoData implements Comparable<CharacterPseudoData>
   public void setEnd(NarrationDate end)
   {
     this.end=end;	  
-  }
+  }*/
   
   public int compareTo(CharacterPseudoData other)
   {
     int rslt=targetCharacterName.compareTo(other.getTargetCharacterName());
     
-    if(rslt==0) rslt=start.compareTo(other.getStart());
-    if(rslt==0) rslt=end.compareTo(other.getEnd());
+    //if(rslt==0) rslt=start.compareTo(other.getStart());
+    //if(rslt==0) rslt=end.compareTo(other.getEnd());
     if(rslt==0) rslt=pseudo.compareTo(other.getPseudo());
     
     return rslt;
