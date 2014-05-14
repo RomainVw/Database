@@ -18,6 +18,9 @@ import narrationmanager.model.util.ModelInfo;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.NarrationDate;
 
+import narrationmanager.model.RelationData;
+import java.util.Collection;
+
 public class DatabaseCoordinator
 {    
   public static void main(String[] args)//TODO retirer quand on en aura plus besoin
@@ -45,7 +48,9 @@ public class DatabaseCoordinator
   { // TO REDO
     String name = null;
     String birthPlace = null;
+    Collection<RelationData> relations = null;
     PreparedStatement pst = null;
+    
     
     // get name
     try {
@@ -76,8 +81,123 @@ public class DatabaseCoordinator
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }
-    
-    return new CharacterModel(characterid, name);
+      
+      
+      // get timeless relations where target
+      try {
+          pst = con.prepareStatement(" select source, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where target = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+             RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      
+      // get timeless relations where source
+      try {
+          pst = con.prepareStatement(" select target, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where source = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      // get relations with one date where traget
+      try {
+          pst = con.prepareStatement(" select source, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where target = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
+              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      // get relations with one date where source
+      try {
+          pst = con.prepareStatement(" select target, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where source = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+            RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
+            toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      // get relations with daterange where traget
+      try {
+          pst = con.prepareStatement("  select source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where target = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
+              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+              toAdd.setEnd(new NarrationDate(res.getInt(6),res.getInt(7),res.getInt(8)));
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      // get relations with daterange where source
+      try {
+          pst = con.prepareStatement("  select source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where source = ?");
+          pst.setString(1, characterid);
+          ResultSet res = pst.executeQuery();
+          while(res.next()){
+              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
+              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+              toAdd.setEnd(new NarrationDate(res.getInt(6),res.getInt(7),res.getInt(8)));
+              relations.add(toAdd);
+          }
+          
+      } catch (SQLException e) {
+          Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+          lgr.log(Level.SEVERE, e.getMessage(), e);
+      }
+      
+      
+      
+      
+    // TODO Get relations,relatedEventsNames,charactersPseudo ?
+      
+    CharacterModel characterResult = new CharacterModel(characterid, name);
+    characterResult.setBirthPlace(birthPlace);
+    //TODO
+    //characterResult.setRelations(Collection<RelationData> relations);
+    //characterResult.setRelatedEventsNames(TreeSet<String> relatedEventsNames);
+    //characterResult.setCharactersPseudoData(TreeSet<CharacterPseudoData> charactersPseudo);
+      
+    return characterResult;
   }
   
   public void setCharacter(CharacterModel c)
@@ -289,6 +409,7 @@ public class DatabaseCoordinator
         pst = con.prepareStatement("insert into EVENTDESCRIPTION values(?, ?)");
         pst.setString(1, newID);
         pst.setString(2, event.getEventDescription());
+        //System.out.println(newID + " " + event.getEventDescription());
         pst.executeUpdate();
       }
       else System.out.println("no description");
