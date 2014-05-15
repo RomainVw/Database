@@ -55,7 +55,7 @@ public class DatabaseCoordinator
     String name = null;
     String birthPlace = null;
     Collection<RelationData> relations = new ArrayList<>();
-    TreeSet<String> relatedEventsNames = new TreeSet<>();
+    LinkedList<String> relatedEventsNames = new LinkedList<String>();
     TreeSet<CharacterPseudoData> charactersPseudo = new TreeSet<>();
     PreparedStatement pst = null;
     
@@ -590,20 +590,20 @@ public class DatabaseCoordinator
       if (place.getParentID() != null)
       {
         MapModel parentMap = makePlace(place.getParentID()).getMap();
-        Map<String, int> subplaces = parentMap.getSubplaceID();
+        Map<String, Integer> subplaces = parentMap.getSubplaceID();
         if (subplaces != null || !subplaces.containsKey(place.getID()))
         {
           pst = con.prepareStatement("insert into SUBPLACE values(?, ? , ?)");
-          pst.setString(1, place.getID());
+          pst.setString(1, id);
           pst.setInt(2, place.getLocation());
-          pst.setString(3, parentMap.getID());
+          pst.setString(3, parentMap.getMapID());
         }
         else
         {
           pst = con.prepareStatement("update SUBPLACE set SQUARED=?, MAPID=? where PLACEID=?");
           pst.setInt(1, place.getLocation());
-          pst.setString(2, parentMap.getID());
-          pst.setString(3, place.getID());
+          pst.setString(2, parentMap.getMapID());
+          pst.setString(3, id);
         }
         pst.executeUpdate();
       }
