@@ -130,4 +130,9 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     
     return rslt;
   }
+  
+  public String toString()
+  {
+    return name;
+  }
 }
