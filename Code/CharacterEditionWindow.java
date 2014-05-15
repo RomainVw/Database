@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Dimension;
 
 import java.awt.event.ActionEvent;
 
@@ -24,6 +25,7 @@ import narrationmanager.gui.util.EditionWindow;
 import narrationmanager.gui.util.EditionTablePanel;
 
 import narrationmanager.gui.tables.RelationEditionTable;
+import narrationmanager.gui.tables.EventEditionTable;
 
 import java.util.function.Function;
 
@@ -71,10 +73,10 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     
     //Treatment of edition target
     RelationEditionTable tab1Table=new RelationEditionTable(true);
-    tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByType(),this::getRelationToInsert,tab1Table,this::editRelation);
+    tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByType(),this::getRelationToInsert,tab1Table);
     
-     
-    //tab2TablePanel=new EditionTablePanel<EventModel>(controller.getEventModelsFromID(editionTarget.getRelatedEventsID()),null,tab2Table,null);
+    EventEditionTable tab2Table=new EventEditionTable(false);
+    tab2TablePanel=new EditionTablePanel<EventModel>(controller.getEventModelsFromID(editionTarget.getRelatedEventsID()),null,tab2Table);
     
     tab1NameField.setText(editionTarget.getName());
     
@@ -111,6 +113,7 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     
     //Treatment of tab2
     tab2.add("North",new JLabel("Events related to this character:"));
+    tab2.add("Center",tab2TablePanel);
     
     
     //Treatment of action listeners
@@ -159,13 +162,6 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     }
     
     return null;
-  }
-  
-  private void editRelation(RelationData toEdit)
-  {
-    String newName=JOptionPane.showInputDialog("Please enter this relation's new type",toEdit.getRelationName());
-    
-    if(newName!=null) toEdit.setRelationName(newName);
   }
   
   private void applyActionPerformed()

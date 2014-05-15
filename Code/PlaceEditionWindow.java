@@ -15,7 +15,7 @@ import java.util.Vector;
 
 import narrationmanager.gui.util.EditionWindow;
 
-import narrationmanager.gui.tables.EventsTable;
+import narrationmanager.gui.tables.EventEditionTable;
 
 import narrationmanager.model.PlaceModel;
 import narrationmanager.model.EventModel;

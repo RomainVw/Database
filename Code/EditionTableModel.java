@@ -72,6 +72,6 @@ public class EditionTableModel<T> extends AbstractTableModel
   
   public void setValueAt(Object value,int row,int col)
   {
-    return ownerTable.setValueAt(value,row,col);	  
+    ownerTable.setValueAt(value,row,col);	  
   }
 }

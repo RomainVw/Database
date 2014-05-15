@@ -7,50 +7,32 @@ import javax.swing.JTable;
 import narrationmanager.model.NarrationDate;
 import narrationmanager.model.EventModel;
 
-import narrationmanager.gui.tables.models.tables.EditionTable;
+import narrationmanager.gui.tables.EditionTable;
 
-import narrationmanager.gui.tables.models.EventsTableModel;
-
-public class EventsTable extends EditionTable<EventModel>
+public class EventEditionTable extends EditionTable<EventModel>
 {
   public static final int COLUMN_COUNT=4;
   public static final int ROW_HEIGHT=40;
-  public static final int DESCRIPTION_COLUMN_MIN_WIDTH=500;
+  public static final int DESCRIPTION_COLUMN_PREF_WIDTH=500;
   
   public static final int NAME_COLUMN=0;
   public static final int START_DATE_COLUMN=1;
   public static final int END_DATE_COLUMN=2;
   public static final int DESCRIPTION_COLUMN=3;
-  
-  private EventsTableModel model=new EventsTableModel();
+
   private boolean editable;
   
-  public EventsTable(boolean editable)
+  public EventEditionTable(boolean editable)
   {
-    super();
+    super(editable);
     
     this.editable=editable;
     
-    setModel(model);
-    
-    getColumnModel().getColumn(DESCRIPTION_COLUMN).setPreferredWidth(DESCRIPTION_COLUMN_MIN_WIDTH);
+    getColumnModel().getColumn(DESCRIPTION_COLUMN).setPreferredWidth(DESCRIPTION_COLUMN_PREF_WIDTH);
     
     createDefaultRenderers();
     createDefaultEditors();
     setRowHeight(ROW_HEIGHT);
-  }
-  
-  public void fillWith(Collection<EventModel> toAdd)
-  {
-    for(EventModel event:toAdd)
-    {
-      addEvent(event);
-    }
-  }
-  
-  public void addEvent(EventModel toAdd)
-  {
-    model.addEvent(toAdd);
   }
   
   public Class<?> getColumnClass(int columnIndex)
@@ -65,14 +47,9 @@ public class EventsTable extends EditionTable<EventModel>
     }
   }
   
-  public boolean isCellEditable(int row, int column)
-  {    
-    return editable;
-  }
-  
   public void setValueAt(Object value,int row,int col)
   {
-    EventModel target=dataModel.elementAt(row);
+    EventModel target=editionModel.getRowElement(row);
   	  
     switch(col)
     {
@@ -85,7 +62,7 @@ public class EventsTable extends EditionTable<EventModel>
   
   public Object getValueAt(int row, int column)
   {
-    EventModel target=dataModel.elementAt(row);
+    EventModel target=editionModel.getRowElement(row);
     
     switch(column)
     {
@@ -94,7 +71,7 @@ public class EventsTable extends EditionTable<EventModel>
       case END_DATE_COLUMN: return target.getEndDate();
       case DESCRIPTION_COLUMN: 
         String description=target.getEventDescription();
-      	return (description==null) ? :description;
+      	return (description==null) ? "":description;
       default: System.err.println("Error: wrong column"); return null;
     }
   }

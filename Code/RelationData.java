@@ -6,21 +6,23 @@ import narrationmanager.model.util.DBModel;
 
 public class RelationData extends DBModel
 {
+  public static final String INVERSE_NAME_TAG=" [INVERSE]"; 
+	
   private boolean isTarget;
   private String relationName;
-  private String targetCharacterName;
+  private String targetCharacterID;
   private NarrationDate start = null;
   private NarrationDate end = null;
     
   public RelationData(String id, String relationName,String targetCharacterName, boolean isTarget)
   {
-      super(id);
+    super(id);
     this.isTarget = isTarget;
     this.relationName=relationName;
-    this.targetCharacterName=targetCharacterName;
+    this.targetCharacterID=targetCharacterID;
   }
     
-  public boolean getIsTarget() //TODO: question de Neo: Ca sert à quoi isTarget? C'est éditable?
+  public boolean getIsTarget()
   {
     return isTarget;
   }
@@ -40,14 +42,14 @@ public class RelationData extends DBModel
     this.relationName=relationName;
   }
   
-  public String getTargetCharacterName()
+  public String getTargetCharacterID()
   {
-    return targetCharacterName;	  
+    return targetCharacterID;	  
   }
   
-  public void setTargetCharacterName(String targetCharacterName)
+  public void setTargetCharacterID(String targetCharacterID)
   {
-    this.targetCharacterName=targetCharacterName;	  
+    this.targetCharacterID=targetCharacterID;	  
   }
     
   public  NarrationDate getStart()
@@ -72,7 +74,7 @@ public class RelationData extends DBModel
   
   public String toString()
   {
-    String additionalString=(isTarget)? "":" [INVERSE]";
+    String additionalString=(isTarget)? INVERSE_NAME_TAG:"";
     return getRelationName()+additionalString;	  
   }
 }

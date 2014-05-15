@@ -99,7 +99,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   private static int groupRelationsByCharacter(RelationData a, RelationData b)
   {
-    int rslt=rslt=a.getTargetCharacterName().compareTo(b.getTargetCharacterName());
+    int rslt=rslt=a.getTargetCharacterID().compareTo(b.getTargetCharacterID());
     
     if(rslt==0)
       rslt=a.getRelationName().compareTo(b.getRelationName());
@@ -112,7 +112,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     int rslt=a.getRelationName().compareTo(b.getRelationName());
     
     if(rslt==0) 
-      rslt=a.getTargetCharacterName().compareTo(b.getTargetCharacterName());
+      rslt=a.getTargetCharacterID().compareTo(b.getTargetCharacterID());
     
     return rslt;
   }

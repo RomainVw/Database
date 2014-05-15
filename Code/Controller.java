@@ -2,6 +2,7 @@ package narrationmanager.controller;
 
 import java.util.TreeSet;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JOptionPane;
 
@@ -198,5 +199,11 @@ public class Controller
   public PlaceModel loadPlace(String ID)
   {
     return dbCoordinator.makePlace(ID);  	  
+  }
+  
+  public Collection<EventModel> getEventModelsFromID(Collection<String> IDList)
+  {
+    //TODO
+    return new TreeSet<>();
   }
 }
