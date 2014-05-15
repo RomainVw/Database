@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
@@ -24,8 +26,7 @@ import narrationmanager.model.NarrationDate;
 import narrationmanager.model.RelationData;
 import narrationmanager.model.CharacterPseudoData;
 
-import java.util.Map;
-import java.util.HashMap;
+
 
 public class DatabaseCoordinator
 {    
@@ -55,7 +56,7 @@ public class DatabaseCoordinator
     String name = null;
     String birthPlace = null;
     Collection<RelationData> relations = new ArrayList<>();
-    LinkedList<String> relatedEventsNames = new LinkedList<String>();
+    LinkedList<String> relatedEventsNames = new LinkedList<>();
     TreeSet<CharacterPseudoData> charactersPseudo = new TreeSet<>();
     PreparedStatement pst = null;
     
