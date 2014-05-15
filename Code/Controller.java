@@ -169,7 +169,8 @@ public class Controller
   
   public void saveNewCharacter(CharacterModel newCharacter)
   {
-    //TODO
+      //dbCoordinator.saveNewCharacter(newCharacter);
+      //System.out.println("Saving new character: "+newCharacter.getName());
   }
   
   public void saveCharacterModifications(CharacterModel toSave)

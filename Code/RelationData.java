@@ -2,8 +2,9 @@ package narrationmanager.model;
 
 
 import narrationmanager.model.NarrationDate;
+import narrationmanager.model.util.DBModel;
 
-public class RelationData
+public class RelationData extends DBModel
 {
   private boolean isTarget;
   private String relationName;
@@ -11,8 +12,9 @@ public class RelationData
   private NarrationDate start = null;
   private NarrationDate end = null;
     
-  public RelationData(String relationName,String targetCharacterName, boolean isTarget)
+  public RelationData(String id, String relationName,String targetCharacterName, boolean isTarget)
   {
+      super(id);
     this.isTarget = isTarget;
     this.relationName=relationName;
     this.targetCharacterName=targetCharacterName;
