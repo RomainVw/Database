@@ -8,19 +8,18 @@ import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
+import java.util.LinkedList;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
-
 import narrationmanager.model.MapModel;
-import narrationmanager.model.util.ModelInfo;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.NarrationDate;
-
 import narrationmanager.model.RelationData;
-import java.util.Collection;
-import java.util.TreeSet;
 import narrationmanager.model.CharacterPseudoData;
 
 
@@ -52,7 +51,7 @@ public class DatabaseCoordinator
     String name = null;
     String birthPlace = null;
     Collection<RelationData> relations = null;
-    TreeSet<String> relatedEventsNames = null;
+    LinkedList<String> relatedEventsNames = null;
     TreeSet<CharacterPseudoData> charactersPseudo = null;
     PreparedStatement pst = null;
     
@@ -581,6 +580,7 @@ public class DatabaseCoordinator
       
       if (place.getParentID() != null)
       {
+      }
         
 
     } catch (SQLException e) {

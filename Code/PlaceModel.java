@@ -57,9 +57,9 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
     return eventsID;
   }
     
-  public ArrayList<ModelInfo> getCharacters()
+  public ArrayList<String> getCharacters()
   {
-    return characters;
+    return charactersID;
   }
   
   public void setParentID(String id)
@@ -87,9 +87,9 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
     this.eventsID = eventsID;
   }
     
-  public void setCharacters(ArrayList<ModelInfo> events)
+  public void setCharacters(ArrayList<String> events)
   {
-    this.characters = characters;
+    this.charactersID = charactersID;
   }
   
   public String toString()

@@ -41,14 +41,14 @@ public class EventModel extends DBModel
     return eventName;
   }
   
-  public void setLinkedCharactersID(LinkedList<CharacterModel> linkedCharacters)
+  public void setLinkedCharactersID(LinkedList<String> linkedCharactersID)
   {
-    this.linkedCharacters=linkedCharacters;
+    this.linkedCharactersID=linkedCharactersID;
   }
   
-  public LinkedList<CharacterModel> getLinkedCharactersID()
+  public LinkedList<String> getLinkedCharactersID()
   {
-    return linkedCharacters;	  
+    return linkedCharactersID;	  
   }
   
   public void setEventDescription(String eventDescription)
