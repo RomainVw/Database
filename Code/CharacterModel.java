@@ -17,7 +17,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   private Collection<RelationData> relations=new LinkedList<>();
   private TreeSet<String> relatedEventsID=new TreeSet<>();
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
-  private TreeSet<String> associationsID=new TreeSet<>();
+  private LinkedList<String> associationsID=new LinkedList<>();
   
   public CharacterModel(String id, String name)
   {
@@ -53,12 +53,12 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     this.relations=relations;    	  
   }
   
-  public TreeSet<String> getRelatedEventsID()
+  public LinkedList<String> getRelatedEventsID()
   {
     return relatedEventsNames;	  
   }
   
-  public void setRelatedEventsNames(TreeSet<String> relatedEventsNames)
+  public void setRelatedEventsID(LinkedList<String> relatedEventsNames)
   {
     this.relatedEventsNames=relatedEventsNames;	  
   }
@@ -119,7 +119,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   public static CharacterModel getDefaultInstance()
   {
-    return new CharacterModel(null,"New Character");//TODO: "test"??  
+    return new CharacterModel(null,"New Character");
   }
   
   public int compareTo(CharacterModel other)

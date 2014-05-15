@@ -3,7 +3,6 @@ package narrationmanager.model;
 import java.util.LinkedList;
 
 import narrationmanager.model.NarrationDate;
-import narrationmanager.model.CharacterModel;
 
 import narrationmanager.model.util.DBModel;
 
@@ -16,7 +15,7 @@ public class EventModel extends DBModel
   private String eventName;
   
   //Optional fields
-  private LinkedList<CharacterModel> linkedCharacters;
+  private LinkedList<String> linkedCharactersID;
   private String eventDescription;
 
   /**
@@ -42,12 +41,12 @@ public class EventModel extends DBModel
     return eventName;
   }
   
-  public void setLinkedCharacters(LinkedList<CharacterModel> linkedCharacters)
+  public void setLinkedCharactersID(LinkedList<CharacterModel> linkedCharacters)
   {
     this.linkedCharacters=linkedCharacters;
   }
   
-  public LinkedList<CharacterModel> getLinkedCharacters()
+  public LinkedList<CharacterModel> getLinkedCharactersID()
   {
     return linkedCharacters;	  
   }

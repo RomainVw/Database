@@ -238,7 +238,7 @@ public class DatabaseCoordinator
     CharacterModel characterResult = new CharacterModel(characterid, name);
     characterResult.setBirthPlace(birthPlace);
     characterResult.setRelations(relations);
-    characterResult.setRelatedEventsNames(relatedEventsNames);
+    characterResult.setRelatedEventsID(relatedEventsNames);
     characterResult.setCharactersPseudoData(charactersPseudo);
       
     return characterResult;
