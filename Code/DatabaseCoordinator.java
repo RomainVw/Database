@@ -204,7 +204,7 @@ public class DatabaseCoordinator
        * Get related events
        */
       try {
-          pst = con.prepareStatement("select name from ATTENDS A JOIN eventname EN on A.eventid = EN.eventid where characterid = ?");
+          pst = con.prepareStatement("select eventid from ATTENDS where characterid = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
