@@ -39,6 +39,11 @@ public class PlaceEditionWindow extends EditionWindow<PlaceModel>
    super(controller); 
   }
   
+  public PlaceEditionWindow(Controller controller, PlaceModel toEdit)
+  {
+   super(controller, toEdit); 
+  }
+  
   protected void buildUI()
   {
     applyButton = new JButton("Apply");
@@ -56,6 +61,8 @@ public class PlaceEditionWindow extends EditionWindow<PlaceModel>
     }
     places.add(new PlaceModel(null, "None"));
     parentChooser = new JComboBox<>(places);
+    
+
     
     JPanel parentPanel = new JPanel(new GridLayout(1, 2));
     JPanel buttons = new JPanel(new GridLayout(1, 2));

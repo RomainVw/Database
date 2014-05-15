@@ -564,13 +564,32 @@ public class DatabaseCoordinator
     }
   }
   
+  public ArrayList<String> getAllSubplaces()
+  {
+   PreparedStatement pst;
+   ResultSet res;
+   ArrayList<String> out = new ArrayList<String>();
+   try {
+     pst = con.prepareStatement("select PLACEID from subplace");
+     res = pst.executeQuery();
+     while(res.next())
+     {
+       out.add(res.getString(1));
+     }    
+   } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+   }
+   return out;
+  }
+  
   public void savePlace(PlaceModel place, boolean isNew)
   {
     System.out.println(place.getLocation());
     PreparedStatement pst = null;
     String id;
     if (isNew) id = nextPlaceID();
-    else id = place.getName();
+    else id = place.getID();
     
     try {
       if (isNew)
@@ -589,9 +608,10 @@ public class DatabaseCoordinator
       
       if (place.getParentID() != null)
       {
+        ArrayList<String> subplaces = this.getAllSubplaces();
         MapModel parentMap = makePlace(place.getParentID()).getMap();
-        Map<String, Integer> subplaces = parentMap.getSubplaceID();
-        if (subplaces != null || !subplaces.containsKey(place.getID()))
+        //Map<String, Integer> subplaces = parentMap.getSubplaceID();
+        if (!subplaces.contains(id))
         {
           pst = con.prepareStatement("insert into SUBPLACE values(?, ? , ?)");
           pst.setString(1, id);
@@ -600,12 +620,14 @@ public class DatabaseCoordinator
         }
         else
         {
-          pst = con.prepareStatement("update SUBPLACE set SQUARED=?, MAPID=? where PLACEID=?");
+          pst = con.prepareStatement("update SUBPLACE set SQUAREID=?, MAPID=? where PLACEID=?");
           pst.setInt(1, place.getLocation());
           pst.setString(2, parentMap.getMapID());
           pst.setString(3, id);
+          parentMap.removeSubplace(id);
         }
         pst.executeUpdate();
+        parentMap.addSubplace(id, place.getLocation());
       }
 
     } catch (SQLException e) {

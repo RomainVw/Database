@@ -68,7 +68,6 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
       {
         index = j + i*editionTarget.getNumLength();
         if (buttons == null)
-          System.out.println("euh...");
         buttons.add(index, new JButton());
         panel.add(buttons.get(index));
         if (subplaces!=null && subplaces.containsValue(j+(i*editionTarget.getNumLength())))
@@ -104,7 +103,6 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
   
   private void spotClicked(int index)
   {
-    System.out.println("spot clicked");
     output = index;
     buttons.get(index).setBackground(Color.BLUE);
   }

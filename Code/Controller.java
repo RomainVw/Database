@@ -62,10 +62,13 @@ public class Controller
     {
       CharacterModel toEdit=(CharacterModel) JOptionPane.showInputDialog(null,"Please select which character to edit.","Edit character...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
       
-      CharacterEditionWindow characterEditor=new CharacterEditionWindow(this,toEdit);
-    
-      if(characterEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
-        saveCharacterModifications(characterEditor.getTarget());
+      if (toEdit != null)
+      {
+        CharacterEditionWindow characterEditor=new CharacterEditionWindow(this,toEdit);
+      
+        if(characterEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
+          saveCharacterModifications(characterEditor.getTarget());
+      }
     }
     else 
       JOptionPane.showMessageDialog(null,"Error: no character can be edited, as there is currently no character available in database","Error",JOptionPane.ERROR_MESSAGE);
@@ -80,13 +83,34 @@ public class Controller
     {
       EventModel toEdit=(EventModel) JOptionPane.showInputDialog(null,"Please select which event to edit.","Edit event...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
       
-      EventEditionWindow eventEditor=new EventEditionWindow(this,toEdit);
+      if(toEdit!=null)
+      {
+        EventEditionWindow eventEditor=new EventEditionWindow(this,toEdit);
     
-      if(eventEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
-        saveEventModifications(eventEditor.getTarget());
+        if(eventEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
+          saveEventModifications(eventEditor.getTarget());
+      }
     }
     else 
       JOptionPane.showMessageDialog(null,"Error: no event can be edited, as there is currently no event available in database","Error",JOptionPane.ERROR_MESSAGE);
+  }
+  
+  public void editPlace()
+  {
+    PlaceModel[] choices = getAllPlacesInArray();
+    if(choices.length>0)
+    {
+      PlaceModel toEdit = (PlaceModel) JOptionPane.showInputDialog(null, "Please select which place to edit.", "Edit place...", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+      
+      if (toEdit != null)
+      {
+        PlaceEditionWindow placeEditor = new PlaceEditionWindow(this, toEdit);
+        
+        if (placeEditor.getExitOption() == EditionWindow.OK_EXIT_OPTION)
+          dbCoordinator.savePlace(placeEditor.getTarget(), false);
+      }
+    }
+    
   }
   
   public int mapChooser(PlaceModel parent)
@@ -112,6 +136,14 @@ public class Controller
     return set; 
   }
   
+  private PlaceModel[] getAllPlacesInArray()
+  {
+    TreeSet<PlaceModel> allPlaces = getAllPlaces();
+    PlaceModel[] rslt = new PlaceModel[allPlaces.size()];
+    allPlaces.toArray(rslt);
+    return rslt;
+  }
+  
   public TreeSet<EventModel> getAllEvents()
   {
     /*
@@ -126,22 +158,7 @@ public class Controller
     }
       
     return rslt;
-    
-    //TODO ATTENTION POUR TOUT CE QUI SUIT: Code de test, il n'y a rien de bon là-dedans! :p
-    /*TreeSet<EventModel> rslt=new TreeSet<>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
-    EventModel model1=EventModel.defaultInstance();
-    EventModel model2=EventModel.defaultInstance();
-    
-    model1.setName("event 1");
-    model2.setName("event 2");
-    
-    model1.updateDB();
-    model2.updateDB();
-    
-    rslt.add(model1);
-    rslt.add(model2);
-    
-    return rslt;*/
+
   }
   
   private EventModel[] getAllEventsInArray()

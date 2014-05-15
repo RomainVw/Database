@@ -81,11 +81,16 @@ public class MapModel
     this.subplaceID = subplaceID;
   }
   
-  public void addSuplace(String place, int id)
+  public void addSubplace(String place, int id)
   {
     if (subplaceID == null)
       subplaceID = new HashMap<String, Integer>();
     subplaceID.put(place, id);
+  }
+ 
+  public void removeSubplace(String id)
+  {
+   subplaceID.remove(id); 
   }
   
 }
