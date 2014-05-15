@@ -422,6 +422,29 @@ public class DatabaseCoordinator
     }
 
 
+   
+  public EventModel getEvent(String eventId)
+  {
+   PreparedStatement pst;
+   ResultSet res;
+   EventModel event = null;
+   
+   try {
+     pst = con.prepareStatement("select EN.name, E.placeid, (E.beginning).year, (E.beginning).month, (E.beginning).day, (E.enddate).year, (E.enddate).month, (E.enddate).day from EVENT E JOIN EVENTNAME EN on E.eventid = EN.eventid where E.EVENTID=?");
+     res = pst.executeQuery();
+     if (res.next())
+     {
+       event = new EventModel(eventId,res.getString(1),this.makePlace(res.getString(2)),new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)),new NarrationDate(res.getInt(6),res.getInt(7),res.getInt(8)));
+       event.setEventDescription(getEventDescription(eventId));
+     }
+   } catch (SQLException e) {
+     Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+     lgr.log(Level.SEVERE, e.getMessage(), e);
+   }
+   
+   return event;
+   
+  }
   public ArrayList<EventModel> getAllEvents()
   {
     ArrayList<EventModel> events = new ArrayList<EventModel>();

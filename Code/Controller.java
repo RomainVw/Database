@@ -226,7 +226,11 @@ public class Controller
   
   public Collection<EventModel> getEventModelsFromID(Collection<String> IDList)
   {
-    //TODO
-    return new TreeSet<>();
+    TreeSet<EventModel> events = new TreeSet<EventModel>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
+    for (String event : IDList)
+    {
+      events.add(dbCoordinator.getEvent(event));
+    }
+    return events;
   }
 }
