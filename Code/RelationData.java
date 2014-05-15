@@ -14,7 +14,7 @@ public class RelationData extends DBModel
   private NarrationDate start = null;
   private NarrationDate end = null;
     
-  public RelationData(String id, String relationName,String targetCharacterName, boolean isTarget)
+  public RelationData(String id, String relationName,String targetCharacterID, boolean isTarget)
   {
     super(id);
     this.isTarget = isTarget;

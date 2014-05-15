@@ -98,7 +98,7 @@ public class DatabaseCoordinator
       
       
       /*
-       * All relations
+       * All relationsf
        */
       
       // get timeless relations where target
@@ -108,7 +108,7 @@ public class DatabaseCoordinator
           ResultSet res = pst.executeQuery();
           while(res.next()){
              RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), true);
-              relations.add(toAdd);
+             relations.add(toAdd);
           }
           
       } catch (SQLException e) {
@@ -134,7 +134,7 @@ public class DatabaseCoordinator
       }
       
       
-      // get relations with one date where traget
+      // get relations with one date where target
       try {
           pst = con.prepareStatement(" select RL.relationid, source, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where target = ?");
           pst.setString(1, characterid);
@@ -202,7 +202,6 @@ public class DatabaseCoordinator
           Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
           lgr.log(Level.SEVERE, e.getMessage(), e);
       }
-      
       
       /*
        * Get related events
