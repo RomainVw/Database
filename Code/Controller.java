@@ -193,8 +193,7 @@ public class Controller
   
   public void saveNewCharacter(CharacterModel newCharacter)
   {
-      //dbCoordinator.saveNewCharacter(newCharacter);
-      //System.out.println("Saving new character: "+newCharacter.getName());
+    dbCoordinator.saveNewCharacter(newCharacter);
   }
   
   public void saveCharacterModifications(CharacterModel toSave)
