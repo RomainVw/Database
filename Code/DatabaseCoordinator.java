@@ -103,11 +103,12 @@ public class DatabaseCoordinator
       
       // get timeless relations where target
       try {
-          pst = con.prepareStatement(" select RL.relationid, source, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement(" select RL.relationid, source, relationtype, name from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid, CHARACTER where target = ? and CHARACTERID=SOURCE");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
              RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), true);
+             toAdd.setTargetCharacterName(res.getString(4));
              relations.add(toAdd);
           }
           
@@ -120,11 +121,12 @@ public class DatabaseCoordinator
       
       // get timeless relations where source
       try {
-          pst = con.prepareStatement(" select RL.relationid, target, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement(" select RL.relationid, target, relationtype, name from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid, character where source = ? and characterid=target");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
               RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), false);
+              toAdd.setTargetCharacterName(res.getString(4));
               relations.add(toAdd);
           }
           
@@ -136,12 +138,13 @@ public class DatabaseCoordinator
       
       // get relations with one date where target
       try {
-          pst = con.prepareStatement(" select RL.relationid, source, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement(" select RL.relationid, source, relationtype, (date).year, (date).month, (date).day, name from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid, character where target = ? and characterid=source");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
               RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), true);
               toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
+              toAdd.setTargetCharacterName(res.getString(7));
               relations.add(toAdd);
           }
           
@@ -153,13 +156,14 @@ public class DatabaseCoordinator
       
       // get relations with one date where source
       try {
-          pst = con.prepareStatement(" select RL.relationid , target, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement(" select RL.relationid , target, relationtype, (date).year, (date).month, (date).day , name from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid, character where source = ? and characterid = target");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
             RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), false);
             toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
-              relations.add(toAdd);
+            toAdd.setTargetCharacterName(res.getString(7));
+            relations.add(toAdd);
           }
           
       } catch (SQLException e) {
@@ -170,13 +174,14 @@ public class DatabaseCoordinator
       
       // get relations with daterange where target
       try {
-          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where target = ? and characterid= source");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
               RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), true);
               toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
+              toAdd.setTargetCharacterName(res.getString(10));
               relations.add(toAdd);
           }
           
@@ -188,13 +193,14 @@ public class DatabaseCoordinator
       
       // get relations with daterange where source
       try {
-          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where source = ? and characterid=target");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
               RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), false);
               toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
+              toAdd.setTargetCharacterName(res.getString(10));
               relations.add(toAdd);
           }
           
