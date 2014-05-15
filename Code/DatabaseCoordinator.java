@@ -200,6 +200,7 @@ public class DatabaseCoordinator
               RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), false);
               toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
+              toAdd.setTargetCharacterName(res.getString(10));
               relations.add(toAdd);
           }
           

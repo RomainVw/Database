@@ -11,6 +11,7 @@ public class RelationData extends DBModel
   private boolean isTarget;
   private String relationName;
   private String targetCharacterID;
+  private String targetCharacterName;
   private NarrationDate start = null;
   private NarrationDate end = null;
     
@@ -50,6 +51,16 @@ public class RelationData extends DBModel
   public void setTargetCharacterID(String targetCharacterID)
   {
     this.targetCharacterID=targetCharacterID;	  
+  }
+  
+  public String getTargetCharacterName()
+  {
+    return targetCharacterName;	  
+  }
+  
+  public void setTargetCharacterName(String targetCharacterName)
+  {
+    this.targetCharacterName=targetCharacterName;	  
   }
     
   public  NarrationDate getStart()

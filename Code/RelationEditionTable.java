@@ -59,7 +59,7 @@ public class RelationEditionTable extends EditionTable<RelationData>
     switch(column)
     {
       case TYPE_COLUMN: return target.toString();
-      case TARGET_NAME_COLUMN: return target.getTargetCharacterID();
+      case TARGET_NAME_COLUMN: return target.getTargetCharacterName();
       case START_DATE_COLUMN: return target.getStart();
       case END_DATE_COLUMN: return target.getEnd();
       default: return null;
