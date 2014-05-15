@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 import narrationmanager.gui.util.EditionWindow;
 
-import narrationmanager.gui.tables.EventsTable;
-
 import narrationmanager.model.PlaceModel;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.MapModel;

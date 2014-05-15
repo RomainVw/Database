@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import java.util.function.Supplier;
-import java.util.function.Consumer;
 
 import narrationmanager.gui.tables.EditionTable;
 
@@ -24,9 +23,8 @@ public class EditionTablePanel<T> extends JPanel
 	
   private JButton insertButton=new JButton("Insert...");
   private JButton removeButton=new JButton("Remove selected lines");
-  private JButton editButton=new JButton("Edit line");
 	
-  public EditionTablePanel(Collection<T> content,Supplier<T> insertFunction,EditionTable<T> editionTable,Consumer<T> editFunction)
+  public EditionTablePanel(Collection<T> content,Supplier<T> insertFunction,EditionTable<T> editionTable)
   {
     this.editionTable=editionTable;
     
@@ -34,13 +32,12 @@ public class EditionTablePanel<T> extends JPanel
     
     //Panels creation
     JPanel mainPanel=new JPanel(new BorderLayout());
-    JPanel buttonsPanel=new JPanel(new GridLayout(1,3));
+    JPanel buttonsPanel=new JPanel(new GridLayout(1,2));
     JPanel tablePanel=new JPanel(new BorderLayout());
     
     //Treatment of buttonsPanel
     buttonsPanel.add(insertButton);
     buttonsPanel.add(removeButton);
-    buttonsPanel.add(editButton);
     
     //Treatment of tablePanel
     tablePanel.add("North",editionTable.getTableHeader());
@@ -49,7 +46,6 @@ public class EditionTablePanel<T> extends JPanel
     //Treatment of action listeners:
     insertButton.addActionListener((ActionEvent e)-> insertElement(insertFunction));
     removeButton.addActionListener((ActionEvent e)-> removeSelectedElements());
-    editButton.addActionListener((ActionEvent e)-> editElement(editFunction));
     
     //Treatment of mainPanel
     mainPanel.add("Center",tablePanel);
@@ -72,7 +68,7 @@ public class EditionTablePanel<T> extends JPanel
     }
   }
   
-  private void editElement(Consumer<T> editFunction)
+/*  private void editElement(Consumer<T> editFunction)
   {
     LinkedList<T>  selected=editionTable.getSelectedElements();
     
@@ -85,7 +81,7 @@ public class EditionTablePanel<T> extends JPanel
       editFunction.accept(selected.get(0));	    
       editionTable.refresh();
     }
-  }
+  }*/
   
   public Collection<T> getTableContent()
   {

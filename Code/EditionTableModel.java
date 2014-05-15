@@ -9,7 +9,7 @@ public class EditionTableModel<T> extends AbstractTableModel
 {
   protected Vector<T> content=new Vector<>();
   
-  private EditionTable ownerTable;
+  private EditionTable<T> ownerTable;
 
   public EditionTableModel()
   {
@@ -60,7 +60,7 @@ public class EditionTableModel<T> extends AbstractTableModel
     return ownerTable.getColumnCount();
   }
   
-  public void setEditionTable(EditionTable table)
+  public void setEditionTable(EditionTable<T> table)
   {
     ownerTable=table;	  
   }
@@ -68,5 +68,10 @@ public class EditionTableModel<T> extends AbstractTableModel
   public synchronized String getColumnName(int column)
   {
     return ownerTable.getColumnName(column);	  
+  }
+  
+  public void setValueAt(Object value,int row,int col)
+  {
+    ownerTable.setValueAt(value,row,col);	  
   }
 }

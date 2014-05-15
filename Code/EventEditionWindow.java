@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import narrationmanager.gui.util.EditionWindow;
 
-import narrationmanager.gui.tables.EventsTable;
+import narrationmanager.gui.tables.EventEditionTable;
 
 import narrationmanager.model.PlaceModel;
 import narrationmanager.model.EventModel;
@@ -30,7 +30,7 @@ public class EventEditionWindow extends EditionWindow<EventModel>
   
   private JComboBox<PlaceModel> placeChooser;
   
-  private EventsTable editorTable;
+  private EventEditionTable editorTable;
  
   
   public EventEditionWindow(Controller controller)
@@ -45,13 +45,13 @@ public class EventEditionWindow extends EditionWindow<EventModel>
   
   protected void buildUI() //TODO: comment in English!
   {    
-    editorTable=new EventsTable(true);
+    editorTable=new EventEditionTable(true);
     applyButton=new JButton("Apply");
     cancelButton=new JButton("Cancel");
     placeLabel=new JLabel("Event's place:");
   
     //Gestion de la table
-    editorTable.addEvent(editionTarget);
+    editorTable.addElement(editionTarget);
     
     //Gestion de placeChooser
     Vector<PlaceModel> places=new Vector<>(controller.getAllPlaces());

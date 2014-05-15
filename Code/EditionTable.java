@@ -10,10 +10,10 @@ public abstract class EditionTable<T> extends JTable
   protected EditionTableModel<T> editionModel;
   protected boolean editable;
 	
-  public EditionTable(EditionTableModel<T> editionModel, boolean editable)
+  public EditionTable(boolean editable)
   {
     super();
-    this.editionModel=editionModel;
+    editionModel=new EditionTableModel<>();
     editionModel.setEditionTable(this);
     setModel(editionModel);
     this.editable=editable;
@@ -54,5 +54,10 @@ public abstract class EditionTable<T> extends JTable
   public void refresh()
   {
     editionModel.fireTableDataChanged();	  
+  }
+  
+  public boolean isCellEditable(int row, int column)
+  {    
+    return editable;
   }
 }

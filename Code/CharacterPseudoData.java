@@ -27,12 +27,12 @@ public class CharacterPseudoData implements Comparable<CharacterPseudoData>
     this.pseudo=pseudo;	  
   }
   
-  public String getTargetCharacterName()
+  public String getTargetCharacterID()
   {
     return targetCharacterName;	  
   }
   
-  public void setTargetCharacterName(String targetCharacterName)
+  public void setTargetCharacterID(String targetCharacterName)
   {
     this.targetCharacterName=targetCharacterName;	  
   }
@@ -69,7 +69,7 @@ public class CharacterPseudoData implements Comparable<CharacterPseudoData>
   
   public int compareTo(CharacterPseudoData other)
   {
-    int rslt=targetCharacterName.compareTo(other.getTargetCharacterName());
+    int rslt=targetCharacterName.compareTo(other.getTargetCharacterID());
     
     //if(rslt==0) rslt=start.compareTo(other.getStart());
     //if(rslt==0) rslt=end.compareTo(other.getEnd());

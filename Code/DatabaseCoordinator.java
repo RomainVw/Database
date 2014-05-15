@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
@@ -24,8 +26,7 @@ import narrationmanager.model.NarrationDate;
 import narrationmanager.model.RelationData;
 import narrationmanager.model.CharacterPseudoData;
 
-import java.util.Map;
-import java.util.HashMap;
+
 
 public class DatabaseCoordinator
 {    
@@ -55,7 +56,7 @@ public class DatabaseCoordinator
     String name = null;
     String birthPlace = null;
     Collection<RelationData> relations = new ArrayList<>();
-    LinkedList<String> relatedEventsNames = new LinkedList<String>();
+    LinkedList<String> relatedEventsNames = new LinkedList<>();
     TreeSet<CharacterPseudoData> charactersPseudo = new TreeSet<>();
     PreparedStatement pst = null;
     
@@ -102,11 +103,11 @@ public class DatabaseCoordinator
       
       // get timeless relations where target
       try {
-          pst = con.prepareStatement(" select source, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement(" select RL.relationid, source, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where target = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-             RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
+             RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), true);
               relations.add(toAdd);
           }
           
@@ -119,11 +120,11 @@ public class DatabaseCoordinator
       
       // get timeless relations where source
       try {
-          pst = con.prepareStatement(" select target, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement(" select RL.relationid, target, relationtype from TIMELESSRELATION TR JOIN RELATIONLIST RL on TR.relationid = RL.relationid where source = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
+              RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), false);
               relations.add(toAdd);
           }
           
@@ -135,12 +136,12 @@ public class DatabaseCoordinator
       
       // get relations with one date where traget
       try {
-          pst = con.prepareStatement(" select source, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement(" select RL.relationid, source, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where target = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
-              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+              RelationData toAdd = new RelationData(res.getString(1), res.getString(3),res.getString(2), true);
+              toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               relations.add(toAdd);
           }
           
@@ -152,12 +153,12 @@ public class DatabaseCoordinator
       
       // get relations with one date where source
       try {
-          pst = con.prepareStatement(" select target, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement(" select RL.relationid , target, relationtype, (date).year, (date).month, (date).day from DATERELATION DR JOIN RELATIONLIST RL on DR.relationid = RL.relationid where source = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-            RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
-            toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
+            RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), false);
+            toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               relations.add(toAdd);
           }
           
@@ -169,13 +170,13 @@ public class DatabaseCoordinator
       
       // get relations with daterange where traget
       try {
-          pst = con.prepareStatement("  select source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where target = ?");
+          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where target = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), true);
-              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
-              toAdd.setEnd(new NarrationDate(res.getInt(6),res.getInt(7),res.getInt(8)));
+              RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), true);
+              toAdd.setStart(new NarrationDate(res.getInt(2),res.getInt(5),res.getInt(6)));
+              toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
               relations.add(toAdd);
           }
           
@@ -187,13 +188,13 @@ public class DatabaseCoordinator
       
       // get relations with daterange where source
       try {
-          pst = con.prepareStatement("  select source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where source = ?");
+          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where source = ?");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
-              RelationData toAdd = new RelationData(res.getString(2),res.getString(1), false);
-              toAdd.setStart(new NarrationDate(res.getInt(3),res.getInt(4),res.getInt(5)));
-              toAdd.setEnd(new NarrationDate(res.getInt(6),res.getInt(7),res.getInt(8)));
+              RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), false);
+              toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
+              toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
               relations.add(toAdd);
           }
           
@@ -468,6 +469,52 @@ public class DatabaseCoordinator
     return (ret+Integer.toString(count+1));
   }
   
+    public String nextCharacterID()
+    {
+        int count = 0;
+        int tempcount;
+        String ret = "CH";
+        try {
+            PreparedStatement pst = con.prepareStatement("select characterid from character");
+            ResultSet res  = pst.executeQuery();
+            while (res.next())
+            {
+                tempcount = Integer.parseInt(res.getString(1).substring(2));
+                if (tempcount > count)
+                {
+                    count = tempcount;
+                }
+            }
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return (ret+Integer.toString(count+1));
+    }
+
+    public String nextRelationID()
+    {
+        int count = 0;
+        int tempcount;
+        String ret = "REL";
+        try {
+            PreparedStatement pst = con.prepareStatement("select relationid from relationlist");
+            ResultSet res  = pst.executeQuery();
+            while (res.next())
+            {
+                tempcount = Integer.parseInt(res.getString(1).substring(3));
+                if (tempcount > count)
+                {
+                    count = tempcount;
+                }
+            }
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return (ret+Integer.toString(count+1));
+    }
+    
   public void saveNewEvent(EventModel event)
   {
     PreparedStatement pst = null;
@@ -657,6 +704,92 @@ public class DatabaseCoordinator
         
         
         return subplaces;
+    }
+    
+    public void saveNewCharacter(CharacterModel newCharacter)
+    {
+        PreparedStatement pst = null;
+        String newID = nextCharacterID();
+        
+        try {
+            pst = con.prepareStatement("insert into CHARACTER values(? , ? )");
+            pst.setString(1, newID);
+            pst.setString(2, newCharacter.getName());
+            pst.executeUpdate();
+            
+            pst = con.prepareStatement("insert into ORIGINATES values(? , ? )");
+            pst.setString(1, newID);
+            pst.setString(2, newCharacter.getBirthPlace());
+            pst.executeUpdate();
+            
+            
+            TreeSet<RelationData> relations = newCharacter.getRelationsByType();
+            for (RelationData relationToAdd : relations) {
+                if (relationToAdd.getID() == null)
+                {
+                    String newRelId = nextRelationID();
+                    pst = con.prepareStatement("insert into RELATIONLIST values(? , ? )");
+                    pst.setString(1, newRelId);
+                    pst.setString(2, relationToAdd.getRelationName());
+                    pst.executeUpdate();
+                    
+                }
+                
+                
+                if (relationToAdd.getStart() == null){
+                    pst = con.prepareStatement("insert into TIMELESSRELATION values(? , ? , ? )");
+
+                } else if (relationToAdd.getEnd() == null){
+                    pst = con.prepareStatement("insert into DATERELATION values(? , ? , ? , (? , ? , ?) )");
+                    pst.setInt(4, relationToAdd.getStart().getYear());
+                    pst.setInt(5, relationToAdd.getStart().getMonth());
+                    pst.setInt(6, relationToAdd.getStart().getDay());
+                } else {
+                    pst = con.prepareStatement("insert into RANGERELATION values(? , ? , ? , (? , ? , ?) , (? , ? , ?) )");
+                    pst.setInt(4, relationToAdd.getStart().getYear());
+                    pst.setInt(5, relationToAdd.getStart().getMonth());
+                    pst.setInt(6, relationToAdd.getStart().getDay());
+                    pst.setInt(7, relationToAdd.getEnd().getYear());
+                    pst.setInt(8, relationToAdd.getEnd().getMonth());
+                    pst.setInt(9, relationToAdd.getEnd().getDay());
+                }
+                
+                
+                if (relationToAdd.getIsTarget()) {
+                    pst.setString(1, relationToAdd.getTargetCharacterID());
+                    pst.setString(2, newID);
+                } else {
+                    pst.setString(1, newID);
+                    pst.setString(2, relationToAdd.getTargetCharacterID());
+                }
+                
+                pst.setString(3, relationToAdd.getID());
+                pst.executeUpdate();
+                
+                
+            }
+            
+            
+            LinkedList<String> relatedEventsID= newCharacter.getRelatedEventsID();
+            /* Supprime tout les elements de attends du character */
+            pst = con.prepareStatement("delete from ATTENDS where characterid = ?");
+            pst.setString(1, newID);
+            pst.executeUpdate();
+            
+            /* Et les réinscrit */
+            for (String eventId : relatedEventsID) {
+                pst = con.prepareStatement("insert into ATTENDS values(? , ? )");
+                pst.setString(1, newID);
+                pst.setString(2, eventId);
+                pst.executeUpdate();
+            }
+
+            
+            
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
     }
     
     
