@@ -25,7 +25,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     this.name = name;
     
     //TODO TEST:
-    relations.add(new RelationData(null,"ceci est un test, ligne 25 de CharacterModel","toto",true));
+    //relations.add(new RelationData(null,"ceci est un test, ligne 25 de CharacterModel","toto",true));
   }
   
   public String getName()
