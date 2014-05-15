@@ -1,6 +1,7 @@
 package narrationmanager.model;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class MapModel
 {
@@ -17,7 +18,7 @@ public class MapModel
     this.numWidth = numWidth;
     this.numLength = numLength;
     this.width = width;
-      this.length = length;
+    this.length = length;
   }
   
   public String getMapID()
@@ -78,6 +79,13 @@ public class MapModel
   public void setSubplaceID(Map<String,Integer> subplaceID)
   {
     this.subplaceID = subplaceID;
+  }
+  
+  public void addSuplace(String place, int id)
+  {
+    if (subplaceID == null)
+      subplaceID = new HashMap<String, Integer>();
+    subplaceID.put(place, id);
   }
   
 }

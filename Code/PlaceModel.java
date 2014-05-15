@@ -35,6 +35,16 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
     return this.getName().compareTo(other.getName());
   }
   
+  public String getParentID()
+  {
+    return parentID;
+  }
+  
+  public int getLocation()
+  {
+    return location;
+  }
+  
   public String getName()
   {
     return name;
@@ -53,6 +63,16 @@ public class PlaceModel extends DBModel implements Comparable<PlaceModel>
   public ArrayList<ModelInfo> getCharacters()
   {
     return characters;
+  }
+  
+  public void setParentID(String id)
+  {
+    parentID = id;
+  }
+  
+  public void setLocation(int i)
+  {
+    location = i;
   }
 
   public void setName(String name)

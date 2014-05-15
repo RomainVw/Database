@@ -10,6 +10,7 @@ import narrationmanager.gui.MainMenu;
 import narrationmanager.gui.CharacterEditionWindow;
 import narrationmanager.gui.EventEditionWindow;
 import narrationmanager.gui.PlaceEditionWindow;
+import narrationmanager.gui.MapChoiceWindow;
 
 import narrationmanager.gui.util.EditionWindow;
 
@@ -67,6 +68,16 @@ public class Controller
       if(eventEditor.getExitOption()==EditionWindow.OK_EXIT_OPTION)
         saveEventModifications(eventEditor.getTarget());
     }
+  }
+  
+  public int mapChooser(PlaceModel parent)
+  {
+    if (parent.getMap() != null)
+    {
+      MapChoiceWindow map = new MapChoiceWindow(this, parent.getMap());
+      return map.getExitOption();
+    }
+    return -1;
   }
   
   public TreeSet<PlaceModel> getAllPlaces()

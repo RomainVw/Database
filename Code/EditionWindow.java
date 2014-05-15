@@ -7,8 +7,8 @@ import narrationmanager.controller.Controller;
 public abstract class EditionWindow<T> extends JDialog
 {
   public static final int OK_EXIT_OPTION=0;
-  public static final int CANCEL_EXIT_OPTION=1;
-  public static final int UNDEFINED_EXIT_OPTION=2;
+  public static final int CANCEL_EXIT_OPTION=-1;
+  public static final int UNDEFINED_EXIT_OPTION=1;
   
   private int exitOption=UNDEFINED_EXIT_OPTION;
 	
