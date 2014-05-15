@@ -748,6 +748,21 @@ public class DatabaseCoordinator
             }
             
             
+            LinkedList<String> relatedEventsID= newCharacter.getRelatedEventsID();
+            /* Supprime tout les elements de attends du character */
+            pst = con.prepareStatement("delete from ATTENDS where characterid = ?");
+            pst.setString(1, newID);
+            pst.executeUpdate();
+            
+            /* Et les réinscrit */
+            for (String eventId : relatedEventsID) {
+                pst = con.prepareStatement("insert into ATTENDS values(? , ? )");
+                pst.setString(1, newID);
+                pst.setString(2, eventId);
+                pst.executeUpdate();
+            }
+
+            
             
         } catch (SQLException e) {
             Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
