@@ -52,6 +52,8 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
     cancelButton.addActionListener((ActionEvent e)-> cancelActionPerformed());
     
     JPanel applyCancel = new JPanel(new GridLayout(1, 2));
+    applyCancel.add(applyButton);
+    applyCancel.add(cancelButton);
     
     
     GridLayout grid = new GridLayout(editionTarget.getNumLength(), editionTarget.getNumWidth());
@@ -75,7 +77,7 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
         }
         else
         {
-          buttons.get(index).addActionListener((ActionEvent e) -> spotClicked(1));
+          buttons.get(index).addActionListener((ActionEvent e) -> spotClicked(5));
         }
       }
     }

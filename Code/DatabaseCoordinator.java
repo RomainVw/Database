@@ -558,6 +558,7 @@ public class DatabaseCoordinator
   
   public void savePlace(PlaceModel place, boolean isNew)
   {
+    System.out.println(place.getLocation());
     PreparedStatement pst = null;
     String id;
     if (isNew) id = nextPlaceID();
