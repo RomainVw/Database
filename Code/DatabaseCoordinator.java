@@ -292,7 +292,7 @@ public class DatabaseCoordinator
     ResultSet res = null;
     String name = null;
     PlaceModel place = null;    
-    ArrayList<ModelInfo> list = new ArrayList<ModelInfo>();
+    ArrayList<String> list = new ArrayList<String>();
     
     /*
      * get the places name (only mandatory info)
@@ -324,17 +324,17 @@ public class DatabaseCoordinator
       res = pst.executeQuery();
       while (res.next())
       {
-        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+        list.add(res.getString(1));
       }
       place.setEvents(list);
       
-      list = new ArrayList<ModelInfo>();
+      list = new ArrayList<String>();
       pst = con.prepareStatement("with allCharLinks as (select * from originates union (select a.characterid, e.placeid from event e join attends a on e.eventid = a.eventid) ) select CH.characterid, CH.name from allCharLinks ACL join character CH on ACL.characterid = CH.characterid where ACL.placeid=?");
       pst.setString(1, id);
       res=pst.executeQuery();
       while (res.next())
       {
-        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+        list.add(res.getString(1));
       }
       place.setCharacters(list);
       
@@ -576,9 +576,12 @@ public class DatabaseCoordinator
         pst = con.prepareStatement("update PLACE set PLACENAME=? where PLACEID=?");
         pst.setString(2, id);
         pst.setString(1, place.getName());
-      }
-      
+      }      
       pst.executeUpdate();
+      
+      if (place.getParentID() != null)
+      {
+        
 
     } catch (SQLException e) {
       Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());

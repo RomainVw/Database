@@ -77,7 +77,8 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
         }
         else
         {
-          buttons.get(index).addActionListener((ActionEvent e) -> spotClicked(5));
+          final int finalInt=index;
+          buttons.get(index).addActionListener((ActionEvent e) -> spotClicked(finalInt));
         }
       }
     }
