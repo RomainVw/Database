@@ -168,7 +168,7 @@ public class DatabaseCoordinator
       }
       
       
-      // get relations with daterange where traget
+      // get relations with daterange where target
       try {
           pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid where target = ?");
           pst.setString(1, characterid);
@@ -809,17 +809,17 @@ public class DatabaseCoordinator
                 }
                 
                 /* Suppression de toutes les relations en DB */
-                pst = con.prepareStatement("delete from TIMELESSRELATION where  source=? or traget = ?");
+                pst = con.prepareStatement("delete from TIMELESSRELATION where  source=? or target = ?");
                 pst.setString(1, newCharID);
                 pst.setString(2, newCharID);
                 pst.executeUpdate();
 
-                pst = con.prepareStatement("delete from DATERELATION where  source=? or traget = ?");
+                pst = con.prepareStatement("delete from DATERELATION where  source=? or target = ?");
                 pst.setString(1, newCharID);
                 pst.setString(2, newCharID);
                 pst.executeUpdate();
                 
-                pst = con.prepareStatement("delete from RANGERELATION where  source=? or traget = ?");
+                pst = con.prepareStatement("delete from RANGERELATION where  source=? or target = ?");
                 pst.setString(1, newCharID);
                 pst.setString(2, newCharID);
                 pst.executeUpdate();
