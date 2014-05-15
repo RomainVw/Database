@@ -4,8 +4,6 @@ import java.util.TreeSet;
 import java.util.LinkedList;
 import java.util.Collection;
 
-import narrationmanager.model.AssociationModel;
-
 import narrationmanager.model.util.DBModel;
 
 public class CharacterModel extends DBModel implements Comparable<CharacterModel>
@@ -17,9 +15,9 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   // optional fields:
   private Collection<RelationData> relations=new LinkedList<>();
-  private TreeSet<String> relatedEventsNames=new TreeSet<>();
+  private LinkedList<String> relatedEventsID=new LinkedList<>();
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
-  private TreeSet<AssociationModel> associations=new TreeSet<>();
+  private LinkedList<String> associationsID=new LinkedList<>();
   
   public CharacterModel(String id, String name)
   {
@@ -55,24 +53,24 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     this.relations=relations;    	  
   }
   
-  public TreeSet<String> getRelatedEventsNames()
+  public LinkedList<String> getRelatedEventsID()
   {
-    return relatedEventsNames;	  
+    return relatedEventsID;	  
   }
   
-  public void setRelatedEventsNames(TreeSet<String> relatedEventsNames)
+  public void setRelatedEventsID(LinkedList<String> relatedEventsID)
   {
-    this.relatedEventsNames=relatedEventsNames;	  
+    this.relatedEventsID=relatedEventsID;	  
   }
   
-  public TreeSet<AssociationModel> getAssociations()
+  public LinkedList<String> getAssociations()
   {
-    return associations;	  
+    return associationsID;	  
   }
   
-  public void setAssociations(TreeSet<AssociationModel> associations)
+  public void setAssociations(LinkedList<String> associationsID)
   {
-    this.associations=associations;	  
+    this.associationsID=associationsID;	  
   }
   
   public TreeSet<CharacterPseudoData> getCharactersPseudo()
@@ -121,7 +119,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   public static CharacterModel getDefaultInstance()
   {
-    return new CharacterModel(null,"New Character");//TODO: "test"??  
+    return new CharacterModel(null,"New Character");
   }
   
   public int compareTo(CharacterModel other)

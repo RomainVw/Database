@@ -8,23 +8,24 @@ import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.TreeSet;
+import java.util.LinkedList;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
-
 import narrationmanager.model.MapModel;
-import narrationmanager.model.util.ModelInfo;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.NarrationDate;
-
 import narrationmanager.model.RelationData;
-import java.util.Collection;
-import java.util.TreeSet;
 import narrationmanager.model.CharacterPseudoData;
 
+import java.util.Map;
+import java.util.HashMap;
 
 public class DatabaseCoordinator
 {    
@@ -53,9 +54,9 @@ public class DatabaseCoordinator
   { // TO REDO
     String name = null;
     String birthPlace = null;
-    Collection<RelationData> relations = null;
-    TreeSet<String> relatedEventsNames = null;
-    TreeSet<CharacterPseudoData> charactersPseudo = null;
+    Collection<RelationData> relations = new ArrayList<>();
+    TreeSet<String> relatedEventsNames = new TreeSet<>();
+    TreeSet<CharacterPseudoData> charactersPseudo = new TreeSet<>();
     PreparedStatement pst = null;
     
     
@@ -240,7 +241,7 @@ public class DatabaseCoordinator
     CharacterModel characterResult = new CharacterModel(characterid, name);
     characterResult.setBirthPlace(birthPlace);
     characterResult.setRelations(relations);
-    characterResult.setRelatedEventsNames(relatedEventsNames);
+    characterResult.setRelatedEventsID(relatedEventsNames);
     characterResult.setCharactersPseudoData(charactersPseudo);
       
     return characterResult;
@@ -319,7 +320,12 @@ public class DatabaseCoordinator
       pst = con.prepareStatement("select MAP.MAPID, NUMWIDTH, NUMLENGTH, WIDTH, LENGTH from MAP, MAPPEDPLACE, PLACE where MAP.MAPID=MAPPEDPLACE.MAPID and PLACE.PLACEID=MAPPEDPLACE.PLACEID and PLACE.PLACEID=?");
       pst.setString(1, id);
       res = pst.executeQuery();
-      if (res.next()) place.setMap(new MapModel(res.getString(1), res.getInt(2), res.getInt(3), res.getFloat(4), res.getFloat(5)));
+        
+        if (res.next()){
+            MapModel toAdd = new MapModel(res.getString(1), res.getInt(2), res.getInt(3), res.getFloat(4), res.getFloat(5));
+            toAdd.setSubplaceID(getSubplaces(toAdd.getMapID()));
+            place.setMap(toAdd);
+        }
       
       pst = con.prepareStatement("select EVENTNAME.EVENTID, EVENTNAME.NAME from EVENTNAME, EVENT where PLACEID=? and EVENT.EVENTID=EVENTNAME.EVENTID");
       pst.setString(1, id);
@@ -607,6 +613,29 @@ public class DatabaseCoordinator
       lgr.log(Level.SEVERE, e.getMessage(), e);
     }
   }
+    
+    public Map<String,Integer> getSubplaces(String mapId)
+    {
+        //System.out.println(place.getLocation());
+        Map<String,Integer> subplaces = new HashMap<>();
+        PreparedStatement pst = null;
+
+        try {
+            pst = con.prepareStatement("select placeid, squareid from subplace where mapid = ?");
+            pst.setString(1, mapId);
+            ResultSet res = pst.executeQuery();
+            while(res.next()){
+                subplaces.put(res.getString(1),res.getInt(2));
+            }
+            
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        
+        
+        return subplaces;
+    }
     
     
 }
