@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
@@ -581,7 +583,24 @@ public class DatabaseCoordinator
       
       if (place.getParentID() != null)
       {
-        
+        MapModel parentMap = makePlace(place.getParentID()).getMap();
+        Map<String, int> subplaces = parentMap.getSubplaceID();
+        if (subplaces != null || !subplaces.containsKey(place.getID()))
+        {
+          pst = con.prepareStatement("insert into SUBPLACE values(?, ? , ?)");
+          pst.setString(1, place.getID());
+          pst.setInt(2, place.getLocation());
+          pst.setString(3, parentMap.getID());
+        }
+        else
+        {
+          pst = con.prepareStatement("update SUBPLACE set SQUARED=?, MAPID=? where PLACEID=?");
+          pst.setInt(1, place.getLocation());
+          pst.setString(2, parentMap.getID());
+          pst.setString(3, place.getID());
+        }
+        pst.executeUpdate();
+      }
 
     } catch (SQLException e) {
       Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
