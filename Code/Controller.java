@@ -182,4 +182,9 @@ public class Controller
   {
     dbCoordinator.savePlace(newPlace, true);
   }
+  
+  public PlaceModel loadPlace(String ID)
+  {
+    return dbCoordinator.makePlace(ID);  	  
+  }
 }

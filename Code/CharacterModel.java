@@ -8,7 +8,7 @@ import narrationmanager.model.AssociationModel;
 
 import narrationmanager.model.util.DBModel;
 
-public class CharacterModel extends DBModel
+public class CharacterModel extends DBModel implements Comparable<CharacterModel>
 {  
   // mandatory fields:
   // id inherited from DBModel
@@ -122,5 +122,14 @@ public class CharacterModel extends DBModel
   public static CharacterModel getDefaultInstance()
   {
     return new CharacterModel(null,"New Character");//TODO: "test"??  
+  }
+  
+  public int compareTo(CharacterModel other)
+  {
+    int rslt=getName().compareTo(other.getName());
+    
+    if(rslt==0) rslt=getID().compareTo(other.getID());
+    
+    return rslt;
   }
 }

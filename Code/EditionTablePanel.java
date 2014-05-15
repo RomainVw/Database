@@ -91,4 +91,9 @@ public class EditionTablePanel<T> extends JPanel
   {
     return editionTable.getContent();	  
   }
+  
+  public void fillTableWith(Collection<T> collection)
+  {
+    editionTable.fillWith(collection);	  
+  }
 }

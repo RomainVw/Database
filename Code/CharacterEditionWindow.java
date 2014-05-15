@@ -31,6 +31,9 @@ import java.util.Vector;
 
 public class CharacterEditionWindow extends EditionWindow<CharacterModel>
 {
+  public static final String TAB1_TABLE_CHOOSER_OPT1="Sort relations by type";
+  public static final String TAB1_TABLE_CHOOSER_OPT2="Sort relations by target character";
+	
   //Tab 1
   private JTextField tab1NameField;
   private JComboBox<PlaceModel> tab1BirthPlaceChooser;
@@ -64,13 +67,17 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     
     //Treatment of edition target
     RelationEditionTable tab1Table=new RelationEditionTable(true);
-    tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByCharacter(),this::getRelationToInsert,tab1Table,this::editRelation);
+    tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByType(),this::getRelationToInsert,tab1Table,this::editRelation);
+    tab1NameField.setText(editionTarget.getName());
+    
+    String birthPlaceID=editionTarget.getBirthPlace();
+    if(birthPlaceID!=null)  tab1BirthPlaceChooser.setSelectedItem(controller.loadPlace(birthPlaceID));
+    else  tab1BirthPlaceChooser.setSelectedIndex(0);
     
     //Panels
     JPanel tab1=new JPanel(new BorderLayout());
     JPanel buttonsPanel=new JPanel(new GridLayout(1,2));
     JPanel tab1Header=new JPanel(new GridLayout(3,2));
-    JPanel tab1Buttons=new JPanel(new GridLayout(3,1));
     
     //Treatment of tab1Header
     tab1Header.add(new JLabel("Name:"));
@@ -83,16 +90,20 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     buttonsPanel.add(cancelButton);
     buttonsPanel.add(applyButton);
     
-    //Treatment of tab1Buttons
-    tab1Buttons.add(tab1TableSorter);
+    //Treatment of tab1TableSorter
+    tab1TableSorter.addItem(TAB1_TABLE_CHOOSER_OPT1);
+    tab1TableSorter.addItem(TAB1_TABLE_CHOOSER_OPT2);    
+    tab1TableSorter.setSelectedIndex(0);
 
     //Treatment of tab1
     tab1.add("North",tab1Header);
     tab1.add("Center",tab1TablePanel);
+    tab1.add("South",tab1TableSorter);
     
     //Treatment of action listeners
     applyButton.addActionListener((ActionEvent e)->applyActionPerformed());
     cancelButton.addActionListener((ActionEvent e)->cancelActionPerformed());
+    tab1TableSorter.addActionListener((ActionEvent e)->tab1TableSorterActionPerformed());
     
     //Treatment of tabs
     tabs.add(tab1,0);
@@ -156,5 +167,16 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
   {
     setExitOption(CANCEL_EXIT_OPTION);
     dispose();
+  }
+  
+  private void tab1TableSorterActionPerformed()
+  {
+    switch(tab1TableSorter.getItemAt(tab1TableSorter.getSelectedIndex()))
+    {
+      case TAB1_TABLE_CHOOSER_OPT1: tab1TablePanel.fillTableWith(editionTarget.getRelationsByType()); break;
+      case TAB1_TABLE_CHOOSER_OPT2: tab1TablePanel.fillTableWith(editionTarget.getRelationsByCharacter()); break;
+      default: break;
+    }
+    
   }
 }
