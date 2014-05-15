@@ -15,7 +15,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   // optional fields:
   private Collection<RelationData> relations=new LinkedList<>();
-  private LinkedList<String> relatedEventsID=new LinkedList<>();
+  private LinkedList<String> relatedEventsID=new LinkedList<>(); 
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
   private LinkedList<String> associationsID=new LinkedList<>();
   

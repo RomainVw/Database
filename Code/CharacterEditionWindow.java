@@ -30,6 +30,7 @@ import narrationmanager.gui.tables.EventEditionTable;
 import java.util.function.Function;
 
 import java.util.Vector;
+import java.util.LinkedList;
 
 
 public class CharacterEditionWindow extends EditionWindow<CharacterModel>
@@ -76,7 +77,7 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     tab1TablePanel=new EditionTablePanel<RelationData>(editionTarget.getRelationsByType(),this::getRelationToInsert,tab1Table);
     
     EventEditionTable tab2Table=new EventEditionTable(false);
-    tab2TablePanel=new EditionTablePanel<EventModel>(controller.getEventModelsFromID(editionTarget.getRelatedEventsID()),null,tab2Table);
+    tab2TablePanel=new EditionTablePanel<EventModel>(controller.getEventModelsFromID(editionTarget.getRelatedEventsID()),this::getEventToInsert,tab2Table);
     
     tab1NameField.setText(editionTarget.getName());
     
@@ -164,11 +165,31 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     return null;
   }
   
+  private EventModel getEventToInsert()
+  {
+    EventModel[] choices=controller.getAllEventsInArray();
+    
+    EventModel target=null;
+    
+    if(choices.length>0)
+      target=(EventModel) JOptionPane.showInputDialog(null,"Please select an event to link to this character.","Add event...",JOptionPane.QUESTION_MESSAGE,null,choices,choices[0]);
+    else JOptionPane.showMessageDialog(this,"Error: no event can be linked, as there is currently none available in database","Error",JOptionPane.ERROR_MESSAGE);
+    
+    return target;
+  }
+  
   private void applyActionPerformed()
   {
     editionTarget.setName(tab1NameField.getText());
     editionTarget.setRelations(tab1TablePanel.getTableContent());
     editionTarget.setBirthPlace(((PlaceModel)tab1BirthPlaceChooser.getSelectedItem()).getID());
+    
+    LinkedList<String> newEvents=new LinkedList<>();
+    for(EventModel eventToAdd:tab2TablePanel.getTableContent())
+    {
+      newEvents.add(eventToAdd.getID());
+    }
+    editionTarget.setRelatedEventsID(newEvents);
     
     setExitOption(OK_EXIT_OPTION);
     dispose();

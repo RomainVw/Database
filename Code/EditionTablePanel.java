@@ -4,9 +4,11 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Dimension;
 
 import java.awt.event.ActionEvent;
 
@@ -39,7 +41,7 @@ public class EditionTablePanel<T> extends JPanel
     buttonsPanel.add(insertButton);
     buttonsPanel.add(removeButton);
     
-    //Treatment of tablePanel
+    //Treatment of tablePanel    
     tablePanel.add("North",editionTable.getTableHeader());
     tablePanel.add("Center",editionTable);
     

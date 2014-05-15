@@ -162,7 +162,7 @@ public class Controller
 
   }
   
-  private EventModel[] getAllEventsInArray()
+  public EventModel[] getAllEventsInArray()
   {
     TreeSet<EventModel> allEvents=getAllEvents();
     EventModel[] rslt=new EventModel[allEvents.size()];

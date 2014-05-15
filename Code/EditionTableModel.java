@@ -25,6 +25,7 @@ public class EditionTableModel<T> extends AbstractTableModel
   public synchronized void addElement(T toAdd)
   {
     content.add(toAdd);
+    fireTableDataChanged();
   }
   
   public synchronized void removeElement(T toRemove)
