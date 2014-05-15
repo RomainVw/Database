@@ -750,36 +750,82 @@ public class DatabaseCoordinator
         return subplaces;
     }
     
-    public void saveNewCharacter(CharacterModel newCharacter)
+    public void saveNewCharacter(CharacterModel newCharacter, boolean isNew)
     {
         PreparedStatement pst = null;
-        String newID = nextCharacterID();
+        String newCharID;
         
         try {
-            pst = con.prepareStatement("insert into CHARACTER values(? , ? )");
-            pst.setString(1, newID);
-            pst.setString(2, newCharacter.getName());
-            pst.executeUpdate();
             
-            pst = con.prepareStatement("insert into ORIGINATES values(? , ? )");
-            pst.setString(1, newID);
-            pst.setString(2, newCharacter.getBirthPlace());
-            pst.executeUpdate();
+            
+            /* Creation du personnage */
+            if(isNew){
+                newCharID = nextCharacterID();
+                pst = con.prepareStatement("insert into CHARACTER values(? , ? )");
+                pst.setString(1, newCharID);
+                pst.setString(2, newCharacter.getName());
+                pst.executeUpdate();
+            
+                pst = con.prepareStatement("insert into ORIGINATES values(? , ? )");
+                pst.setString(1, newCharID);
+                pst.setString(2, newCharacter.getBirthPlace());
+                pst.executeUpdate();
+                /* update d'un personnege */
+            } else {
+                newCharID = newCharacter.getID();
+                pst = con.prepareStatement("update CHARACTER set name=? where characterid=?");
+                pst.setString(1, newCharacter.getID());
+                pst.setString(2, newCharacter.getName());
+                pst.executeUpdate();
+                
+                pst = con.prepareStatement("update ORIGINATES set placeid=? where characterid=?");
+                pst.setString(1, newCharacter.getID());
+                pst.setString(2, newCharacter.getBirthPlace());
+                pst.executeUpdate();
+
+            
+            
+            }
+        
             
             
             TreeSet<RelationData> relations = newCharacter.getRelationsByType();
             for (RelationData relationToAdd : relations) {
-                if (relationToAdd.getID() == null)
-                {
-                    String newRelId = nextRelationID();
+                
+                /* Recuperation de l'id de la  relation */
+                pst = con.prepareStatement("select relationid from relationlist where relationtype = ?");
+                pst.setString(1, relationToAdd.getRelationName());
+                ResultSet res = pst.executeQuery();
+                String newRelId;
+                if(res.next()){
+                    newRelId = res.getString(1);
+                /* insertion si il s'agit d'une nouvelle relation */
+                } else {
+                    newRelId = nextRelationID();
                     pst = con.prepareStatement("insert into RELATIONLIST values(? , ? )");
                     pst.setString(1, newRelId);
                     pst.setString(2, relationToAdd.getRelationName());
                     pst.executeUpdate();
-                    
                 }
                 
+                /* Suppression de toutes les relations en DB */
+                pst = con.prepareStatement("delete from TIMELESSRELATION where  source=? or traget = ?");
+                pst.setString(1, newCharID);
+                pst.setString(2, newCharID);
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("delete from DATERELATION where  source=? or traget = ?");
+                pst.setString(1, newCharID);
+                pst.setString(2, newCharID);
+                pst.executeUpdate();
                 
+                pst = con.prepareStatement("delete from RANGERELATION where  source=? or traget = ?");
+                pst.setString(1, newCharID);
+                pst.setString(2, newCharID);
+                pst.executeUpdate();
+                
+                
+                /* Ajout de toutes les relations en DB */
                 if (relationToAdd.getStart() == null){
                     pst = con.prepareStatement("insert into TIMELESSRELATION values(? , ? , ? )");
 
@@ -801,13 +847,13 @@ public class DatabaseCoordinator
                 
                 if (relationToAdd.getIsTarget()) {
                     pst.setString(1, relationToAdd.getTargetCharacterID());
-                    pst.setString(2, newID);
+                    pst.setString(2, newCharID);
                 } else {
-                    pst.setString(1, newID);
+                    pst.setString(1, newCharID);
                     pst.setString(2, relationToAdd.getTargetCharacterID());
                 }
                 
-                pst.setString(3, relationToAdd.getID());
+                pst.setString(3, newRelId);
                 pst.executeUpdate();
                 
                 
@@ -817,13 +863,13 @@ public class DatabaseCoordinator
             LinkedList<String> relatedEventsID= newCharacter.getRelatedEventsID();
             /* Supprime tout les elements de attends du character */
             pst = con.prepareStatement("delete from ATTENDS where characterid = ?");
-            pst.setString(1, newID);
+            pst.setString(1, newCharID);
             pst.executeUpdate();
             
             /* Et les réinscrit */
             for (String eventId : relatedEventsID) {
                 pst = con.prepareStatement("insert into ATTENDS values(? , ? )");
-                pst.setString(1, newID);
+                pst.setString(1, newCharID);
                 pst.setString(2, eventId);
                 pst.executeUpdate();
             }

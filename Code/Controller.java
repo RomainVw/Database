@@ -193,13 +193,14 @@ public class Controller
   
   public void saveNewCharacter(CharacterModel newCharacter)
   {
-      //dbCoordinator.saveNewCharacter(newCharacter);
-      //System.out.println("Saving new character: "+newCharacter.getName());
+      dbCoordinator.saveNewCharacter(newCharacter, true);
+      System.out.println("Saving new character: "+newCharacter.getName());
   }
   
   public void saveCharacterModifications(CharacterModel toSave)
   {
-    //TODO
+      dbCoordinator.saveNewCharacter(toSave, false);
+      System.out.println("Saving modified character: "+toSave.getName());
   }
   
   public void saveNewEvent(EventModel newEvent)
