@@ -7,9 +7,11 @@ import javax.swing.JTable;
 import narrationmanager.model.NarrationDate;
 import narrationmanager.model.EventModel;
 
+import narrationmanager.gui.tables.models.tables.EditionTable;
+
 import narrationmanager.gui.tables.models.EventsTableModel;
 
-public class EventsTable extends JTable
+public class EventsTable extends EditionTable<EventModel>
 {
   public static final int COLUMN_COUNT=4;
   public static final int ROW_HEIGHT=40;
@@ -68,5 +70,49 @@ public class EventsTable extends JTable
     return editable;
   }
   
+  public void setValueAt(Object value,int row,int col)
+  {
+    EventModel target=dataModel.elementAt(row);
+  	  
+    switch(col)
+    {
+      case NAME_COLUMN: target.setName((String) value); break;
+      case START_DATE_COLUMN: target.setStartDate((NarrationDate) value); break;
+      case END_DATE_COLUMN: target.setEndDate((NarrationDate) value); break;
+      case DESCRIPTION_COLUMN: target.setEventDescription((String) value); break;	    
+    }
+  }
   
+  public Object getValueAt(int row, int column)
+  {
+    EventModel target=dataModel.elementAt(row);
+    
+    switch(column)
+    {
+      case NAME_COLUMN: return target.getName();
+      case START_DATE_COLUMN: return target.getStartDate();
+      case END_DATE_COLUMN: return target.getEndDate();
+      case DESCRIPTION_COLUMN: 
+        String description=target.getEventDescription();
+      	return (description==null) ? :description;
+      default: System.err.println("Error: wrong column"); return null;
+    }
+  }
+  
+  public String getColumnName(int col)
+  {
+    switch(col)
+    {
+      case NAME_COLUMN: return "Event name";
+      case START_DATE_COLUMN: return "Start date";
+      case END_DATE_COLUMN: return "End date";
+      case DESCRIPTION_COLUMN: return "Description";
+      default: System.err.println("wrong column index"); return null;
+    }
+  }
+  
+  public int getColumnCount()
+  {
+    return COLUMN_COUNT;	  
+  }
 }
