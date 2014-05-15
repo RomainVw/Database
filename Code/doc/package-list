@@ -1,0 +1,9 @@
+narrationmanager
+narrationmanager.controller
+narrationmanager.db
+narrationmanager.gui
+narrationmanager.gui.tables
+narrationmanager.gui.tables.models
+narrationmanager.gui.util
+narrationmanager.model
+narrationmanager.model.util

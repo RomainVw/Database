@@ -8,19 +8,18 @@ import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
+import java.util.LinkedList;
 
 import narrationmanager.model.CharacterModel;
 import narrationmanager.model.PlaceModel;
-
 import narrationmanager.model.MapModel;
-import narrationmanager.model.util.ModelInfo;
 import narrationmanager.model.EventModel;
 import narrationmanager.model.NarrationDate;
-
 import narrationmanager.model.RelationData;
-import java.util.Collection;
-import java.util.TreeSet;
 import narrationmanager.model.CharacterPseudoData;
 
 import java.util.Map;
@@ -240,7 +239,7 @@ public class DatabaseCoordinator
     CharacterModel characterResult = new CharacterModel(characterid, name);
     characterResult.setBirthPlace(birthPlace);
     characterResult.setRelations(relations);
-    characterResult.setRelatedEventsNames(relatedEventsNames);
+    characterResult.setRelatedEventsID(relatedEventsNames);
     characterResult.setCharactersPseudoData(charactersPseudo);
       
     return characterResult;
@@ -294,7 +293,7 @@ public class DatabaseCoordinator
     ResultSet res = null;
     String name = null;
     PlaceModel place = null;    
-    ArrayList<ModelInfo> list = new ArrayList<ModelInfo>();
+    ArrayList<String> list = new ArrayList<String>();
     
     /*
      * get the places name (only mandatory info)
@@ -331,17 +330,17 @@ public class DatabaseCoordinator
       res = pst.executeQuery();
       while (res.next())
       {
-        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+        list.add(res.getString(1));
       }
       place.setEvents(list);
       
-      list = new ArrayList<ModelInfo>();
+      list = new ArrayList<String>();
       pst = con.prepareStatement("with allCharLinks as (select * from originates union (select a.characterid, e.placeid from event e join attends a on e.eventid = a.eventid) ) select CH.characterid, CH.name from allCharLinks ACL join character CH on ACL.characterid = CH.characterid where ACL.placeid=?");
       pst.setString(1, id);
       res=pst.executeQuery();
       while (res.next())
       {
-        list.add(new ModelInfo(res.getString(1), res.getString(2)));
+        list.add(res.getString(1));
       }
       place.setCharacters(list);
       
@@ -583,9 +582,13 @@ public class DatabaseCoordinator
         pst = con.prepareStatement("update PLACE set PLACENAME=? where PLACEID=?");
         pst.setString(2, id);
         pst.setString(1, place.getName());
-      }
-      
+      }      
       pst.executeUpdate();
+      
+      if (place.getParentID() != null)
+      {
+      }
+        
 
     } catch (SQLException e) {
       Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
