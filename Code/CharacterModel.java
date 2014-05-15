@@ -4,8 +4,6 @@ import java.util.TreeSet;
 import java.util.LinkedList;
 import java.util.Collection;
 
-import narrationmanager.model.AssociationModel;
-
 import narrationmanager.model.util.DBModel;
 
 public class CharacterModel extends DBModel implements Comparable<CharacterModel>
@@ -17,9 +15,9 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   // optional fields:
   private Collection<RelationData> relations=new LinkedList<>();
-  private TreeSet<String> relatedEventsNames=new TreeSet<>();
+  private TreeSet<String> relatedEventsID=new TreeSet<>();
   private TreeSet<CharacterPseudoData> charactersPseudo=new TreeSet<>(); 
-  private TreeSet<AssociationModel> associations=new TreeSet<>();
+  private TreeSet<String> associationsID=new TreeSet<>();
   
   public CharacterModel(String id, String name)
   {
@@ -55,7 +53,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     this.relations=relations;    	  
   }
   
-  public TreeSet<String> getRelatedEventsNames()
+  public TreeSet<String> getRelatedEventsID()
   {
     return relatedEventsNames;	  
   }
@@ -65,12 +63,12 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     this.relatedEventsNames=relatedEventsNames;	  
   }
   
-  public TreeSet<AssociationModel> getAssociations()
+  public TreeSet<string> getAssociations()
   {
     return associations;	  
   }
   
-  public void setAssociations(TreeSet<AssociationModel> associations)
+  public void setAssociations(TreeSet<String> associations)
   {
     this.associations=associations;	  
   }
