@@ -172,8 +172,14 @@ public class Controller
   
   public TreeSet<CharacterModel> getAllCharacters()
   {
-    //TODO
-    return new TreeSet<CharacterModel>();
+    TreeSet<CharacterModel> rslt = new TreeSet<CharacterModel>((CharacterModel a, CharacterModel b)->a.getName().compareTo(b.getName()));
+    
+    ArrayList<String> characterNames = dbCoordinator.getAllCharacterID();
+    for (String character: characterNames)
+    {
+      rslt.add(dbCoordinator.getCharacter(character));
+    }
+    return rslt;
   }
   
   public CharacterModel[] getAllCharactersInArray()

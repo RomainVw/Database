@@ -84,7 +84,7 @@ public class DatabaseCoordinator
        */
       
     try {
-        pst = con.prepareStatement("select PLACENAME from  ORIGINATES, CHARACTER, PLACE where CHARACTERID = ? and CHARACTER.CHARACTERID = ORIGINATES.CHARACTERID and ORIGINATES.PLACEID = PLACE.PLACEID");
+        pst = con.prepareStatement("select PLACENAME from  ORIGINATES, CHARACTER, PLACE where CHARACTER.CHARACTERID = ? and CHARACTER.CHARACTERID = ORIGINATES.CHARACTERID and ORIGINATES.PLACEID = PLACE.PLACEID");
         pst.setString(1, characterid);
         ResultSet res = pst.executeQuery();
         if(res.next()){
@@ -175,7 +175,7 @@ public class DatabaseCoordinator
           ResultSet res = pst.executeQuery();
           while(res.next()){
               RelationData toAdd = new RelationData(res.getString(1),res.getString(3),res.getString(2), true);
-              toAdd.setStart(new NarrationDate(res.getInt(2),res.getInt(5),res.getInt(6)));
+              toAdd.setStart(new NarrationDate(res.getInt(4),res.getInt(5),res.getInt(6)));
               toAdd.setEnd(new NarrationDate(res.getInt(7),res.getInt(8),res.getInt(9)));
               relations.add(toAdd);
           }
@@ -246,6 +246,28 @@ public class DatabaseCoordinator
     characterResult.setCharactersPseudoData(charactersPseudo);
       
     return characterResult;
+  }
+  
+  public ArrayList<String> getAllCharacterID()
+  {
+    PreparedStatement pst;
+    ResultSet rst;
+    ArrayList<String> out = new ArrayList<String>();
+    
+    try {
+      pst = con.prepareStatement("select CHARACTERID from CHARACTER");
+      rst = pst.executeQuery();
+      while (rst.next())
+      {
+       out.add(rst.getString(1)); 
+      }
+      
+    } catch (SQLException e) {
+      Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+      lgr.log(Level.SEVERE, e.getMessage(), e);
+    }
+    
+    return out;      
   }
   
   public void setCharacter(CharacterModel c)
