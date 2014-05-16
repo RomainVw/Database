@@ -332,9 +332,10 @@ public class DatabaseCoordinator
       pst = con.prepareStatement("select PLACENAME from PLACE where PLACEID=?");
       pst.setString(1, id);
       res = pst.executeQuery();
-      res.next();
-      name = res.getString(1);
-    } catch (SQLException e) {      
+        if (res.next(){
+            name = res.getString(1);
+        }
+    } catch (SQLException e) {
         Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
         lgr.log(Level.SEVERE, e.getMessage(), e);
     }    
