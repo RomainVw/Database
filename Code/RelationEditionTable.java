@@ -5,6 +5,14 @@ import java.awt.event.ActionEvent;
 import narrationmanager.model.RelationData;
 import narrationmanager.model.NarrationDate;
 
+
+/**
+An EditionTable for RealtionData objects.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class RelationEditionTable extends EditionTable<RelationData>
 {
   public static final int COLUMNS_COUNT=4;

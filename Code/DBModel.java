@@ -1,5 +1,15 @@
 package narrationmanager.model.util;
 
+
+/**
+An abstract class representing an object loaded from database, containing
+thus a unique String id to identify it
+
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain 
+**/
 public abstract class DBModel
 {
   protected String id;

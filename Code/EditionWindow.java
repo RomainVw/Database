@@ -4,6 +4,15 @@ import javax.swing.JDialog;
 
 import narrationmanager.controller.Controller;
 
+
+/**
+A JDialog subclass used for objects creation/edition, a bit like the 
+JFileChooser object.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public abstract class EditionWindow<T> extends JDialog
 {
   public static final int OK_EXIT_OPTION=0;

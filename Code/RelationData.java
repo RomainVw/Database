@@ -2,9 +2,15 @@ package narrationmanager.model;
 
 
 import narrationmanager.model.NarrationDate;
-import narrationmanager.model.util.DBModel;
 
-public class RelationData extends DBModel
+/**
+A class defining the data obtained from a relation saved in database.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
+public class RelationData
 {
   public static final String INVERSE_NAME_TAG=" [INVERSE]"; 
 	
@@ -17,7 +23,6 @@ public class RelationData extends DBModel
     
   public RelationData(String id, String relationName,String targetCharacterID, boolean isTarget)
   {
-    super(id);
     this.isTarget = isTarget;
     this.relationName=relationName;
     this.targetCharacterID=targetCharacterID;

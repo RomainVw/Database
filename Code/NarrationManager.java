@@ -5,9 +5,20 @@ import javax.swing.UIManager.*;
 
 import narrationmanager.controller.Controller; 
 
+
+/**
+NarrationManager's main class.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class NarrationManager
 {
-  private static void applyNimbus()//Loads the Nimbus Look & Feel
+  /**
+  Sets the Nimbus Look & Feel to be used.
+  **/
+  private static void applyNimbus()
   {
     try 
     {

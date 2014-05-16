@@ -32,7 +32,16 @@ import java.util.function.Function;
 import java.util.Vector;
 import java.util.LinkedList;
 
+/**
+An EditionWindow to create and edit CharacterModel objects.
 
+For now, this class allows to modify the character's name, birth place, relations
+and linked event.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class CharacterEditionWindow extends EditionWindow<CharacterModel>
 {
   public static final String TAB1_TABLE_CHOOSER_OPT1="Sort relations by type";

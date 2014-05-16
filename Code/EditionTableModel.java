@@ -5,6 +5,13 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Vector;
 import java.util.Collection;
 
+/**
+The TableModel to use with EditionTable objects.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class EditionTableModel<T> extends AbstractTableModel
 {
   protected Vector<T> content=new Vector<>();

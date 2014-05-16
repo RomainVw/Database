@@ -23,6 +23,14 @@ import narrationmanager.model.CharacterModel;
 
 import narrationmanager.db.DatabaseCoordinator;
 
+/**
+Core class of the program (as the program follows the MVC pattern), coordinating
+the calls between GUI, database and model.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class Controller
 {
   private DatabaseCoordinator dbCoordinator = new DatabaseCoordinator();
@@ -153,11 +161,11 @@ public class Controller
     return rslt;
   }
   
+  /**
+    Returns a sorted TreeSet containing all the known EventsModel by alphabetical order
+  **/
   public TreeSet<EventModel> getAllEvents()
   {
-    /*
-    Retourne un TreeSet trié contenant tous les EventModel connus par ordre alphabétique
-    */
     TreeSet<EventModel> rslt=new TreeSet<>((EventModel a,EventModel b)->a.getName().compareTo(b.getName()));
     
     ArrayList<EventModel> allEventsFromDB = dbCoordinator.getAllEvents();
@@ -202,25 +210,21 @@ public class Controller
   public void saveNewCharacter(CharacterModel newCharacter)
   {
       dbCoordinator.saveNewCharacter(newCharacter, true);
-      System.out.println("Saving new character: "+newCharacter.getName());
   }
   
   public void saveCharacterModifications(CharacterModel toSave)
   {
       dbCoordinator.saveNewCharacter(toSave, false);
-      System.out.println("Saving modified character: "+toSave.getName()+"   "+toSave.getBirthPlace());
   }
   
   public void saveNewEvent(EventModel newEvent)
   {
     dbCoordinator.saveNewEvent(newEvent);
-    System.out.println("Saving new event: "+newEvent.getName());
   }
   
   public void saveEventModifications(EventModel modifiedEvent)
   {
     dbCoordinator.saveEvent(modifiedEvent);
-    System.out.println("Saving modified event: "+modifiedEvent.getName());
   }
   
   public void saveNewPlace(PlaceModel newPlace)

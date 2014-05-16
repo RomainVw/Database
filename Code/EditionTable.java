@@ -5,6 +5,13 @@ import javax.swing.JTable;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+An abstract class easing the extension of JTable.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public abstract class EditionTable<T> extends JTable
 {
   protected EditionTableModel<T> editionModel;

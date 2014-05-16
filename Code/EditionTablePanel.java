@@ -21,6 +21,15 @@ import java.util.function.Supplier;
 
 import narrationmanager.gui.tables.EditionTable;
 
+
+/**
+A class represention a Panel containing an EditionTable and two buttons:
+one to remove elements from it, the other one to insert some.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class EditionTablePanel<T> extends JPanel
 {
   private EditionTable<T> editionTable;
