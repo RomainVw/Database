@@ -567,6 +567,29 @@ public class DatabaseCoordinator
         return (ret+Integer.toString(count+1));
     }
     
+  public String nextMapID()
+  {
+    int count = 0;
+    int tempcount;
+    String ret = "MA";
+    try {
+            PreparedStatement pst = con.prepareStatement("select MAPID from MAP");
+            ResultSet res  = pst.executeQuery();
+            while (res.next())
+            {
+                tempcount = Integer.parseInt(res.getString(1).substring(2));
+                if (tempcount > count)
+                {
+                    count = tempcount;
+                }
+            }
+     } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+     }
+     return (ret+Integer.toString(count+1));
+  }
+    
   public void saveNewEvent(EventModel event)
   {
     PreparedStatement pst = null;
@@ -687,8 +710,13 @@ public class DatabaseCoordinator
     System.out.println(place.getLocation());
     PreparedStatement pst = null;
     String id;
-    if (isNew) id = nextPlaceID();
+    if (isNew)
+    {
+      id = nextPlaceID();
+      place.setID(id); 
+    }
     else id = place.getID();
+    
     
     try {
       if (isNew)
@@ -890,5 +918,27 @@ public class DatabaseCoordinator
         }
     }
     
-    
+    public void saveMap(MapModel map, PlaceModel place)
+    {
+      PreparedStatement pst;
+      String id = nextMapID();
+      try {
+        pst = con.prepareStatement("insert into MAP values(? , ? , ?, ?, ?)");
+        pst.setString(1, id);
+        pst.setInt(2, map.getNumWidth());
+        pst.setInt(3, map.getNumLength());
+        pst.setFloat(4, map.getWidth());
+        pst.setFloat(5, map.getLength());
+        pst.executeUpdate();
+        
+        pst = con.prepareStatement("insert into MAPPEDPLACE values(? ,?)");
+        pst.setString(1, place.getID());
+        pst.setString(2, id);
+        pst.executeUpdate();
+        
+      } catch (SQLException e) {      
+        Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
+        lgr.log(Level.SEVERE, e.getMessage(), e);
+      }     
+    }
 }
