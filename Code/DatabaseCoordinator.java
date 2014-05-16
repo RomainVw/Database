@@ -607,7 +607,6 @@ public class DatabaseCoordinator
         pst.setString(2, event.getEventDescription());
         pst.executeUpdate();
       }
-      else System.out.println("no description");
       
       pst = con.prepareStatement("insert into EVENT values(?, ?, (? ,? , ?), (? ,? ,?))");
       pst.setString(1, newID);
@@ -705,7 +704,6 @@ public class DatabaseCoordinator
   
   public void savePlace(PlaceModel place, boolean isNew)
   {
-    System.out.println(place.getLocation());
     PreparedStatement pst = null;
     String id;
     if (isNew)
@@ -810,7 +808,6 @@ public class DatabaseCoordinator
                 pst.setString(1, newCharacter.getName());
                 pst.setString(2, newCharacter.getID());
                 pst.executeUpdate();
-                System.out.println("troulala "+newCharacter.getBirthPlace()+"    "+newCharacter.getID());
                 pst = con.prepareStatement("update ORIGINATES set placeid=? where characterid=?");
                 pst.setString(1, newCharacter.getBirthPlace());
                 pst.setString(2, newCharacter.getID());
@@ -887,10 +884,7 @@ public class DatabaseCoordinator
                 }
                 
                 pst.setString(3, newRelId);
-                pst.executeUpdate();
-                
-                System.out.println(""+newCharID+relationToAdd.getTargetCharacterID()+newRelId);
-                
+                pst.executeUpdate();                
             }
             
             

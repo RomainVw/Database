@@ -50,7 +50,7 @@ public class EventEditionWindow extends EditionWindow<EventModel>
     super(controller,toEdit);
   }
   
-  protected void buildUI() //TODO: comment in English!
+  protected void buildUI() 
   {    
     editorTable=new EventEditionTable(true);
     applyButton=new JButton("Apply");
