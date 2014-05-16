@@ -194,7 +194,16 @@ Antoine Cailliau\\
 \pagebreak
 \setcounter{page}{1}
 \pagestyle{fancy} % Finally, use the "fancy" page style to implement the FancyHdr headers
+
 \section{Introduction}
+
+In this report, we present the work we realized for implementing an application which helps the user to create stories.
+We first explain how we created the conceptual view of our application, by finally obtaining the database and all his constraints expressed both in PostgreSQL and in Tutorial-D. The last step has been the creation of the software of the application. We decided to use JAVA 8, and a JDBC driver to make all the requests in the database.\\
+We are finally proud to present you our application in details here in this report.
+You can also test our application which is available in the same directory as this report and begin to create your own story, and this in optimal conditions !
+
+
+\section{Context}
 
 Telling a story is challenging. Indeed, in order to build a ``good" scenario, one must think of a lot of different aspects and ensure coherence between all these points. \\
 
@@ -203,6 +212,15 @@ Some can manage it using diagrams, other can rely on tons of paper sheets refere
 Our project can be defined as a ``narration manager". Its goal is to make it easier for people to write coherent and complex scenarios without either becoming mad or cancelling their project because of its increasing complexity. It is intended for all "story makers" (videogame makers, film makers, roleplayers, writers, \dots), and is thus meant to be generic and conveniently adapt to various situations, as well as user preferences and priorities in the story (for example, some users could want to define a precise date for each event happening in their story, as others could prefer to focus on the relations binding all the characters together).\\
 
 Possibilities of telling a story are infinite, yet time and coordination constraints often limit what is actually possible to achieve. It is now time to push these limits away.
+
+\section{Requirements} 
+ The program must allow people to write their own story in a database. Thus, when they install the program, the database will be empty, and it will be their job to fill the database with the relevant information of their stories. Each story is linked to a different database and will be modified only by one user at a time (each user is responsible of his own story).\\
+
+Since we want this experience to be comfortable for the user, the application has to give the ability to easily create/modify different characters, different events. We also want to help the user to visualise the maps he created with their subplaces.
+The different views has to give a summary of all the relevant informations.\\
+
+To ensure the story coherence, we want also to be able to create statistics on all the available data. Display the number of friends/enemies, the gender statistics, people who may konw each other because of the same origins, attend same events, have mutual friends, ...
+ 
  
 \section{Elementary Facts}
 
@@ -512,6 +530,8 @@ We did consider some workaround solutions, such as representing gender by a self
 \subsection{Missing features}
 Many features were not implemented due to the size of the project and the time given. As mentioned in the previous paragraph, statistics on gender were made difficult because of an oversight, and the whole feature  ended up being dropped. We also did not have time to create a satisfactory Place viewer like those for Characters and Events. Ultimately, this viewer would have contained an interactive map representation of the place. This map would would show the Events and Subplaces of the Place, and would change depending on the time.
 Another feature that was not implemented is the handling of Character behaviour. This is simply another characteristic of a character, on which statistics would also have been collected. Similarly, Associations were not implemented beyond creating the empty model file.
+
+\newpage
 
 \section*{Annexes}
 \appendix

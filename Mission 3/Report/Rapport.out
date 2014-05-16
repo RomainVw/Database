@@ -1,34 +1,36 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}
-\BOOKMARK [1][-]{section.2}{Elementary Facts}{}
-\BOOKMARK [2][-]{subsection.2.1}{About characters}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Characters relations}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{About events}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{About places}{section.2}
-\BOOKMARK [1][-]{section.3}{ORM schema}{}
-\BOOKMARK [1][-]{section.4}{Translating ORM in relvar}{}
-\BOOKMARK [1][-]{section.5}{Constraints}{}
-\BOOKMARK [1][-]{section.6}{Tutorial-D script}{}
-\BOOKMARK [1][-]{section.7}{Relvar predicates}{}
-\BOOKMARK [1][-]{section.8}{General Architecture}{}
-\BOOKMARK [2][-]{subsection.8.1}{Models}{section.8}
-\BOOKMARK [2][-]{subsection.8.2}{Views}{section.8}
-\BOOKMARK [2][-]{subsection.8.3}{Controller}{section.8}
-\BOOKMARK [2][-]{subsection.8.4}{Other files}{section.8}
-\BOOKMARK [1][-]{section.9}{SQL script}{}
-\BOOKMARK [1][-]{section.10}{What we did}{}
-\BOOKMARK [2][-]{subsection.10.1}{Events}{section.10}
-\BOOKMARK [2][-]{subsection.10.2}{Characters}{section.10}
-\BOOKMARK [1][-]{section.11}{Technical specifications }{}
-\BOOKMARK [2][-]{subsection.11.1}{About the database}{section.11}
-\BOOKMARK [2][-]{subsection.11.2}{About the code}{section.11}
-\BOOKMARK [2][-]{subsection.11.3}{Code philosophy}{section.11}
-\BOOKMARK [3][-]{subsubsection.11.3.1}{First steps}{subsection.11.3}
-\BOOKMARK [3][-]{subsubsection.11.3.2}{Compilation}{subsection.11.3}
-\BOOKMARK [3][-]{subsubsection.11.3.3}{Execution}{subsection.11.3}
-\BOOKMARK [3][-]{subsubsection.11.3.4}{Javadoc}{subsection.11.3}
-\BOOKMARK [1][-]{section.12}{Implementation issues}{}
-\BOOKMARK [2][-]{subsection.12.1}{DB coherence}{section.12}
-\BOOKMARK [2][-]{subsection.12.2}{Design oversights}{section.12}
-\BOOKMARK [2][-]{subsection.12.3}{Missing features}{section.12}
-\BOOKMARK [1][-]{section.A}{Code Rel}{}
-\BOOKMARK [1][-]{section.B}{Code SQL}{}
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Context}{}% 2
+\BOOKMARK [1][-]{section.3}{Requirements}{}% 3
+\BOOKMARK [1][-]{section.4}{Elementary Facts}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{About characters}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Characters relations}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{About events}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{About places}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{ORM schema}{}% 9
+\BOOKMARK [1][-]{section.6}{Translating ORM in relvar}{}% 10
+\BOOKMARK [1][-]{section.7}{Constraints}{}% 11
+\BOOKMARK [1][-]{section.8}{Tutorial-D script}{}% 12
+\BOOKMARK [1][-]{section.9}{Relvar predicates}{}% 13
+\BOOKMARK [1][-]{section.10}{General Architecture}{}% 14
+\BOOKMARK [2][-]{subsection.10.1}{Models}{section.10}% 15
+\BOOKMARK [2][-]{subsection.10.2}{Views}{section.10}% 16
+\BOOKMARK [2][-]{subsection.10.3}{Controller}{section.10}% 17
+\BOOKMARK [2][-]{subsection.10.4}{Other files}{section.10}% 18
+\BOOKMARK [1][-]{section.11}{SQL script}{}% 19
+\BOOKMARK [1][-]{section.12}{What we did}{}% 20
+\BOOKMARK [2][-]{subsection.12.1}{Events}{section.12}% 21
+\BOOKMARK [2][-]{subsection.12.2}{Characters}{section.12}% 22
+\BOOKMARK [1][-]{section.13}{Technical specifications }{}% 23
+\BOOKMARK [2][-]{subsection.13.1}{About the database}{section.13}% 24
+\BOOKMARK [2][-]{subsection.13.2}{About the code}{section.13}% 25
+\BOOKMARK [2][-]{subsection.13.3}{Code philosophy}{section.13}% 26
+\BOOKMARK [3][-]{subsubsection.13.3.1}{First steps}{subsection.13.3}% 27
+\BOOKMARK [3][-]{subsubsection.13.3.2}{Compilation}{subsection.13.3}% 28
+\BOOKMARK [3][-]{subsubsection.13.3.3}{Execution}{subsection.13.3}% 29
+\BOOKMARK [3][-]{subsubsection.13.3.4}{Javadoc}{subsection.13.3}% 30
+\BOOKMARK [1][-]{section.14}{Implementation issues}{}% 31
+\BOOKMARK [2][-]{subsection.14.1}{DB coherence}{section.14}% 32
+\BOOKMARK [2][-]{subsection.14.2}{Design oversights}{section.14}% 33
+\BOOKMARK [2][-]{subsection.14.3}{Missing features}{section.14}% 34
+\BOOKMARK [1][-]{appendix.A}{Code Rel}{}% 35
+\BOOKMARK [1][-]{appendix.B}{Code SQL}{}% 36
