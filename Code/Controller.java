@@ -12,6 +12,8 @@ import narrationmanager.gui.CharacterEditionWindow;
 import narrationmanager.gui.EventEditionWindow;
 import narrationmanager.gui.PlaceEditionWindow;
 import narrationmanager.gui.MapChoiceWindow;
+import narrationmanager.gui.MapCreateWindow;
+
 
 import narrationmanager.gui.util.EditionWindow;
 
@@ -51,7 +53,13 @@ public class Controller
     PlaceEditionWindow placeEditor = new PlaceEditionWindow(this);
     
     if (placeEditor.getExitOption() == EditionWindow.OK_EXIT_OPTION)
+    {
       saveNewPlace(placeEditor.getTarget());
+      MapCreateWindow mapCreate = new MapCreateWindow(this);
+      if (mapCreate.getExitOption() == EditionWindow.OK_EXIT_OPTION)
+        dbCoordinator.saveMap(mapCreate.getTarget(), placeEditor.getTarget());
+    }
+      
     
   }
   

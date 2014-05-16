@@ -93,4 +93,9 @@ public class MapModel
    subplaceID.remove(id); 
   }
   
+  public static MapModel defaultInstance()
+  {
+    return new MapModel(null, 0, 0, 0,0);
+  }
+  
 }
