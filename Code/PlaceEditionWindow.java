@@ -100,7 +100,6 @@ public class PlaceEditionWindow extends EditionWindow<PlaceModel>
   
   private void textEntered()
   {
-    System.out.println(nameField.getText());
     editionTarget.setName(nameField.getText());
   }
   

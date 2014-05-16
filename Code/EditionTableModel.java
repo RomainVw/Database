@@ -58,13 +58,11 @@ public class EditionTableModel<T> extends AbstractTableModel
   
   public synchronized Object getValueAt(int row, int col)
   {
-    //return "titi"; //TODO: OK, appelle celui de la table?
     return ownerTable.getValueAt(row,col);
   }
   
   public int getColumnCount()
   {
-    //return 23; //TODO
     return ownerTable.getColumnCount();
   }
   

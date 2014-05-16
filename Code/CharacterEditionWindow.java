@@ -96,7 +96,6 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     }
     else  
     {
-      System.out.println("EXPLOSION ATOMIQUE");
       tab1BirthPlaceChooser.setSelectedIndex(0);
     }
     
