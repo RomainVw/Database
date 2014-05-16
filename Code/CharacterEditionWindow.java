@@ -82,8 +82,14 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     tab1NameField.setText(editionTarget.getName());
     
     String birthPlaceID=editionTarget.getBirthPlace();
-    if(birthPlaceID!=null)  tab1BirthPlaceChooser.setSelectedItem(controller.loadPlace(birthPlaceID));
-    else  tab1BirthPlaceChooser.setSelectedIndex(0);
+    if(birthPlaceID!=null)  
+    {tab1BirthPlaceChooser.setSelectedItem(controller.loadPlace(birthPlaceID));
+    }
+    else  
+    {
+      System.out.println("EXPLOSION ATOMIQUE");
+      tab1BirthPlaceChooser.setSelectedIndex(0);
+    }
     
     //Panels
     JPanel tab1=new JPanel(new BorderLayout());
