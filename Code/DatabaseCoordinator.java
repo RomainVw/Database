@@ -26,16 +26,15 @@ import narrationmanager.model.NarrationDate;
 import narrationmanager.model.RelationData;
 import narrationmanager.model.CharacterPseudoData;
 
+/**
+A class encapsulating each of the accesses that are made to the database.
 
-
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class DatabaseCoordinator
 {    
-  public static void main(String[] args)//TODO retirer quand on en aura plus besoin
-  {
-    DatabaseCoordinator c = new DatabaseCoordinator();
-    CharacterModel c1 = c.getCharacter("Pierre");
-    System.out.println(c1.getName());
-  }
   private Connection con = null;
   
   public DatabaseCoordinator()
@@ -193,7 +192,7 @@ public class DatabaseCoordinator
       
       // get relations with daterange where source
       try {
-          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where source = ? and characterid=target");
+          pst = con.prepareStatement("  select RL.relationid, target, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where source = ? and characterid=target");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
@@ -318,7 +317,7 @@ public class DatabaseCoordinator
   }
   
   public PlaceModel makePlace(String id)
-  { // TODO
+  { 
     PreparedStatement pst = null;
     ResultSet res = null;
     String name = null;
@@ -606,7 +605,6 @@ public class DatabaseCoordinator
         pst = con.prepareStatement("insert into EVENTDESCRIPTION values(?, ?)");
         pst.setString(1, newID);
         pst.setString(2, event.getEventDescription());
-        //System.out.println(newID + " " + event.getEventDescription());
         pst.executeUpdate();
       }
       else System.out.println("no description");
@@ -737,7 +735,7 @@ public class DatabaseCoordinator
       {
         ArrayList<String> subplaces = this.getAllSubplaces();
         MapModel parentMap = makePlace(place.getParentID()).getMap();
-        //Map<String, Integer> subplaces = parentMap.getSubplaceID();
+        
         if (!subplaces.contains(id))
         {
           pst = con.prepareStatement("insert into SUBPLACE values(?, ? , ?)");
@@ -765,7 +763,6 @@ public class DatabaseCoordinator
     
     public Map<String,Integer> getSubplaces(String mapId)
     {
-        //System.out.println(place.getLocation());
         Map<String,Integer> subplaces = new HashMap<>();
         PreparedStatement pst = null;
 
@@ -892,6 +889,7 @@ public class DatabaseCoordinator
                 pst.setString(3, newRelId);
                 pst.executeUpdate();
                 
+                System.out.println(""+newCharID+relationToAdd.getTargetCharacterID()+newRelId);
                 
             }
             

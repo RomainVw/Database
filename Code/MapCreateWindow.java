@@ -24,6 +24,14 @@ import narrationmanager.model.MapModel;
 
 import narrationmanager.controller.Controller;
 
+
+/**
+An EditionWindow to create a new MapModel.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class MapCreateWindow extends EditionWindow<MapModel>
 { 
   private JLabel question;

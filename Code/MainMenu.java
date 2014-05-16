@@ -10,6 +10,14 @@ import java.awt.event.ActionEvent;
 
 import narrationmanager.controller.Controller;
 
+
+/**
+NarrationManager's main menu frame.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class MainMenu extends JFrame
 {
   private JButton createCharacter=new JButton("Create new character");
@@ -27,7 +35,7 @@ public class MainMenu extends JFrame
     
     this.controller=controller;
     
-    //Traitement du panel main
+    //Treatment of "main" 
     JPanel main=new JPanel(new GridLayout(6,1));
     main.add(createCharacter);
     main.add(editCharacter);
@@ -36,7 +44,7 @@ public class MainMenu extends JFrame
     main.add(createPlace);
     main.add(editPlace);
     
-    //Ajout des listeners
+    //Treatment of listeners
     createCharacter.addActionListener((ActionEvent e)->controller.createCharacter());
     editCharacter.addActionListener((ActionEvent e)->controller.editCharacter());
     createEvent.addActionListener((ActionEvent e)->controller.createEvent());
@@ -44,7 +52,7 @@ public class MainMenu extends JFrame
     createPlace.addActionListener((ActionEvent e)->controller.createPlace());
     editPlace.addActionListener((ActionEvent e)->controller.editPlace());
     
-    //Fignolage
+    //Last operations...
     add(main);
     pack();
     setLocationRelativeTo(null);

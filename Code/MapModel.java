@@ -3,6 +3,14 @@ package narrationmanager.model;
 import java.util.Map;
 import java.util.HashMap;
 
+
+/**
+A class defining the data obtained from a map saved in database.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class MapModel
 {
   private String mapID = null;

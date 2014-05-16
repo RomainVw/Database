@@ -21,6 +21,13 @@ import narrationmanager.model.EventModel;
 
 import narrationmanager.controller.Controller;
 
+/**
+An EditionWindow for EventModel objects.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class EventEditionWindow extends EditionWindow<EventModel>
 { 
   private JLabel placeLabel;

@@ -9,6 +9,15 @@ import narrationmanager.model.EventModel;
 
 import narrationmanager.gui.tables.EditionTable;
 
+
+/**
+An EditionTable for EventModel objects.
+
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class EventEditionTable extends EditionTable<EventModel>
 {
   public static final int COLUMN_COUNT=4;

@@ -6,6 +6,13 @@ import narrationmanager.model.util.DBModel;
 import java.util.ArrayList;
 
 
+/**
+A DBModel defining the data obtained from a place saved in database.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class PlaceModel extends DBModel implements Comparable<PlaceModel>
 {
   // mandatory fields:

@@ -22,6 +22,14 @@ import narrationmanager.model.EventModel;
 
 import narrationmanager.controller.Controller;
 
+
+/**
+The EditionWindow for PlaceModel objects.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class PlaceEditionWindow extends EditionWindow<PlaceModel>
 {
   private JLabel nameLabel;
@@ -131,7 +139,4 @@ public class PlaceEditionWindow extends EditionWindow<PlaceModel>
   {
     return "Place editor";
   }
-  
-  
-  
 }

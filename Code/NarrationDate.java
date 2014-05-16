@@ -3,6 +3,11 @@ package narrationmanager.model;
 
 /**
 A class representing a date without any limitation on the number of days or months.
+
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
 **/
 public class NarrationDate implements Comparable<NarrationDate>
 {

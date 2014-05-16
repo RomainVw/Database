@@ -6,6 +6,13 @@ import java.util.Collection;
 
 import narrationmanager.model.util.DBModel;
 
+/**
+A DBModel defining the data obtained from a character saved in database.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class CharacterModel extends DBModel implements Comparable<CharacterModel>
 {  
   // mandatory fields:
@@ -23,9 +30,6 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   {
     super(id);
     this.name = name;
-    
-    //TODO TEST:
-    //relations.add(new RelationData(null,"ceci est un test, ligne 25 de CharacterModel","toto",true));
   }
   
   public String getName()

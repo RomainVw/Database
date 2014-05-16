@@ -6,6 +6,14 @@ import narrationmanager.model.NarrationDate;
 
 import narrationmanager.model.util.DBModel;
 
+
+/**
+A DBModel defining the data obtained from a event saved in database.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class EventModel extends DBModel
 {
   //Mandatory fields (+id, inherited from DBModel) 
@@ -93,7 +101,6 @@ public class EventModel extends DBModel
   
   public static EventModel defaultInstance()
   {
-    //TODO: retourner une instance par défaut un peu plus correcte!!
     return new EventModel(null,"New event",null,new NarrationDate("1992-12-22"),new NarrationDate("1992-12-22"));
   }
   

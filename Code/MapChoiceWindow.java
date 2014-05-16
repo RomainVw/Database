@@ -23,6 +23,14 @@ import narrationmanager.model.MapModel;
 
 import narrationmanager.controller.Controller;
 
+
+/**
+An EditionWindow to select a Map.
+
+@author Baugnies Benjamin
+@author Colson Olivier
+@author Vanwelde Romain
+**/
 public class MapChoiceWindow extends EditionWindow<MapModel>
 { 
   private PlaceModel parent;
@@ -40,7 +48,7 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
     super(controller, map);
   }
   
-  protected void buildUI() //TODO: comment in English!
+  protected void buildUI() 
   { 
     buttons = new ArrayList<JButton>();
     applyButton = new JButton("Apply");
@@ -65,7 +73,7 @@ public class MapChoiceWindow extends EditionWindow<MapModel>
       for (int j = 0; j < editionTarget.getNumLength(); j ++)
       {
         index = j + i*editionTarget.getNumLength();
-        //if (buttons == null)
+      
         buttons.add(index, new JButton());
         panel.add(buttons.get(index));
         if (subplaces!=null && subplaces.containsValue(j+(i*editionTarget.getNumLength())))
