@@ -159,7 +159,12 @@ public class CharacterEditionWindow extends EditionWindow<CharacterModel>
     {
       String relationName=JOptionPane.showInputDialog("Please enter the new relation's name");	
       
-      if(relationName!=null) return new RelationData(null,relationName,target.getID(),true);
+      if(relationName!=null) 
+      {
+        RelationData newRel=new RelationData(null,relationName,target.getID(),false);
+        newRel.setTargetCharacterName(target.getName());
+        return newRel;
+      }
     }
     
     return null;
