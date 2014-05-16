@@ -78,8 +78,15 @@ public class RelationEditionTable extends EditionTable<RelationData>
         target.setIsTarget(isTarget);
       	target.setRelationName(newType.replace(RelationData.INVERSE_NAME_TAG,""));
       	break;
-      case START_DATE_COLUMN: target.setStart((NarrationDate) value); break;
-      case END_DATE_COLUMN: target.setEnd((NarrationDate) value); break; 
+      case START_DATE_COLUMN:
+      	      if(value==null) setValueAt(null,row,END_DATE_COLUMN);
+      	      target.setStart((NarrationDate) value); 
+      	      refresh();
+      	      changeSelection(row,column,false,false);
+      	      break;
+      case END_DATE_COLUMN:
+      	      target.setEnd((NarrationDate) value); 
+      	      break; 
     }  
   }
   
