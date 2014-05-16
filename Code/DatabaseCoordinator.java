@@ -193,7 +193,7 @@ public class DatabaseCoordinator
       
       // get relations with daterange where source
       try {
-          pst = con.prepareStatement("  select RL.relationid, source, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where source = ? and characterid=target");
+          pst = con.prepareStatement("  select RL.relationid, target, relationtype, (start).year, (start).month, (start).day, (enddate).year, (enddate).month, (enddate).day, name from RANGERELATION RR JOIN RELATIONLIST RL on RR.relationid = RL.relationid, character where source = ? and characterid=target");
           pst.setString(1, characterid);
           ResultSet res = pst.executeQuery();
           while(res.next()){
@@ -864,6 +864,7 @@ public class DatabaseCoordinator
                 pst.setString(3, newRelId);
                 pst.executeUpdate();
                 
+                System.out.println(""+newCharID+relationToAdd.getTargetCharacterID()+newRelId);
                 
             }
             
