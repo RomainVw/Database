@@ -795,10 +795,26 @@ public class DatabaseCoordinator
             
             }
         
+            /* Suppression de toutes les relations en DB */
+            pst = con.prepareStatement("delete from TIMELESSRELATION where  source=? or target = ?");
+            pst.setString(1, newCharID);
+            pst.setString(2, newCharID);
+            pst.executeUpdate();
             
+            pst = con.prepareStatement("delete from DATERELATION where  source=? or target = ?");
+            pst.setString(1, newCharID);
+            pst.setString(2, newCharID);
+            pst.executeUpdate();
+            
+            pst = con.prepareStatement("delete from RANGERELATION where  source=? or target = ?");
+            pst.setString(1, newCharID);
+            pst.setString(2, newCharID);
+            pst.executeUpdate();
             
             TreeSet<RelationData> relations = newCharacter.getRelationsByType();
             for (RelationData relationToAdd : relations) {
+                
+                
                 
                 /* Recuperation de l'id de la  relation */
                 pst = con.prepareStatement("select relationid from relationlist where relationtype = ?");
@@ -816,22 +832,7 @@ public class DatabaseCoordinator
                     pst.executeUpdate();
                 }
                 
-                /* Suppression de toutes les relations en DB */
-                pst = con.prepareStatement("delete from TIMELESSRELATION where  source=? or target = ?");
-                pst.setString(1, newCharID);
-                pst.setString(2, newCharID);
-                pst.executeUpdate();
-
-                pst = con.prepareStatement("delete from DATERELATION where  source=? or target = ?");
-                pst.setString(1, newCharID);
-                pst.setString(2, newCharID);
-                pst.executeUpdate();
-                
-                pst = con.prepareStatement("delete from RANGERELATION where  source=? or target = ?");
-                pst.setString(1, newCharID);
-                pst.setString(2, newCharID);
-                pst.executeUpdate();
-                
+               
                 
                 /* Ajout de toutes les relations en DB */
                 if (relationToAdd.getStart() == null){
