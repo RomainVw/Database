@@ -9,6 +9,8 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+import java.awt.Container;
+import java.awt.Window;
 
 import java.awt.event.ActionEvent;
 
@@ -59,7 +61,11 @@ public class EditionTablePanel<T> extends JPanel
   private void insertElement(Supplier<T> insertFunction)
   {
     T toAdd=insertFunction.get();
-    if(toAdd!=null) editionTable.addElement(toAdd);
+    if(toAdd!=null) 
+    {
+      editionTable.addElement(toAdd);
+      packParent();
+    }
   }
   
   private void removeSelectedElements()
@@ -68,22 +74,9 @@ public class EditionTablePanel<T> extends JPanel
     {
       editionTable.removeElement(element);	    
     }
-  }
-  
-/*  private void editElement(Consumer<T> editFunction)
-  {
-    LinkedList<T>  selected=editionTable.getSelectedElements();
     
-    if(selected.size()>1)
-    {
-      JOptionPane.showMessageDialog(this,"Please select only one line to edit it","Error",JOptionPane.ERROR_MESSAGE);	    
-    }
-    else if(selected.size()==1)
-    {
-      editFunction.accept(selected.get(0));	    
-      editionTable.refresh();
-    }
-  }*/
+    packParent();
+  }
   
   public Collection<T> getTableContent()
   {
@@ -93,5 +86,17 @@ public class EditionTablePanel<T> extends JPanel
   public void fillTableWith(Collection<T> collection)
   {
     editionTable.fillWith(collection);	  
+  }
+  
+  private void packParent()
+  {
+    Container parent=getParent();
+    
+    while(! (parent instanceof Window))
+    {
+      parent=parent.getParent();	    
+    }
+    
+    ((Window)parent).pack();
   }
 }

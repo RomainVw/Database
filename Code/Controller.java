@@ -200,7 +200,7 @@ public class Controller
   public void saveCharacterModifications(CharacterModel toSave)
   {
       dbCoordinator.saveNewCharacter(toSave, false);
-      System.out.println("Saving modified character: "+toSave.getName());
+      System.out.println("Saving modified character: "+toSave.getName()+"   "+toSave.getBirthPlace());
   }
   
   public void saveNewEvent(EventModel newEvent)

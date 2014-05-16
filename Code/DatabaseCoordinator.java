@@ -84,7 +84,7 @@ public class DatabaseCoordinator
        */
       
     try {
-        pst = con.prepareStatement("select PLACENAME from  ORIGINATES, CHARACTER, PLACE where CHARACTER.CHARACTERID = ? and CHARACTER.CHARACTERID = ORIGINATES.CHARACTERID and ORIGINATES.PLACEID = PLACE.PLACEID");
+        pst = con.prepareStatement("select PLACEID from  ORIGINATES where CHARACTERID = ?");
         pst.setString(1, characterid);
         ResultSet res = pst.executeQuery();
         if(res.next()){
@@ -785,7 +785,7 @@ public class DatabaseCoordinator
                 pst.setString(1, newCharacter.getName());
                 pst.setString(2, newCharacter.getID());
                 pst.executeUpdate();
-                
+                System.out.println("troulala "+newCharacter.getBirthPlace()+"    "+newCharacter.getID());
                 pst = con.prepareStatement("update ORIGINATES set placeid=? where characterid=?");
                 pst.setString(1, newCharacter.getBirthPlace());
                 pst.setString(2, newCharacter.getID());
@@ -887,6 +887,7 @@ public class DatabaseCoordinator
         } catch (SQLException e) {
             Logger lgr = Logger.getLogger(DatabaseCoordinator.class.getName());
             lgr.log(Level.SEVERE, e.getMessage(), e);
+            e.printStackTrace();
         }
     }
     

@@ -85,7 +85,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   public TreeSet<RelationData> getRelationsByCharacter()
   {
-    TreeSet<RelationData> rslt=new TreeSet<>((RelationData a,RelationData b)-> groupRelationsByType(a,b));	 
+    TreeSet<RelationData> rslt=new TreeSet<>((RelationData a,RelationData b)-> groupRelationsByCharacter(a,b));	 
     rslt.addAll(relations);
     return rslt;
   }
@@ -99,10 +99,12 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
   
   private static int groupRelationsByCharacter(RelationData a, RelationData b)
   {
-    int rslt=rslt=a.getTargetCharacterID().compareTo(b.getTargetCharacterID());
+    int rslt=rslt=a.getTargetCharacterName().compareTo(b.getTargetCharacterName());
     
     if(rslt==0)
       rslt=a.getRelationName().compareTo(b.getRelationName());
+
+    if(rslt==0 && (a.getIsTarget()^b.getIsTarget())) rslt=(a.getIsTarget())? -1:1;
 
     return rslt;
   }
@@ -112,7 +114,9 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     int rslt=a.getRelationName().compareTo(b.getRelationName());
     
     if(rslt==0) 
-      rslt=a.getTargetCharacterID().compareTo(b.getTargetCharacterID());
+      rslt=a.getTargetCharacterName().compareTo(b.getTargetCharacterName());
+
+    if(rslt==0 && (a.getIsTarget()^b.getIsTarget())) rslt=(a.getIsTarget())? -1:1;
     
     return rslt;
   }
@@ -127,6 +131,7 @@ public class CharacterModel extends DBModel implements Comparable<CharacterModel
     int rslt=getName().compareTo(other.getName());
     
     if(rslt==0) rslt=getID().compareTo(other.getID());
+    
     
     return rslt;
   }
