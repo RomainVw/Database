@@ -790,9 +790,8 @@ public class DatabaseCoordinator
                 pst.setString(1, newCharacter.getBirthPlace());
                 pst.setString(2, newCharacter.getID());
                 pst.executeUpdate();
-
-            
-            
+                
+                
             }
         
             /* Suppression de toutes les relations en DB */
