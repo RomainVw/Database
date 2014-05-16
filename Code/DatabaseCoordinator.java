@@ -782,13 +782,13 @@ public class DatabaseCoordinator
             } else {
                 newCharID = newCharacter.getID();
                 pst = con.prepareStatement("update CHARACTER set name=? where characterid=?");
-                pst.setString(1, newCharacter.getID());
-                pst.setString(2, newCharacter.getName());
+                pst.setString(1, newCharacter.getName());
+                pst.setString(2, newCharacter.getID());
                 pst.executeUpdate();
                 
                 pst = con.prepareStatement("update ORIGINATES set placeid=? where characterid=?");
-                pst.setString(1, newCharacter.getID());
-                pst.setString(2, newCharacter.getBirthPlace());
+                pst.setString(1, newCharacter.getBirthPlace());
+                pst.setString(2, newCharacter.getID());
                 pst.executeUpdate();
 
             
