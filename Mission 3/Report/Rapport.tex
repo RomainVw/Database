@@ -398,20 +398,7 @@ The other files are:
 \end{itemize}
 
 
-\section{Implementation issues}
-Due to various factors, we did not achieve all the things we would have wanted to do. In this section we will go the main features would have liked to add to the program.
 
-\subsection{DB coherence}
-Our current implementation uses queries directly through the JDBC driver. However, certain manipulations of the database require queries to multiple tables. I the event that one of the queries is invalid (wrong parameters, system crash ...), the others are not stopped and no recovery system is used. Additionaly, the users is not warned when one or more queries fail. This can result in situations where data might not have been added to the DB while the user thinks it is, or where some of the data is written in the DB while the user thinks the whole modification was dropped.
-Given more time, we would have wished to add mechanisms to warn the user in the event that he provided an invalid input before executing the query. Additionaly, we would have modified the project to use transactions to add data to the DB in a safe and reliable way.
-
-\subsection{Design oversights}
-When the moment came for us to gather statistics for the user, we realized we had forgottent a simple but important field for characters: their gender. This had the unfortunate consequence of making one of our big objectives (giving the user a quick overview of information over the whole text) a lot more complicated.
-We did consider some workaround solutions, such as representing gender by a self to self "Relation" (character relation, not DB relation), but this would cause gender statistics to be indistinguishable from other relations.
-
-\subsection{Missing features}
-Many features were not implemented due to the size of the project and the time given. As mentioned in the previous paragraph, statistics on gender were made difficult because of an oversight, and the whole feature  ended up being dropped. We also did not have time to create a satisfactory Place viewer like those for Characters and Events. Ultimately, this viewer would have contained an interactive map representation of the place. This map would would show the Events and Subplaces of the Place, and would change depending on the time.
-Another feature that was not implemented is the handling of Character behaviour. This is simply another characteristic of a character, on which statistics would also have been collected. Similarly, Associations were not implemented beyond creating the empty model file.
 
 \section{SQL script}
 
@@ -510,6 +497,21 @@ javadoc –d doc *.java
 \item The Javadoc is now in the doc repository!
 \end{itemize}
 \newpage
+
+\section{Implementation issues}
+Due to various factors, we did not achieve all the things we would have wanted to do. In this section we will go the main features would have liked to add to the program.
+
+\subsection{DB coherence}
+Our current implementation uses queries directly through the JDBC driver. However, certain manipulations of the database require queries to multiple tables. I the event that one of the queries is invalid (wrong parameters, system crash ...), the others are not stopped and no recovery system is used. Additionaly, the users is not warned when one or more queries fail. This can result in situations where data might not have been added to the DB while the user thinks it is, or where some of the data is written in the DB while the user thinks the whole modification was dropped.
+Given more time, we would have wished to add mechanisms to warn the user in the event that he provided an invalid input before executing the query. Additionaly, we would have modified the project to use transactions to add data to the DB in a safe and reliable way.
+
+\subsection{Design oversights}
+When the moment came for us to gather statistics for the user, we realized we had forgottent a simple but important field for characters: their gender. This had the unfortunate consequence of making one of our big objectives (giving the user a quick overview of information over the whole text) a lot more complicated.
+We did consider some workaround solutions, such as representing gender by a self to self "Relation" (character relation, not DB relation), but this would cause gender statistics to be indistinguishable from other relations.
+
+\subsection{Missing features}
+Many features were not implemented due to the size of the project and the time given. As mentioned in the previous paragraph, statistics on gender were made difficult because of an oversight, and the whole feature  ended up being dropped. We also did not have time to create a satisfactory Place viewer like those for Characters and Events. Ultimately, this viewer would have contained an interactive map representation of the place. This map would would show the Events and Subplaces of the Place, and would change depending on the time.
+Another feature that was not implemented is the handling of Character behaviour. This is simply another characteristic of a character, on which statistics would also have been collected. Similarly, Associations were not implemented beyond creating the empty model file.
 
 \section*{Annexes}
 \appendix
