@@ -404,8 +404,8 @@ In almost every case, the same view is used to both create and update/view a mod
 The controller is a single class that acts as a bridge between the Models and Views. Its tasks are to give the Views access to the data from the Models to fill the GUI with the relevant information. It is also in charge of controlling what happens when one View is closed. Depending on what happened, it will launch the next View and/or perform the corresponding database manipulations though not directly, as we will explain in the next part.
 
 \subsection{Other files}
-Some files do not belong strictly to the MVC pattern but are used for convenience. The most important of them is the DatabaseCoordinator. This class provides a layer between the Database and the MVC. The main utility of this class is to group all the SQL queries into a single class, in order to abstract away from the SQL language in the rest of the program. \\ \\
-The other files are:
+Some files do not belong strictly to the MVC pattern but are used for convenience.
+These files are:
 \begin{itemize}
 \item NarrationManager: acts as Main class, starts the Controller
 \item NarrationDate: simple class to represent a date without our calendar's restrictions
@@ -413,8 +413,11 @@ The other files are:
 \item EditionTable: an extension of JTable to provide common functionalities between its different extensions.
 \item EditionTablePanel: extension of JPanel to contain an EditionTable and add default buttons (apply and cancel).
 \item EventEditionTable/RelationEditionTable: extensions of EditionTable to provide a table layout of the corresponding model.
+\item DatabaseCoordinator: provides an interface for database access. Detailed in the following section.
 \end{itemize}
 
+\subsection{Database interaction}
+All queries to the DB are done through the DatabaseCoordinator class. This class provides a layer between the Database and the MVC. The main utility of this class is to group all the SQL queries into a single class, in order to abstract away from the SQL language in the rest of the program. For each model, the Coordinator provides one or several methods for performing the SQL queries and return the corresponding Model instance. These methods use the PreparedStatement and ResultSet classes in order to execute queries with a lowered risk of SQL injection (even though the database is intended for individual use).\\ \\
 
 
 
@@ -432,11 +435,11 @@ In this section, we explain which functionalities we managed to implement before
 \subsection{Events}
 
 Let us begin with events. 
-Events can be created using the main menu’s “Create new event” button, which opens a new edition window (actually, a JDialog, so it blocks the calling window until it has been closed). In that window, we can see that several default data have already been put into the required fields, and of course that it is possible to modify them. To modify an element in the table, simply double-click on it, and then press enter to validate your caption. Note that in the case of date fields, the user cannot enter other values than string in the form year-month-day (the programs will refuse other input formats and surround the corresponding cell in red). These dates do however not need to represent “real-world dates”, as it is possible to enter any number for the day, month, or year. We did this choice to better stick to the requirements of the program telling that the user should be able to model as many imaginary universes as possible in the program (which may imply the use of a non-Gregorian calendar). Once you have done all the modifications you needed, simply click the “Apply” button to save them into database and close the window. Clicking “Cancel” would also close the window, but would discard your changes, so that nothing is written in database.
+Events can be created using the main menu’s “Create new event” button, which opens a new edition window (actually, a JDialog, so it blocks the calling window until it has been closed). In that window, we can see that several default data have already been put into the required fields, and of course that it is possible to modify them. To modify an element in the table, simply double-click on it, and then press enter to validate your caption. Note that in the case of date fields, the user cannot enter other values than string in the form year-month-day (the programs will refuse other input formats and surround the corresponding cell in red). These dates do however not need to represent “real-world dates”, as it is possible to enter any number for the day, month, or year. We did this choice to better stick to the requirements of the program telling that the user should be able to model as many imaginary universes as possible in the program (which may imply the use of a non-Gregorian calendar). The place is chosen from a scrolling list of available places to avoid typos. Once you have done all the modifications you needed, simply click the “Apply” button to save them into database and close the window. Clicking “Cancel” would also close the window, but would discard your changes, so that nothing is written in database.
 Events can also be edited with the same kind of menu (actually, the same class is called), using the “Edit event” option in the main menu, and then selecting the event to edit into the lists it displays. If no event is available to be edited in the database, an error message will be displayed to the user to kindly inform him that he should first create an event.
 Links can also be created between characters and events, as we will explain in the characters –related point.
 
-\subsection*{Relations}
+\subsection{Relations}
 
 Relations can be created or edited in order to link characters. Their creation and edition is entirely managed in the menus used for characters, so we will explain them in the “Characters” section.
 
@@ -446,6 +449,11 @@ Characters can be created or edited in the same manner than events.
 The characters edition window contains two tabs, one containing the basic data about the character and his relations with other characters in a table, the other containing a table with all the events linked to the character. These two tables give the possibility to add or remove elements to them using the “Insert…” and “Remove selected lines” buttons lying below them.
 The relations table displays both relations targeting the opened character and the relations from which this character is the source. To achieve this, it simply appends the tag “ [INVERSE]” (with a space before the ‘[‘) to the type of the relation  when the character is the target of the relation.  Note that the relations table allows editing table cells in each of its columns, except the one containing the target name (as this is more new relation creation than edition in that case). This table also allows sorting relations by type or character name with the JComboBox below it. 
 The second type lists the events linked to the character being edited. It is not editable (to edit an event, one needs to open the dedicated window through the main menu), but allows adding or removing relations, and thus modifying the “peerings” between events and characters.
+
+\subsection{Places and Maps}
+Places are created like Characters and Events. There are currently only two fields: the place's name (a textfield) and the parent place. The selection of a parent place is somewhat different. The scrolling list only contains places which have a Map (this is a requirement for having subplaces). Once a parent is selected, a grid with the dimensions of the place's map is opened in a new edition window. Squares which are already occupied by a subplace are indicated in red. The user can then select one of the available squares to which the place will be assigned. This selection can be applied or cancelled. In the second case, the parent (not only the location) is ignored. \\
+Once the place creation's apply button is clicked, the place is saved in the database. However, before returning to the new menu, a new window appears asking the user if he want to add a Map to the new place. If he fills out the form and clicks yes, the map is stored in the DB and associated to the recently created place. \\ \\
+Edition of places was not fully implemented. The user can change the name and parent by following the same procedure as during creation. However, he is not able to add a map to the place after it has been edited. While this is a missing feature, the omission of a dedicated map editor (to change the dimensions) is intentional. Indeed, this would have the consequence of potentially destroying subplace relations.
 
 
 \section{Technical specifications }
