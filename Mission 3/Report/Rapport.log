@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  6 MAY 2014 17:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.5)  16 MAY 2014 16:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1464,13 +1464,13 @@ LaTeX Font Info:    Try loading font information for U+wasy on input line 129.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-<./logoingisbleu.jpg, id=52, 682.55pt x 903.375pt>
+<./logoingisbleu.jpg, id=104, 682.55pt x 903.375pt>
 File: ./logoingisbleu.jpg Graphic file (type jpg)
  <use ./logoingisbleu.jpg>
 Package pdftex.def Info: ./logoingisbleu.jpg used on input line 132.
 (pdftex.def)             Requested size: 68.25899pt x 90.34279pt.
 
-<./epl.jpg, id=53, 205.76875pt x 126.4725pt>
+<./epl.jpg, id=105, 205.76875pt x 126.4725pt>
 File: ./epl.jpg Graphic file (type jpg)
  <use ./epl.jpg>
 Package pdftex.def Info: ./epl.jpg used on input line 138.
@@ -1522,45 +1522,40 @@ been already used, duplicate ignored
                    \relax 
 l.228 \subsection{About events}
                                 [1]
-<ORM.png, id=67, 1242.5622pt x 1098.9858pt>
+<ORM.png, id=119, 1242.5622pt x 1098.9858pt>
 File: ORM.png Graphic file (type png)
  <use ORM.png>
-Package pdftex.def Info: ORM.png used on input line 249.
+Package pdftex.def Info: ORM.png used on input line 258.
 (pdftex.def)             Requested size: 534.29134pt x 472.55469pt.
 
-Overfull \hbox (79.04723pt too wide) in paragraph at lines 249--250
+Overfull \hbox (79.04723pt too wide) in paragraph at lines 258--259
 [][] 
  []
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 250.
+(Font)              using `T1/lmr/bx/n' instead on input line 259.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 254.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 263.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 257--258
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
 
  []
 
 
-Overfull \hbox (8.49539pt too wide) in paragraph at lines 259--262
+Overfull \hbox (8.49539pt too wide) in paragraph at lines 268--271
 \T1/lmr/m/n/12 The re-la-tions ex-plain the re-la-tion-ships bet-ween dif-feren
 t cha-rac-ters. They are uni-directional
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--262
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 263--266
+Underfull \hbox (badness 10000) in paragraph at lines 268--271
 
  []
 
@@ -1571,7 +1566,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+Underfull \hbox (badness 10000) in paragraph at lines 272--275
 
  []
 
@@ -1582,14 +1577,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3 <./ORM.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
 
  []
 
 
-Overfull \hbox (22.1728pt too wide) in paragraph at lines 308--309
-[]\T1/lmr/m/n/12 The cha-rac-ter $[]$ had a re-la-tion with $[]$ of the type $[
-]$
+Underfull \hbox (badness 10000) in paragraph at lines 292--294
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
  []
 
 
@@ -1599,7 +1603,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 330--331
+Overfull \hbox (35.28394pt too wide) in paragraph at lines 326--327
+\T1/lmr/m/n/12 The cha-rac-ter $[]$ is a mem-ber of the as-so-cia-tion $[]$. 
+ []
+
+
+Overfull \hbox (22.1728pt too wide) in paragraph at lines 334--335
+\T1/lmr/m/n/12 The cha-rac-ter $[]$ had a re-la-tion with $[]$ of the type $[]$
 
  []
 
@@ -1609,10 +1619,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-(./structure_rel.d
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 356--357
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1626,17 +1637,44 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7])
+[7]
+Overfull \hbox (21.22412pt too wide) in paragraph at lines 393--395
+[]$\T1/lmtt/m/n/12 http : / / www . oracle . com / technetwork / java / javase 
+/ downloads / index-[]jsp-[]138363 . html$[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--395
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-(./structure.sql
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
+
+ []
+
+
+Overfull \hbox (3.24509pt too wide) in paragraph at lines 435--436
+[]\T1/lmr/m/n/12 Narrationmanager.NarrationManager is the full pa-ckage path to
+-ward the class contai-
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1650,7 +1688,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10]
+[10] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(./structure_rel.d
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 12.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1666,48 +1714,88 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [12])
 
-Package glossaries Warning: No \printglossary or \printglossaries found.
-This document will not have a glossary.
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 346.
+[13] (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(./structure.sql
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 346.
+[14]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[16]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17])
+
+Package glossaries Warning: No \printglossary or \printglossaries found.
+This document will not have a glossary.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 463.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 463.
  (./Rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 346.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 346.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 463.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 463.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: EB615D8EB9A474DC518C18918C0012FE;639.
+(rerunfilecheck)             Checksum: FE04225E328555DA9DFFE52AC484A3D6;1461.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 346.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 463.
  ) 
 Here is how much of TeX's memory you used:
- 19131 strings out of 493315
- 274783 string characters out of 6137905
- 626638 words of memory out of 5000000
- 21782 multiletter control sequences out of 15000+600000
- 65677 words of font info for 54 fonts, out of 8000000 for 9000
+ 19256 strings out of 493315
+ 276411 string characters out of 6137905
+ 635709 words of memory out of 5000000
+ 21851 multiletter control sequences out of 15000+600000
+ 79198 words of font info for 75 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 46i,14n,78p,1457b,2205s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
-13/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/
-type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/lm/lmr6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri12.
-pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Rapport.pdf (14 pages, 607879 bytes).
+ 46i,14n,78p,1457b,2203s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
+cal/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2013/texmf-d
+ist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts
+/type1/public/lm/lmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/lm/lmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmr6.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Rapport.pdf (19 pages, 635258 bytes).
 PDF statistics:
- 570 PDF objects out of 1000 (max. 8388607)
- 537 compressed objects within 6 object streams
- 366 named destinations out of 1000 (max. 500000)
- 112 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 686 PDF objects out of 1000 (max. 8388607)
+ 646 compressed objects within 7 object streams
+ 408 named destinations out of 1000 (max. 500000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 

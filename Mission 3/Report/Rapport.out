@@ -5,8 +5,21 @@
 \BOOKMARK [2][-]{subsection.2.3}{About events}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{About places}{section.2}% 6
 \BOOKMARK [1][-]{section.3}{ORM schema}{}% 7
-\BOOKMARK [1][-]{section.4}{Tutorial-D script}{}% 8
-\BOOKMARK [1][-]{section.5}{Relvar predicates}{}% 9
-\BOOKMARK [1][-]{section.6}{SQL script}{}% 10
-\BOOKMARK [1][-]{appendix.A}{Code Rel}{}% 11
-\BOOKMARK [1][-]{appendix.B}{Code SQL}{}% 12
+\BOOKMARK [1][-]{section.4}{Translating ORM in relvar}{}% 8
+\BOOKMARK [1][-]{section.5}{Constraints}{}% 9
+\BOOKMARK [1][-]{section.6}{Tutorial-D script}{}% 10
+\BOOKMARK [1][-]{section.7}{Relvar predicates}{}% 11
+\BOOKMARK [1][-]{section.8}{SQL script}{}% 12
+\BOOKMARK [1][-]{section.9}{What we did}{}% 13
+\BOOKMARK [2][-]{subsection.9.1}{Events}{section.9}% 14
+\BOOKMARK [2][-]{subsection.9.2}{Characters}{section.9}% 15
+\BOOKMARK [1][-]{section.10}{Technical specifications }{}% 16
+\BOOKMARK [2][-]{subsection.10.1}{About the database}{section.10}% 17
+\BOOKMARK [2][-]{subsection.10.2}{About the code}{section.10}% 18
+\BOOKMARK [2][-]{subsection.10.3}{Code philosophy}{section.10}% 19
+\BOOKMARK [3][-]{subsubsection.10.3.1}{First steps}{subsection.10.3}% 20
+\BOOKMARK [3][-]{subsubsection.10.3.2}{Compilation}{subsection.10.3}% 21
+\BOOKMARK [3][-]{subsubsection.10.3.3}{Execution}{subsection.10.3}% 22
+\BOOKMARK [3][-]{subsubsection.10.3.4}{Javadoc}{subsection.10.3}% 23
+\BOOKMARK [1][-]{appendix.A}{Code Rel}{}% 24
+\BOOKMARK [1][-]{appendix.B}{Code SQL}{}% 25

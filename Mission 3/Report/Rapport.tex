@@ -244,7 +244,16 @@ LLNMAP has 20 square length, and represents a 10km distance.
 \section{ORM schema}
 
 
-The ORM schema is shown on the Figure \ref{orm}. If some relations are too difficult to read, the numeric version is available in the Annexes directory of the zip file.\\
+The ORM schema is shown on the Figure \ref{orm}. If some relations are too difficult to read, the numeric version is available in the Annexes directory of the zip file.\\ The notations conventions used are those one :
+\begin{itemize}
+\item Entities are circled with straight lines
+\item Attributes are linked to entities with dashed lines.
+\item When the relation arity equals 2, we indicate the multiplicity/compulsory of the relation on the link.
+\item When the relation arity is bigger, we draw a line above the square representing the relation (If no lines are drawn, it is equivalent of having drawn the line on all squares). And this means that combination of all the attributes concerned by the line will always be different, whatever the relation expressed.
+\item If a relation is not clear enough, we could add some text in the squares to clarify the meaning of the relation.
+\item An underlined attribute means that it is a unique key.
+\end{itemize}
+
 \begin{figure}[!h]
 \includegraphics[scale=0.43]{ORM.png}
 \caption{ORM Schema}
@@ -269,6 +278,23 @@ This is a rather complex relation that we introduced to keep track of a story's 
 We can see that a place's map is optional. However, since a place's sub-places are linked to its map, it implicitly  becomes required when we want to add levels. This structure allows us to chain an arbitrary number of levels with a "place - map - place - map - \dots" hierarchy.
 This relation has two constraints that are not expressed in the database and will have to be verified in the software implementation. Firstly, the map square on which the sub-place is located must belong to the map's domain of possible squares (between 1 and (\# square width)*(\# square length)). Secondly, it is required that two places of the same level do not overlap.
 
+\section{Translating ORM in relvar}
+In this section , we will explain the way we convert our ORM diagram into relvar predicates.\\
+
+\textbf{First}, we identify, for each entity, the compulsory binaries relations. All those are groupped in the same relvar.
+
+\textbf{Second}, we  create a new relvar for all the optionals binaries relations.
+
+\textbf{Last},we create a new relvar for all relations with an arrity bigger than 2. 
+
+\section{Constraints}
+
+Among all the foreign key contraints, unique keys, ... we fond a more special and interesting constraint to express.
+We impose that the start date of a relation is lower than the end date. In tutorial-D and PostgreSQL, since we used custom types for our date representation, we implemented a function that allows us to know which date came before the other.\\
+
+We realized that we could add other constraints (like oblige the month number to be lower than 12, the day number to be lower than 31, ...), but since while creating histories, we like having freedom (we can easily imagine a story where there are more than 12 months, 31 days, ...).
+
+
 \section{Tutorial-D script}
 
 In the zip file, you can find files \texttt{structure\_rel.d} and \texttt{data\_rel.d}.\\
@@ -282,47 +308,47 @@ In this section, we will give the relvar predicates that our database represents
 
 \subsection*{About characters:}
 \begin{itemize}
-\item The character \underline{\textbf{CHARACTERID}} is named \textbf{NAME}. \underline{\textbf{ASSOCIATIONID}}.
-\item The character \underline{\textbf{CHARACTERID}} has a behavior that is \underline{\textbf{BEHAVIOR}}.
-\item The character \underline{\textbf{CALLERID}} knows the charactert \underline{\textbf{CALLEID}} by the pseudonym \underline{\textbf{PSEUDONYME}}.
+\item Relvar [CHARACTER] \\  The character \underline{\textbf{CHARACTERID}} is named \textbf{NAME}.
+\item Relvar [BEHAVIOR] \\  The character \underline{\textbf{CHARACTERID}} has a behavior that is \underline{\textbf{BEHAVIOR}}.
+\item Relvar [PSEUDO] \\  The character \underline{\textbf{CALLERID}} knows the charactert \underline{\textbf{CALLEID}} by the pseudonym \underline{\textbf{PSEUDONYME}}.
 \end{itemize}
 
 \subsection*{About time:}
 \begin{itemize}
-\item The character \underline{\textbf{CHARACTERID}} was born on \textbf{BIRTH}.
-\item The character \underline{\textbf{CHARACTERID}} died on \textbf{DEATH}.
+\item Relvar [BIRTH] \\   The character \underline{\textbf{CHARACTERID}} was born on \textbf{BIRTH}.
+\item Relvar [DEATH] \\   The character \underline{\textbf{CHARACTERID}} died on \textbf{DEATH}.
 \end{itemize}
 
 \subsection*{About Associations:}
 \begin{itemize}
-\item The association \underline{\textbf{ASSOCIATIONID}} is named \textbf{NAME}.
-\item The association \underline{\textbf{ASSOCIATIONID}} is described as \textbf{DESCRIPTION}.
-\item The character \underline{\textbf{CHARACTERID}} is a member of the association.
+\item Relvar [ASSOCIATIONNAME] \\   The association \underline{\textbf{ASSOCIATIONID}} is named \textbf{NAME}.
+\item Relvar [ASSOCIATIONDESCRIPTION] \\   The association \underline{\textbf{ASSOCIATIONID}} is described as \textbf{DESCRIPTION}.
+\item Relvar [ASSOCIATION] \\   The character \underline{\textbf{CHARACTERID}} is a member of the association \underline{\textbf{ASSOCIATIONID}}.
 \end{itemize}
 
 \subsection*{About character relations:}
 \begin{itemize}
-\item The relation \underline{\textbf{RELATIONID}} is of the type \textbf{RELATIONSHIP}.
-\item The character \underline{\textbf{SOURCE}} has a timeless relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}}.
-\item The character \underline{\textbf{SOURCE}} started a permanent relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} at the time \underline{\textbf{DATE}}.
-\item The character \underline{\textbf{SOURCE}} had a relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} that started on \underline{\textbf{START}} and ended on \underline{\textbf{ENDDATE}}.
+\item Relvar [RELATIONLIST] \\   The relation \underline{\textbf{RELATIONID}} is of the type \textbf{RELATIONSHIP}.
+\item Relvar [TIMELESSRELATION] \\   The character \underline{\textbf{SOURCE}} has a timeless relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}}.
+\item Relvar [DATERELATION] \\  The character \underline{\textbf{SOURCE}} started a permanent relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} at the time \underline{\textbf{DATE}}.
+\item Relvar [RANGERELATION] \\   The character \underline{\textbf{SOURCE}} had a relation with \underline{\textbf{TARGET}} of the type \underline{\textbf{RELATIONID}} that started on \underline{\textbf{START}} and ended on \underline{\textbf{ENDDATE}}.
 \end{itemize}
 
 \subsection*{About places:}
 \begin{itemize}
-\item The place \underline{\textbf{PLACEID}} is called \textbf{PLACENAME}.
-\item The map \underline{\textbf{MAPID}} has a width of \textbf{WIDTH} split into \textbf{NUMWIDTH} sections, and a length \textbf{LENGHT} split into \textbf{NUMLENGTH} sections.
-\item The place \textbf{PLACEID} is represented by the map \underline{\textbf{MAPID}}.
-\item The place \underline{\textbf{PLACEID}} is locate on the square \underline{\textbf{SQUAREID}} of the \underline{\textbf{MAPID}} map.
-\item The character \underline{\textbf{CHARACTERID}} originates from \textbf{PLACEID}.
+\item Relvar [PLACE] \\   The place \underline{\textbf{PLACEID}} is called \textbf{PLACENAME}.
+\item Relvar [MAP] \\  The map \underline{\textbf{MAPID}} has a width of \textbf{WIDTH} split into \textbf{NUMWIDTH} sections, and a length \textbf{LENGTH} split into \textbf{NUMLENGTH} sections.
+\item Relvar [MAPPEDPLACE] \\   The place \textbf{PLACEID} is represented by the map \underline{\textbf{MAPID}}.
+\item Relvar [SUBPLACE] \\   The place \underline{\textbf{PLACEID}} is locate on the square \underline{\textbf{SQUAREID}} of the \underline{\textbf{MAPID}} map.
+\item Relvar [ORIGINATES] \\   The character \underline{\textbf{CHARACTERID}} originates from \textbf{PLACEID}.
 \end{itemize}
 
 \subsection*{About events:}
 \begin{itemize}
-\item The event \underline{\textbf{EVENTID}} is named \textbf{NAME}.
-\item The event \underline{\textbf{EVENTID}} is described as \textbf{DESCRIPTION}.
-\item The character \underline{\textbf{CHARACTERID}} attended \underline{\textbf{EVENTID}}.
-\item The event \underline{\textbf{EVENTID}} happened at \underline{\textbf{PLACEID}}, started on \underline{\textbf{BEGINNING}}, and ended on \underline{\textbf{ENDDATE}}.
+\item Relvar [EVENTNAME] \\   The event \underline{\textbf{EVENTID}} is named \textbf{NAME}.
+\item Relvar [EVENTDESCRIPTION] \\   The event \underline{\textbf{EVENTID}} is described as \textbf{DESCRIPTION}.
+\item Relvar [ATTENDS] \\   The character \underline{\textbf{CHARACTERID}} attended \underline{\textbf{EVENTID}}.
+\item Relvar [EVENT] \\   The event \underline{\textbf{EVENTID}} happened at \underline{\textbf{PLACEID}}, started on \underline{\textbf{BEGINNING}}, and ended on \underline{\textbf{ENDDATE}}.
 \end{itemize}
 
 \section{SQL script}
@@ -331,7 +357,98 @@ In the zip file, you can find files \texttt{structure.sql} which builds the enti
 
 
 The file \texttt{data.sql} is also available in the zip file. This one is also idempotent. It builds the structure of the database as the previous file, then it fills the database with all the elementary facts presented above in the report.
+
+\section{What we did}
+
+In this section, we explain which functionalities we managed to implement before the project’s deadline. As the requirements set is pretty large, we had to choose among them which ones were more important in order to get a working program as soon and efficiently as possible. For clarity purposes, we group them here by concerned database model:
+
+\subsection{Events}
+
+Let us begin with events. 
+Events can be created using the main menu’s “Create new event” button, which opens a new edition window (actually, a JDialog, so it blocks the calling window until it has been closed). In that window, we can see that several default data have already been put into the required fields, and of course that it is possible to modify them. To modify an element in the table, simply double-click on it, and then press enter to validate your caption. Note that in the case of date fields, the user cannot enter other values than string in the form year-month-day (the programs will refuse other input formats and surround the corresponding cell in red). These dates do however not need to represent “real-world dates”, as it is possible to enter any number for the day, month, or year. We did this choice to better stick to the requirements of the program telling that the user should be able to model as many imaginary universes as possible in the program (which may imply the use of a non-Gregorian calendar). Once you have done all the modifications you needed, simply click the “Apply” button to save them into database and close the window. Clicking “Cancel” would also close the window, but would discard your changes, so that nothing is written in database.
+Events can also be edited with the same kind of menu (actually, the same class is called), using the “Edit event” option in the main menu, and then selecting the event to edit into the lists it displays. If no event is available to be edited in the database, an error message will be displayed to the user to kindly inform him that he should first create an event.
+Links can also be created between characters and events, as we will explain in the characters –related point.
+
+\subsection*{Relations}
+
+Relations can be created or edited in order to link characters. Their creation and edition is entirely managed in the menus used for characters, so we will explain them in the “Characters” section.
+
+\subsection{Characters}
+
+Characters can be created or edited in the same manner than events.
+The characters edition window contains two tabs, one containing the basic data about the character and his relations with other characters in a table, the other containing a table with all the events linked to the character. These two tables give the possibility to add or remove elements to them using the “Insert…” and “Remove selected lines” buttons lying below them.
+The relations table displays both relations targeting the opened character and the relations from which this character is the source. To achieve this, it simply appends the tag “ [INVERSE]” (with a space before the ‘[‘) to the type of the relation  when the character is the target of the relation.  Note that the relations table allows editing table cells in each of its columns, except the one containing the target name (as this is more new relation creation than edition in that case). This table also allows sorting relations by type or character name with the JComboBox below it. 
+The second type lists the events linked to the character being edited. It is not editable (to edit an event, one needs to open the dedicated window through the main menu), but allows adding or removing relations, and thus modifying the “peerings” between events and characters.
+
+
+\section{Technical specifications }
+
+\subsection{About the database}
+
+For this project, we use PostgreSQL 9.3.4. It can be downloaded here: \url{http://www.enterprisedb.com/products-services-training/pgdownload#windows}
+In order to get the project working, you need to install it, and then create a new database with it on localhost (on the default PostgreSQL port number), naming it lingi2172, with password “ben” for user “postgres”.
+
+
+\subsection{About the code}
+Our project makes use of the latest Java version, that is, 1.8.0\_05. Make sure you have it (or a later version) installed to use our software, as we used some of the new constructs it defines (as lambda functions). Java 8 is available here on Oracle’s website: 
+\url{http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html }\\
+
+
+We connect the database to Java using JDBC and directly coding the requests with it (in DatabaseCoordinator.java). To be able to use PostgreSQL with JDBC, you need a specific database driver, defined in the .jar file available here: 
+\url{http://jdbc.postgresql.org/download.html} (make sure you choose a driver compatible with Java 8). This file has been included in the submitted archive for convenience purposes, so you are not obliged to download it. The section about the code philosophy will explain you what to do with it.
+
+\subsection{Code philosophy}
+
+We did not use any IDE for this project, only text editor and command line. This choice was first proposed by one of our team members (a jEdit-fundamentalist who strongly believes that coding without IDE leads to better code quality and higher mastery of the overall language and has been programming this way in Java since the very beginning of his studies). The two other ones saw there an opportunity to try something different and decided to follow him. 
+However, even our fundamentalist (actually, especially him) must admit that finding how to run Java in the command line, despite the great wisdom of Internet, sometimes may proof pretty uneasy (and it is a pity). For this reason, here is a small guide explaining how to compile and execute our program, so that you don’t lose time searching if you don’t already know how to do:
+
+\subsubsection{First steps}
+
+\begin{itemize}
+\item Open a terminal into the repository containing the source code
+\item Create a new directory where the program will be compiled. We will refer to it as “cpld” (stands for “compiled”), but you can of course give any name you like.
+\item Copy the database driver obtained as stated in the section about Java into your cpld directory.
+\item Check you java and javac installation, using both “java –verion” and “javac –version” commands. Both should return that you are using Java 1.8. If it is not the case, check your environment variables.
+
+\end{itemize}
+
+\subsubsection{Compilation}
+
+In the directory containing the code, type:
+\begin{verbatim}
+java –d cpld *.java
+\end{verbatim}
+This command compiles everything, creating the package directories into the cpld directory
+\subsubsection{Execution}
+Go to your cpld directory and type:
+
+\begin{verbatim}
+java –cp .;<name_of_driver_jar>  narrationmanager.NarrationManager
+\end{verbatim}
+
+\textit{Note that this command seems to be different on Mac: you must then replace the ‘;’ by a ‘:’. We did not test it on other UNIX systems, but it is possible that they also require this modification.}\\
+
+\texttt{<name\_of\_driver\_jar>} must of course be replaced by the name of the database driver file (actually, you can also place it in another repository and give the path to it here).\\ 
+
+-cp specifies the classpath to use for the JVM\\
+
+Narrationmanager.NarrationManager is the full package path toward the class containing the main method.
+
+\subsubsection{Javadoc}
+
+
+\begin{itemize}
+\item The code contains few comments, but each class has a brief Javadoc description that can be nicer to see browsing a generated Javadoc. This point explains how to do this
+\item In your source code repository, create a new directory, say “doc”
+\item Type the following command (as previously, replacing doc by the name of your doc repository):
+\begin{verbatim}
+javadoc –d doc *.java
+\end{verbatim}
+(don’t worry about all the stuff this command prints in the terminal ; for once, if means everything is going fine)
+\item The Javadoc is now in the doc repository!
+\end{itemize}
 \newpage
+
 \section*{Annexes}
 \appendix
 
