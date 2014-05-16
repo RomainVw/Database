@@ -437,6 +437,7 @@ public class DatabaseCoordinator
    
    try {
      pst = con.prepareStatement("select EN.name, E.placeid, (E.beginning).year, (E.beginning).month, (E.beginning).day, (E.enddate).year, (E.enddate).month, (E.enddate).day from EVENT E JOIN EVENTNAME EN on E.eventid = EN.eventid where E.EVENTID=?");
+     pst.setString(1, eventId);
      res = pst.executeQuery();
      if (res.next())
      {
